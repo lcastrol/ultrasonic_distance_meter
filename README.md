@@ -39,3 +39,7 @@ Click on AVR > AVRDude tab
 Click on Add button
 
 Choose Programmer Hardware = Atmel AVR ISP
+
+===================
+Usage
+===================
