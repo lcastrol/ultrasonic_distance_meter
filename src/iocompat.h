@@ -58,8 +58,10 @@
 #  define DDROC DDRB
 #elif defined(__AVR_ATtiny24__) || defined(__AVR_ATtiny44__) || \
       defined(__AVR_ATtiny84__)
-#  define OC1 PA6
-#  define DDROC DDRA
+#  define OC0A PB2
+#  define OC0B PA7
+#  define DDRA_OC0B DDRA
+#  define DDRB_OC0A DDRB
 #  if !defined(OCR1A)
 #    /* work around misspelled name in avr-libc 1.4.[0..1] */
 #    define OCR OCRA1

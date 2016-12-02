@@ -1,29 +1,47 @@
 /*
- * ----------------------------------------------------------------------------
- * "THE BEER-WARE LICENSE" (Revision 42):
- * <joerg@FreeBSD.ORG> wrote this file.  As long as you retain this notice you
- * can do whatever you want with this stuff. If we meet some day, and you think
- * this stuff is worth it, you can buy me a beer in return.        Joerg Wunsch
- * ----------------------------------------------------------------------------
- *
- * Simple AVR demonstration.  Controls a LED that can be directly
- * connected from OC1/OC1A to GND.  The brightness of the LED is
- * controlled with the PWM.  After each period of the PWM, the PWM
- * value is either incremented or decremented, that's all.
- *
- * $Id: group__demo__project.html,v 1.1.1.24 2016/02/09 07:13:43 joerg_wunsch Exp $
+Copyright (c) 2016, Luis Castro Leiva
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this
+list of conditions and the following disclaimer in the documentation and/or other
+materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may
+be used to endorse or promote products derived from this software without specific
+prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+DAMAGE.
  */
+
 #include <inttypes.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
-#include "iocompat.h"       /* Note [1] */
+#include "iocompat.h"
+#include "udm_utils.h"
+
 enum { UP, DOWN };
-ISR (TIMER1_OVF_vect)       /* Note [2] */
+
+ISR (TIMER1_OVF_vect)
 {
-    static uint16_t pwm;    /* Note [3] */
+    static uint16_t pwm;
     static uint8_t direction;
-    switch (direction)      /* Note [4] */
+    switch (direction)
     {
         case UP:
             if (++pwm == TIMER1_TOP)
@@ -34,40 +52,63 @@ ISR (TIMER1_OVF_vect)       /* Note [2] */
                 direction = UP;
             break;
     }
-    OCR = pwm;          /* Note [5] */
+    OCR = pwm;
 }
+
+
 void
-ioinit (void)           /* Note [6] */
+ioinit (void)
 {
+    /* Timer 0 is 8-bit PWM */
+	/* Timer 0 is used to generate the 40 KHz pulses in OC0A and OC0B */
+	TCCR0A = _BV(COM0A0) | _BV(WGM02) | _BV(WGM01) | _BV(WGM00); /* Fast PWM, and toggle OC0A on Compare Match */
+	OCR0A = 39; /* note [1] */
+	OCR0B = 39; /* note [1] */
+
+    /* Enable OC0A and OC0B as outputs. */
+    DDRA_OC0B = _BV(OC0B);
+    DDRB_OC0A = _BV(OC0A);
+
+    //Timer on
+    TCCR0B = (1<<CS01) | (1<<CS00); /* Set the prescale to 64, note [1] */
+
+
+    //TODO: use timer 1 to create a timed interrupt that will trigger the pulse and read
+
     /* Timer 1 is 10-bit PWM (8-bit PWM on some ATtinys). */
-    TCCR1A = TIMER1_PWM_INIT;
+    //TCCR1A = TIMER1_PWM_INIT;
     /*
      * Start timer 1.
      *
      * NB: TCCR1A and TCCR1B could actually be the same register, so
      * take care to not clobber it.
      */
-    TCCR1B |= TIMER1_CLOCKSOURCE;
+    //TCCR1B |= TIMER1_CLOCKSOURCE;
     /*
      * Run any device-dependent timer 1 setup hook if present.
-     */
-#if defined(TIMER1_SETUP_HOOK)
-    TIMER1_SETUP_HOOK();
-#endif
+    */
+    //#if defined(TIMER1_SETUP_HOOK)
+    //    TIMER1_SETUP_HOOK();
+    //#endif
     /* Set PWM value to 0. */
-    OCR = 0;
+    //OCR = 0;
     /* Enable OC1 as output. */
-    DDROC = _BV (OC1);
+    //DDROC = _BV (OC1);
+
     /* Enable timer 1 overflow interrupt. */
-    TIMSK = _BV (TOIE1);
-    sei ();
+    //TIMSK = _BV (TOIE1);
+    //sei ();
 }
+
 int
 main (void)
 {
     ioinit ();
     /* loop forever, the interrupts are doing the rest */
-    for (;;)            /* Note [7] */
+    for (;;)
         sleep_mode();
     return (0);
 }
+
+
+/* note [1]: to calculate the value of the 4kHz pulse we follow this equation:  10MHz / ( 64 (prescale) * 39 (compare value)) = 4006,41 Hz */
