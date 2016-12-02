@@ -8,6 +8,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include .metadata/.plugins/org.eclipse.cdt.make.core/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -30,38 +31,38 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-udm.lss \
+src.lss \
 
 SIZEDUMMY += \
 sizedummy \
 
 
 # All Target
-all: udm.elf secondary-outputs
+all: src.elf secondary-outputs
 
 # Tool invocations
-udm.elf: $(OBJS) $(USER_OBJS)
+src.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,udm.map -mmcu=attiny24 -o "udm.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-udm.lss: udm.elf
+src.lss: src.elf
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S udm.elf  >"udm.lss"
+	-avr-objdump -h -S src.elf  >"src.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: udm.elf
+sizedummy: src.elf
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=attiny24 udm.elf
+	-avr-size --format=avr --mcu=attiny24 src.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) udm.elf
+	-$(RM) $(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) src.elf
 	-@echo ' '
 
 secondary-outputs: $(LSS) $(SIZEDUMMY)

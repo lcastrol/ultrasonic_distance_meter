@@ -33,7 +33,6 @@ DAMAGE.
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
 #include "iocompat.h"
-#include "udm_utils.h"
 
 enum { UP, DOWN };
 
