@@ -34,42 +34,29 @@ DAMAGE.
 #include <avr/sleep.h>
 #include "iocompat.h"
 
-enum { UP, DOWN };
+enum { IDLE, SEND, LISTEN, CALCULATE };
 
-ISR (TIMER1_OVF_vect)
-{
-    static uint16_t pwm;
-    static uint8_t direction;
-    switch (direction)
-    {
-        case UP:
-            if (++pwm == TIMER1_TOP)
-                direction = DOWN;
-            break;
-        case DOWN:
-            if (--pwm == 0)
-                direction = UP;
-            break;
-    }
-    OCR = pwm;
-}
-
+uint8_t current_state;
 
 void
 ioinit (void)
 {
+
+	current_state = IDLE;
+
     /* Timer 0 is 8-bit PWM */
 	/* Timer 0 is used to generate the 40 KHz pulses in OC0A and OC0B */
-	TCCR0A = _BV(COM0A0) | _BV(WGM02) | _BV(WGM01) | _BV(WGM00); /* Fast PWM, and toggle OC0A on Compare Match */
-	OCR0A = 39; /* note [1] */
-	OCR0B = 39; /* note [1] */
+	TCCR0A |= _BV(COM0A0) |_BV(COM0B0) | _BV(WGM01) ; /* CTC, and toggle OC0A on Compare Match */
+	//TCCR0B |= _BV(WGM02);
+	OCR0A = 0x30; /* 25 decnote [1] */
+	OCR0B = 0x30; /* 25 dec note [1] */
 
     /* Enable OC0A and OC0B as outputs. */
-    DDRA_OC0B = _BV(OC0B);
-    DDRB_OC0A = _BV(OC0A);
+    DDRA_OC0B |= _BV(OC0B);
+    DDRB_OC0A |= _BV(OC0A);
 
     //Timer on
-    TCCR0B = (1<<CS01) | (1<<CS00); /* Set the prescale to 64, note [1] */
+    TCCR0B |=  _BV(CS02) | _BV(CS00); /* Set the prescale to 8, note [1] */
 
 
     //TODO: use timer 1 to create a timed interrupt that will trigger the pulse and read
@@ -99,13 +86,62 @@ ioinit (void)
     //sei ();
 }
 
+uint8_t
+get_next_state(void){
+	uint8_t nstate;
+
+	switch(current_state){
+		case IDLE:
+			nstate = SEND;
+			break;
+		case SEND:
+			if (0){
+				nstate = LISTEN;
+			} else {
+				nstate = current_state;
+			}
+			break;
+		case LISTEN:
+			if (0){
+				nstate = CALCULATE;
+			} else if (0){
+				nstate = SEND;
+			} else {
+				nstate = current_state;
+			}
+			break;
+		case CALCULATE:
+			if (0){
+				nstate = SEND;
+			} else {
+				nstate = current_state;
+			}
+			break;
+		default:
+			nstate = current_state;
+			break;
+	}
+
+
+	return nstate;
+}
+
+void
+execute_state(void){
+
+}
+
 int
 main (void)
 {
     ioinit ();
     /* loop forever, the interrupts are doing the rest */
-    for (;;)
-        sleep_mode();
+    while(1)
+    {
+    	current_state = get_next_state();
+    	execute_state();
+    }
+       //sleep_mode();
     return (0);
 }
 

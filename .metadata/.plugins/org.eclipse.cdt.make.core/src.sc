@@ -434,6 +434,7 @@
 <definedSymbol symbol="__AVR_ATtiny24__=1"/>
 <definedSymbol symbol="__AVR_DEVICE_NAME__=attiny24"/>
 <definedSymbol symbol="F_CPU=8000000UL"/>
+<definedSymbol symbol="F_CPU=1000000UL"/>
 </collector>
 </instance>
 <instance id="de.innot.avreclipse.configuration.app.release.288081066;de.innot.avreclipse.configuration.app.release.288081066.;de.innot.avreclipse.tool.compiler.winavr.app.release.1752781168;de.innot.avreclipse.compiler.winavr.input.20822262">

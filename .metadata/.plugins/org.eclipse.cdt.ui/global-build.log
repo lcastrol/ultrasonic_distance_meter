@@ -1,34 +1,4 @@
-19:04:15 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     218 bytes (10.6% Full)
-(.text + .data + .bootloader)
-
-Data:          3 bytes (2.3% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-19:04:26 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     218 bytes (10.6% Full)
-(.text + .data + .bootloader)
-
-Data:          3 bytes (2.3% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
+08:49:02 **** Clean-only build of configuration Debug for project smart_sensor ****
+make clean 
+rm -rf  ./main.o  sizedummy  smart_sensor.lss  ./main.d  smart_sensor.elf
  

@@ -1,0 +1,7 @@
+08:49:02 **** Clean-only build of configuration Debug for project smart_sensor ****
+make clean 
+rm -rf  ./main.o  sizedummy  smart_sensor.lss  ./main.d  smart_sensor.elf
+ 
+
+08:49:02 Build Finished (took 72ms)
+
