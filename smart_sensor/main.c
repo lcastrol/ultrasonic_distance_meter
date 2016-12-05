@@ -31,12 +31,22 @@ DAMAGE.
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
+#include "iocompat.h"
+#include "udm_utils.h"
 
-enum { IDLE, SEND, LISTEN, CALCULATE };
+typedef enum { IDLE, SEND, LISTEN, CALCULATE } state_t;
 
-uint8_t current_state;
+state_t current_state;
 typedef void (*func_ptr)(void);
-func_ptr state_function_ptr[3]; /* We have 4 states*/
+func_ptr state_function_ptr[4]; /* We have 4 states*/
+
+typedef enum { ON, OFF } tx_condition_t;
+typedef enum { TIMEOUT, RECEIVED } command_st_t;
+typedef enum { OVER, ONGOING } comm_status_t;
+
+tx_condition_t tx_status;
+command_st_t command_status;
+comm_status_t comm_status;
 
 void
 ioinit (void)
@@ -44,6 +54,9 @@ ioinit (void)
 
 	/* Init state */
 	current_state = IDLE;
+
+	/* Init communcation status */
+	comm_status = OVER;
 
 	/* Init function pointers */
 	state_function_ptr[IDLE] = &idle_function;
@@ -55,29 +68,19 @@ ioinit (void)
 	/* Timer 0 is used to generate the 40 KHz pulses in OC0A and OC0B */
 	TCCR0A |= _BV(COM0A0) |_BV(COM0B0) | _BV(WGM01) ; /* CTC, and toggle OC0A on Compare Match */
 
-	TIMSK0 = 1;
+	//TIMSK0 = 1;
 	TCCR0B |= _BV(WGM02);
-	OCR0A = 0x30; /* 25 decnote [1] */
-	OCR0B = 0x30; /* 25 dec note [1] */
+	OCR0A = 24; /* 25 decnote [1], This is Arduino Mega pin 13*/
+	OCR0B = 24; /* 25 dec note [1] */
 
+	TCNT1
     /* Enable OC0A and OC0B as outputs. */
-    //DDRA_OC0B |= _BV(OC0B);
-    //DDRB_OC0A |= _BV(OC0A);
+    DDR_OC0B |= _BV(OC0B);
+    DDR_OC0A |= _BV(OC0A);
 
-    //Timer on
-    //TCCR0B |=  _BV(CS02) | _BV(CS00); /* Set the prescale to 8, note [1] */
-
-
-    //TODO: use timer 1 to create a timed interrupt that will trigger the pulse and read
-
-    /* Timer 1 is 10-bit PWM (8-bit PWM on some ATtinys). */
+    /* Timer 1 Fast PWM */
     //TCCR1A = TIMER1_PWM_INIT;
-    /*
-     * Start timer 1.
-     *
-     * NB: TCCR1A and TCCR1B could actually be the same register, so
-     * take care to not clobber it.
-     */
+
     //TCCR1B |= TIMER1_CLOCKSOURCE;
     /*
      * Run any device-dependent timer 1 setup hook if present.
@@ -104,24 +107,24 @@ get_next_state(void){
 			nstate = SEND;
 			break;
 		case SEND:
-			if (0){
+			if (tx_status == ON){
 				nstate = LISTEN;
 			} else {
 				nstate = current_state;
 			}
 			break;
 		case LISTEN:
-			if (0){
+			if (command_status == RECEIVED){
 				nstate = CALCULATE;
-			} else if (0){
-				nstate = SEND;
+			} else if (command_status == TIMEOUT){
+				nstate = IDLE;
 			} else {
 				nstate = current_state;
 			}
 			break;
 		case CALCULATE:
-			if (0){
-				nstate = SEND;
+			if (comm_status == OVER){
+				nstate = IDLE;
 			} else {
 				nstate = current_state;
 			}
@@ -159,9 +162,6 @@ void idle_function(void){
 
 }
 
-void send_function(void){
-
-}
 
 void listen_function(void){
 
@@ -171,5 +171,19 @@ void calculate_function(void){
 
 }
 
+void send_function(void){
 
+    //Timer on
+    TCCR0B |=  _BV(CS01); /* Set the prescale to 8, note [1] */
+    //TODO fix the interrupt bug
+    tx_status = ON;
+}
+
+
+ISR (TIMER1_OVF_vect)       /* Note [2] */
+{
+	//Timer off
+	TCCR0B &=  ~(_BV(CS02) | _BV(CS01) | _BV(CS00));
+	tx_status = OFF;
+}
 /* note [1]: to calculate the value of the 4kHz pulse we follow this equation:  10MHz / ( 64 (prescale) * 39 (compare value)) = 4006,41 Hz */
