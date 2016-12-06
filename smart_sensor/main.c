@@ -41,12 +41,15 @@ typedef void (*func_ptr)(void);
 func_ptr state_function_ptr[4]; /* We have 4 states*/
 
 typedef enum { ON, OFF } tx_condition_t;
-typedef enum { TIMEOUT, RECEIVED } command_st_t;
+typedef enum { ALIVE, TIMEOUT, RECEIVED } command_st_t;
 typedef enum { OVER, ONGOING } comm_status_t;
+typedef enum { FALSE, TRUE } boolean_t;
 
 tx_condition_t tx_status;
 command_st_t command_status;
 comm_status_t comm_status;
+boolean_t tx_triggered; // This is a flag to change state SEND->LISTEN
+boolean_t reception_int_flag; // Flag to communicate the reception of the message
 
 void
 ioinit (void)
@@ -57,6 +60,9 @@ ioinit (void)
 
 	/* Init communcation status */
 	comm_status = OVER;
+
+	tx_triggered = FALSE;
+
 
 	/* Init function pointers */
 	state_function_ptr[IDLE] = &idle_function;
@@ -73,7 +79,6 @@ ioinit (void)
 	OCR0A = 24; /* 25 decnote [1], This is Arduino Mega pin 13*/
 	OCR0B = 24; /* 25 dec note [1] */
 
-	TCNT1
     /* Enable OC0A and OC0B as outputs. */
     DDR_OC0B |= _BV(OC0B);
     DDR_OC0A |= _BV(OC0A);
@@ -107,7 +112,8 @@ get_next_state(void){
 			nstate = SEND;
 			break;
 		case SEND:
-			if (tx_status == ON){
+			if (tx_triggered == TRUE){
+				tx_triggered = FALSE;
 				nstate = LISTEN;
 			} else {
 				nstate = current_state;
@@ -138,12 +144,20 @@ get_next_state(void){
 	return nstate;
 }
 
+/**************************
+ * Function: execute_state
+ * Description: call the respective function of each state
+ *************************/
 void
 execute_state(void){
 
 	(* state_function_ptr[current_state]) ();
 }
 
+/*************************
+ * Function: main
+ * Description: well main, loop forever
+ *************************/
 int
 main (void)
 {
@@ -162,28 +176,49 @@ void idle_function(void){
 
 }
 
-
+/******************************
+ * Function: listen_function
+ * Description: LISTEN state function, this enables and listens to the RX hardware for the "ECHO"/"RESPONSE"
+ ******************************/
 void listen_function(void){
 
+	if (0){
+		command_status = TIMEOUT;
+	} else if (reception_int_flag == TRUE) {
+		command_status = RECEIVED;
+	}
 }
 
 void calculate_function(void){
 
 }
-
+/******************************
+ * Function: send_function
+ * Description: SEND state function, this triggers the
+ ******************************/
 void send_function(void){
 
-    //Timer on
+    //Timer0 for PWM train generation on
     TCCR0B |=  _BV(CS01); /* Set the prescale to 8, note [1] */
-    //TODO fix the interrupt bug
     tx_status = ON;
+
+    //Timer for train on distance measure on
+    TCCR1B |=  _BV(CS01); /* Set the prescale to 8, note [1] */ //TODO fix this preescale
+
+    command_status = ALIVE;
+    tx_triggered = TRUE;
 }
 
-
+/*********************************
+ * Interrupt handler TIMER1_OVF vector
+ *********************************/
 ISR (TIMER1_OVF_vect)       /* Note [2] */
 {
 	//Timer off
 	TCCR0B &=  ~(_BV(CS02) | _BV(CS01) | _BV(CS00));
 	tx_status = OFF;
 }
+
+
+
 /* note [1]: to calculate the value of the 4kHz pulse we follow this equation:  10MHz / ( 64 (prescale) * 39 (compare value)) = 4006,41 Hz */
