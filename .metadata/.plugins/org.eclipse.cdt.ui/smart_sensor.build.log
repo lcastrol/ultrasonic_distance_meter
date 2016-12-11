@@ -1,0 +1,20 @@
+23:54:21 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega2560 smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega2560
+
+Program:     524 bytes (0.2% Full)
+(.text + .data + .bootloader)
+
+Data:         12 bytes (0.1% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+23:54:21 Build Finished (took 67ms)
+
