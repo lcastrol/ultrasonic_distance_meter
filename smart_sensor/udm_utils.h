@@ -13,6 +13,7 @@ void idle_function(void);
 void listen_function(void);
 void send_function(void);
 
+void uart_putchar(char c);
 
 
 
