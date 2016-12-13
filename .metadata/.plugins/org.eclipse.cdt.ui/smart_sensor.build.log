@@ -1,38 +1,12 @@
-10:35:06 **** Incremental Build of configuration Release for project smart_sensor ****
+13:24:52 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
-Building file: ../main.c
-Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega2560 -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
-In file included from ../main.c:42:0:
-/usr/lib/avr/include/util/setbaud.h:222:4: warning: #warning "Baud rate achieved is higher than allowed" [-Wcpp]
- #  warning "Baud rate achieved is higher than allowed"
-    ^
-Finished building: ../main.c
- 
-Building target: smart_sensor.elf
-Invoking: AVR C Linker
-avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega2560 -o "smart_sensor.elf"  ./main.o   
-Finished building target: smart_sensor.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
-Finished building: smart_sensor.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
-Finished building: smart_sensor.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
-Finished building: smart_sensor.eep
- 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega2560 smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega2560
 
-Program:     948 bytes (0.4% Full)
+Program:    1038 bytes (0.4% Full)
 (.text + .data + .bootloader)
 
 Data:         18 bytes (0.2% Full)
@@ -42,5 +16,5 @@ Data:         18 bytes (0.2% Full)
 Finished building: sizedummy
  
 
-10:35:06 Build Finished (took 164ms)
+13:24:52 Build Finished (took 61ms)
 

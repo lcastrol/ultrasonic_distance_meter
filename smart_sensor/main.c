@@ -31,15 +31,15 @@ DAMAGE.
 /* setting serial communication params */
 #define F_CPU 16000000UL
 #define BAUD 115200
-#define TRAIN_LENGTH 0x2
-//#define TIMEOUT_VALUE 0xDA // 14 ms
+#define TRAIN_LENGTH 0x2 // ms
 #define TIMEOUT_VALUE 0xA4 // 10.7 ms
 #define HITS_TO_VALID 4
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include <avr/sleep.h>
+#include <stdlib.h>
 #include <util/setbaud.h>
+#include <util/delay.h>
 #include "iocompat.h"
 #include "udm_utils.h"
 
@@ -58,12 +58,12 @@ tx_condition_t tx_status;
 command_st_t command_status;
 comm_status_t comm_status;
 boolean_t tx_triggered; // This is a flag to change state SEND->LISTEN
-boolean_t reception_int_flag; // Flag to communicate the reception of the message
-boolean_t time_out_flag; // Flag to communicate the timeout status
+volatile boolean_t reception_int_flag; // Flag to communicate the reception of the message
+volatile boolean_t time_out_flag; // Flag to communicate the timeout status
 uint8_t hits_count;
 
 
-char distance = 'a';
+volatile char distance = 'a';
 
 /**************************
  * Function: uart_init
@@ -132,7 +132,7 @@ ioinit (void)
     //--------------------------------------------------------------------
     //Configure pin to turn on the MAX233
     DDRA |= _BV(DDA3);
-    PORTA &= _BV(DDA3); //MAX ON, pin 25 in arduino mega256
+    PORTA &= ~(_BV(DDA3)); //MAX ON, pin 25 in arduino mega256
 
     //--------------------------------------------------------------------
     /* Timer 1 */
@@ -143,10 +143,11 @@ ioinit (void)
     //Analog comparator configuration
     ACSR |= _BV(ACIS1) | _BV(ACIS0);
     //ATMEGA configuration, not required for attiny24
-    //The arduino mega 256 has no AIN0 connected in the board, we will use ADC1/PF1
+    //The arduino mega 256 has no AIN0 connected in the board, we will use ADC1/PF1 in the device, A1 in the mega board
     ADCSRB |= _BV(ACME);
     ADCSRA &= ~(_BV(ADEN));
-    ADMUX |= _BV(MUX1);
+    ADMUX |= _BV(MUX0);
+
 
     //--------------------------------------------------------------------
     /* Enable timer 1 compare A match. */
@@ -247,9 +248,17 @@ void idle_function(void){
  * Description: LISTEN state function, this enables and listens to the RX hardware for the "ECHO"/"RESPONSE"
  ******************************/
 void listen_function(void){
+
+	//reception_int_flag = TRUE; //debug
+	//uart_putchar('L');
+	//time_out_flag = TRUE;
+
 	if (time_out_flag == TRUE){
 		command_status = TIMEOUT;
+		uart_putchar('T'); //debug
+		uart_putchar((char)TCNT1L);
 	} else if (reception_int_flag == TRUE) {
+		uart_putchar('R');
 		command_status = RECEIVED;
 	}
 }
@@ -261,7 +270,7 @@ void listen_function(void){
 void calculate_function(void){
 	uart_putchar('C'); //debug
 	//Transmit the distance
-	uart_putchar(distance);
+	//uart_putchar(distance);
 	comm_status = OVER;
 }
 /******************************
@@ -272,19 +281,33 @@ void send_function(void){
 
 	uart_putchar('S'); //debug
 
-	TIMSK = _BV (OCIE1A); //Timer Interrupt off
-    ACSR |= _BV(ACIE); //Analog comparator on
+    //---Update flags ----------------
+    tx_status = ON;
+    command_status = ALIVE;
 
-	//Start low
+    tx_triggered = TRUE;
+
+	//------------------TURN ON Interrupts ----------------------
+	TIMSK |= _BV (OCIE1A); //Timer Interrupt on
+    ACSR |= _BV(ACD) | _BV(ACIE); //Analog comparator on
+    //sei();
+
+	//Clear counter 0
 	TCNT0 = 0;
+
+    //clean counter 1
+    TCNT1L = 0;
+    TCNT1H = 0;
+
+	//Configure direction of pin for PWM
 	DDR_OC0A |= _BV(OC0A);
 
-    //Timer0 for PWM train generation on
-    TCCR0B |=  _BV(CS01); /* Set the prescale to 8, note [1] */
-    tx_status = ON;
+	//MAX ON
+	PORTA &= ~(_BV(DDA3));
 
-    //clean counter
-    TCNT1L = 0;
+	//-------------------TURN ON TIMERS ---------------------------
+	//Timer0 prescaler PWM train generation on
+    TCCR0B |=  _BV(CS01); /* Set the prescale to 8, note [1] */
 
     //Timer1 for train on distance measure on
     TCCR1B |= _BV(CS12) | _BV(CS10); // Set the prescaler to 1024
@@ -292,12 +315,11 @@ void send_function(void){
     while(TCNT1L <= TRAIN_LENGTH){} //Do nothing while waiting
 
     //Timer off
-    //TCCR0B &=  ~(_BV(CS02) | _BV(CS01) | _BV(CS00));
-    //DDR_OC0A &= ~(_BV(OC0A));
+    TCCR0B &=  ~(_BV(CS02) | _BV(CS01) | _BV(CS00));
+    DDR_OC0A &= ~(_BV(OC0A));
 
-    command_status = ALIVE;
-    tx_triggered = TRUE;
-
+    //MAX OFF
+    PORTA |= _BV(DDA3);
 
 }
 
@@ -306,12 +328,14 @@ void send_function(void){
  *********************************/
 ISR (TIMER1_COMPA_vect)       /* Note [2] */
 {
+	TIMSK &= ~(_BV(OCIE1A)); //Timer Interrupt off
+	ACSR &= ~(_BV(ACD) | _BV(ACIE)); //Analog comparator off
+
 	TCCR1B &= ~(_BV(CS12) | _BV(CS11) | _BV(CS10));
-	TCNT1L = 0;
+	//TCNT1L = 0;
+	hits_count = 0;
 	time_out_flag = TRUE;
 
-	TIMSK &= ~(_BV(OCIE1A)); //Timer Interrupt off
-	ACSR &= ~(_BV(ACIE)); //Analog comparator off
 }
 
 /*************************************
@@ -319,20 +343,25 @@ ISR (TIMER1_COMPA_vect)       /* Note [2] */
  ************************************/
 ISR (ANALOG_COMP_vect)
 {
-	hits_count++;
+	hits_count += 1;
 
+	//uart_putchar((char)hits_count);
+	//_delay_ms(1.0);
+	uart_putchar('W');
 	if(hits_count >= HITS_TO_VALID){
+
+		TIMSK &= ~(_BV(OCIE1A)); //Timer Interrupt off
+		ACSR &= ~(_BV(ACD) | _BV(ACIE)); //Analog comparator off
+
+		//uart_putchar('W');
 
 		TCCR1B &= ~(_BV(CS12)| _BV(CS11) | _BV(CS10));
 		reception_int_flag = TRUE;
 		//Measure distance
 		distance = (char)TCNT1L;
+
 		hits_count = 0;
-
-		TIMSK &= ~(_BV(OCIE1A)); //Timer Interrupt off
-		ACSR &= ~(_BV(ACIE)); //Analog comparator off
 	}
-
 }
 
 /******************************
@@ -340,8 +369,109 @@ ISR (ANALOG_COMP_vect)
  * Description: write in the serial communication
  ******************************/
 void uart_putchar(char c) {
-    UDR0 = c;
-    loop_until_bit_is_set(UCSR0A, TXC0); /* Wait until transmission ready. */
+
+	//UDR0 = c;
+    //loop_until_bit_is_set(UCSR0A, TXC0); /* Wait until transmission ready. */
+	loop_until_bit_is_set(UCSR0A, UDRE0); /* Wait until data register empty. */
+	UDR0 = c;
 }
 
 /* note [1]: to calculate the value of the 4kHz pulse we follow this equation:  10MHz / ( 64 (prescale) * 39 (compare value)) = 4006,41 Hz */
+
+///* setting serial communication params */
+//#define F_CPU 16000000UL
+//#define BAUD 115200
+//
+//#include <avr/io.h>
+//#include <avr/interrupt.h>
+//#include <util/setbaud.h>
+//#include "iocompat.h"
+//
+//volatile uint8_t alarm = 0;
+//
+//void init_comp()
+//{
+//    // Disable the digital input buffers.
+//    DIDR0 = (1<<AIN1D) | (1<<AIN0D);
+//
+//    // Setup the comparator...
+//    // Enabled, no bandgap, interrupt enabled,
+//    // no input capture, interrupt on falling edge.
+//    ACSR = (0<<ACD) | (0<<ACBG) | (1<<ACIE) | (0<<ACIC) | (1<<ACIS1) | (1<<ACIS0);
+//
+//    ADCSRB |= _BV(ACME);
+//    ADCSRA &= ~(_BV(ADEN));
+//    ADMUX |= _BV(MUX0);
+//
+//    sei();
+//}
+//
+//int main()
+//{
+//    init_comp();
+//    uart_init();
+//
+//    while (1)
+//    {
+//    	//uart_putchar('Z');
+//    	if (alarm)
+//        {
+//        	uart_putchar('a');
+//        	// Do something important.
+//        	alarm = 0;
+//        } else {
+//        	uart_putchar('b');
+//        }
+//
+//    }
+//}
+//
+//ISR(ANALOG_COMP_vect)
+//{
+//    // Did it just go high?
+//    //if (ACSR & ACO)
+//    //{
+//    //    // Indicate a problem.
+//    //    alarm = 1;
+//
+//        // Change to falling edge.
+//    //    ACSR &= ~(1<<ACIS0);
+//    //}
+//    //else
+//    //{
+//    //    // Indicate a all is well.
+//    //    alarm = 1;
+//
+//    //    // Set up the rising edge.
+//    //    ACSR |= (1<<ACIS0);
+//    //}
+//	alarm = 1;
+//}
+//
+//void uart_putchar(char c) {
+//
+//	//UDR0 = c;
+//    //loop_until_bit_is_set(UCSR0A, TXC0); /* Wait until transmission ready. */
+//	loop_until_bit_is_set(UCSR0A, UDRE0); /* Wait until data register empty. */
+//	UDR0 = c;
+//}
+//
+//
+//void
+//uart_init(void) {
+//    UBRR0H = UBRRH_VALUE;
+//    UBRR0L = UBRRL_VALUE;
+//
+//#if USE_2X
+//    UCSR0A |= _BV(U2X0);
+//#else
+//    UCSR0A &= ~(_BV(U2X0));
+//#endif
+//
+//    UCSR0C = _BV(UCSZ01) | _BV(UCSZ00); /* 8-bit data */
+//    //UCSR0B = _BV(RXEN0) | _BV(TXEN0);   /* Enable RX and TX */
+//    UCSR0B = _BV(TXEN0);   /* Enable RX and TX */
+//}
+//
+//
+//
