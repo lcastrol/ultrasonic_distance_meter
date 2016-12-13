@@ -16,8 +16,8 @@ tx_triggered        0x1               ./main.o
 state_function_ptr  0x8               ./main.o
 comm_status         0x1               ./main.o
 command_status      0x1               ./main.o
-time_out_flag       0x1               ./main.o
 hits_count          0x1               ./main.o
+time_out_flag       0x1               ./main.o
 tx_status           0x1               ./main.o
 
 Memory Configuration
@@ -134,7 +134,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000      0x40c
+.text           0x0000000000000000      0x382
  *(.vectors)
  .vectors       0x0000000000000000       0xe4 /usr/lib/gcc/avr/4.9.2/../../../avr/lib/avr6/crtatmega2560.o
                 0x0000000000000000                __vectors
@@ -252,85 +252,85 @@ END GROUP
  .text          0x000000000000013a        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
                 0x000000000000013a                . = ALIGN (0x2)
  *(.text.*)
- .text.uart_init
-                0x000000000000013a       0x22 ./main.o
-                0x000000000000013a                uart_init
- .text.ioinit   0x000000000000015c       0x94 ./main.o
-                0x000000000000015c                ioinit
- .text.get_next_state
-                0x00000000000001f0       0x46 ./main.o
-                0x00000000000001f0                get_next_state
- .text.execute_state
-                0x0000000000000236       0x16 ./main.o
-                0x0000000000000236                execute_state
- .text.startup.main
-                0x000000000000024c       0x16 ./main.o
-                0x000000000000024c                main
- .text.__vector_17
-                0x0000000000000262       0x4c ./main.o
-                0x0000000000000262                __vector_17
- .text.uart_putchar
-                0x00000000000002ae        0xe ./main.o
-                0x00000000000002ae                uart_putchar
  .text.idle_function
-                0x00000000000002bc       0x2a ./main.o
-                0x00000000000002bc                idle_function
+                0x000000000000013a       0x1a ./main.o
+                0x000000000000013a                idle_function
  .text.listen_function
-                0x00000000000002e6       0x30 ./main.o
-                0x00000000000002e6                listen_function
- .text.calculate_function
-                0x0000000000000316        0xc ./main.o
-                0x0000000000000316                calculate_function
+                0x0000000000000154       0x1c ./main.o
+                0x0000000000000154                listen_function
  .text.send_function
-                0x0000000000000322       0x56 ./main.o
-                0x0000000000000322                send_function
+                0x0000000000000170       0x4a ./main.o
+                0x0000000000000170                send_function
+ .text.uart_init
+                0x00000000000001ba       0x22 ./main.o
+                0x00000000000001ba                uart_init
+ .text.ioinit   0x00000000000001dc       0x92 ./main.o
+                0x00000000000001dc                ioinit
+ .text.get_next_state
+                0x000000000000026e       0x46 ./main.o
+                0x000000000000026e                get_next_state
+ .text.execute_state
+                0x00000000000002b4       0x16 ./main.o
+                0x00000000000002b4                execute_state
+ .text.startup.main
+                0x00000000000002ca       0x16 ./main.o
+                0x00000000000002ca                main
+ .text.__vector_17
+                0x00000000000002e0       0x46 ./main.o
+                0x00000000000002e0                __vector_17
  .text.__vector_28
-                0x0000000000000378       0x90 ./main.o
-                0x0000000000000378                __vector_28
+                0x0000000000000326       0x3c ./main.o
+                0x0000000000000326                __vector_28
+ .text.uart_putchar
+                0x0000000000000362        0xe ./main.o
+                0x0000000000000362                uart_putchar
+ .text.calculate_function
+                0x0000000000000370        0xe ./main.o
+                0x0000000000000370                calculate_function
  .text.libgcc.mul
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
  .text.libgcc.div
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
- .text.libgcc   0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
+ .text.libgcc   0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
  .text.libgcc.fixed
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
  .text.libgcc.mul
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
  .text.libgcc.div
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
- .text.libgcc   0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
+ .text.libgcc   0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
  .text.libgcc.prologue
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
  .text.libgcc.builtins
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
  .text.libgcc.fmul
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
  .text.libgcc.fixed
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_copy_data.o)
  .text.libgcc.mul
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
  .text.libgcc.div
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
- .text.libgcc   0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
+ .text.libgcc   0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
  .text.libgcc.prologue
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
  .text.libgcc.builtins
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
  .text.libgcc.fmul
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
  .text.libgcc.fixed
-                0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
-                0x0000000000000408                . = ALIGN (0x2)
+                0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_clear_bss.o)
+                0x000000000000037e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000000000000408        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
-                0x0000000000000408                exit
-                0x0000000000000408                _exit
+ .fini9         0x000000000000037e        0x0 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
+                0x000000000000037e                exit
+                0x000000000000037e                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -349,11 +349,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000000000000408        0x4 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
+ .fini0         0x000000000000037e        0x4 /usr/lib/gcc/avr/4.9.2/avr6/libgcc.a(_exit.o)
  *(.fini0)
-                0x000000000000040c                _etext = .
+                0x0000000000000382                _etext = .
 
-.data           0x0000000000800200        0x2 load address 0x000000000000040c
+.data           0x0000000000800200        0x2 load address 0x0000000000000382
                 0x0000000000800200                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800200        0x0 /usr/lib/gcc/avr/4.9.2/../../../avr/lib/avr6/crtatmega2560.o
@@ -390,12 +390,12 @@ END GROUP
                 0x0000000000800205                state_function_ptr
                 0x000000000080020d                comm_status
                 0x000000000080020e                command_status
-                0x000000000080020f                time_out_flag
-                0x0000000000800210                hits_count
+                0x000000000080020f                hits_count
+                0x0000000000800210                time_out_flag
                 0x0000000000800211                tx_status
                 0x0000000000800212                PROVIDE (__bss_end, .)
-                0x000000000000040c                __data_load_start = LOADADDR (.data)
-                0x000000000000040e                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000000000000382                __data_load_start = LOADADDR (.data)
+                0x0000000000000384                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0000000000800212        0x0
                 0x0000000000800212                PROVIDE (__noinit_start, .)

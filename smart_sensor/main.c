@@ -28,12 +28,34 @@ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF S
 DAMAGE.
  */
 
+
+/**********************************************
+ * Arduino setup
+ * Arduino - Sensor
+ * Vcc - Vcc
+ * GND - GND
+ * pin13 - Max IN
+ * pinA0 - Signal
+ *
+ * pin25 - Max ON/OFF
+ *
+ * TBD - thre
+ *
+ * X - MID point --> not connected.
+ *
+ *
+ */
+
+
 /* setting serial communication params */
 #define F_CPU 16000000UL
 #define BAUD 115200
 #define TRAIN_LENGTH 0x2 // ms
+//#define TRAIN_LENGTH 0x9
 #define TIMEOUT_VALUE 0xA4 // 10.7 ms
 #define HITS_TO_VALID 4
+
+#define DEBUG_STATES 0
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -58,9 +80,9 @@ tx_condition_t tx_status;
 command_st_t command_status;
 comm_status_t comm_status;
 boolean_t tx_triggered; // This is a flag to change state SEND->LISTEN
-volatile boolean_t reception_int_flag; // Flag to communicate the reception of the message
+volatile uint8_t reception_int_flag; // Flag to communicate the reception of the message
 volatile boolean_t time_out_flag; // Flag to communicate the timeout status
-uint8_t hits_count;
+volatile uint8_t hits_count;
 
 
 volatile char distance = 'a';
@@ -101,7 +123,8 @@ ioinit (void)
 	//Init triggered flag
 	tx_triggered = FALSE;
 	//Init reception flag
-	reception_int_flag = FALSE;
+	//reception_int_flag = FALSE;
+	reception_int_flag = 0;
 	//Init hits counter
 	hits_count = 0;
 
@@ -121,6 +144,7 @@ ioinit (void)
 	//TIMSK0 = 1;
 	TCCR0B |= _BV(WGM02);
 	OCR0A = 24; /* note [1], This is Arduino Mega pin 13*/
+	//OCR0A = 80;
 	OCR0B = 24; /* note [1] */
 
     /* Enable OC0A and OC0B as outputs. */
@@ -141,12 +165,18 @@ ioinit (void)
 
     //--------------------------------------------------------------------
     //Analog comparator configuration
-    ACSR |= _BV(ACIS1) | _BV(ACIS0);
+    //ACSR |= _BV(ACIE) | _BV(ACIS1) | _BV(ACIS0); /* raising edge */
+	  ACSR = (0<<ACD) | (1<<ACBG) | (1<<ACIE) | (0<<ACIC) | (1<<ACIS1) | (1<<ACIS0);
+    //ACSR |= _BV(ACIE);
     //ATMEGA configuration, not required for attiny24
-    //The arduino mega 256 has no AIN0 connected in the board, we will use ADC1/PF1 in the device, A1 in the mega board
+    //The arduino mega 256 has no AIN0 connected in the board, we will use ADC1/PF1 in the device, A0	 in the mega board
     ADCSRB |= _BV(ACME);
     ADCSRA &= ~(_BV(ADEN));
     ADMUX |= _BV(MUX0);
+
+    //PORTF |= _BV(PF1);
+    //PORTF |= _BV(PF0);
+    //PORTE |= _BV(PE3);
 
 
     //--------------------------------------------------------------------
@@ -224,7 +254,8 @@ main (void)
     	current_state = get_next_state();
     	execute_state();
     }
-       //sleep_mode();
+    uart_putchar('D');
+    //sleep_mode();
     return (0);
 }
 
@@ -235,12 +266,15 @@ main (void)
 void idle_function(void){
 	//Well do nothing, this state can be removed
 	TIMSK &= ~(_BV(OCIE1A));
-	ACSR &= ~(_BV(ACIE));
+	//ACSR &= ~(_BV(ACIE));
+#if DEBUG_STATES
 	uart_putchar('I');
+#endif
 	comm_status = ONGOING;
 	tx_triggered = FALSE;
 	time_out_flag = FALSE;
-	reception_int_flag = FALSE;
+	//reception_int_flag = FALSE;
+	//reception_int_flag = 0;
 }
 
 /******************************
@@ -255,12 +289,20 @@ void listen_function(void){
 
 	if (time_out_flag == TRUE){
 		command_status = TIMEOUT;
+#if DEBUG_STATES
 		uart_putchar('T'); //debug
 		uart_putchar((char)TCNT1L);
-	} else if (reception_int_flag == TRUE) {
+#endif
+	}
+	else if (reception_int_flag == 1) {
+#if DEBUG_STATES
 		uart_putchar('R');
+#endif
+		reception_int_flag = 0;
 		command_status = RECEIVED;
 	}
+
+
 }
 
 /******************************
@@ -268,9 +310,12 @@ void listen_function(void){
  * Description: transmit in serial the output of the sensor
  ******************************/
 void calculate_function(void){
+
+#if DEBUG_STATES
 	uart_putchar('C'); //debug
+#endif
 	//Transmit the distance
-	//uart_putchar(distance);
+	uart_putchar(distance);
 	comm_status = OVER;
 }
 /******************************
@@ -279,8 +324,9 @@ void calculate_function(void){
  ******************************/
 void send_function(void){
 
+#if DEBUG_STATES
 	uart_putchar('S'); //debug
-
+#endif
     //---Update flags ----------------
     tx_status = ON;
     command_status = ALIVE;
@@ -289,7 +335,7 @@ void send_function(void){
 
 	//------------------TURN ON Interrupts ----------------------
 	TIMSK |= _BV (OCIE1A); //Timer Interrupt on
-    ACSR |= _BV(ACD) | _BV(ACIE); //Analog comparator on
+    //ACSR |= _BV(ACIE); //Analog comparator on
     //sei();
 
 	//Clear counter 0
@@ -329,13 +375,13 @@ void send_function(void){
 ISR (TIMER1_COMPA_vect)       /* Note [2] */
 {
 	TIMSK &= ~(_BV(OCIE1A)); //Timer Interrupt off
-	ACSR &= ~(_BV(ACD) | _BV(ACIE)); //Analog comparator off
+	//ACSR &= ~(_BV(ACIE)); //Analog comparator off
 
 	TCCR1B &= ~(_BV(CS12) | _BV(CS11) | _BV(CS10));
 	//TCNT1L = 0;
 	hits_count = 0;
 	time_out_flag = TRUE;
-
+	//uart_putchar('V');
 }
 
 /*************************************
@@ -347,20 +393,22 @@ ISR (ANALOG_COMP_vect)
 
 	//uart_putchar((char)hits_count);
 	//_delay_ms(1.0);
-	uart_putchar('W');
+	//uart_putchar('W');
+	//reception_int_flag = 1;
 	if(hits_count >= HITS_TO_VALID){
-
-		TIMSK &= ~(_BV(OCIE1A)); //Timer Interrupt off
-		ACSR &= ~(_BV(ACD) | _BV(ACIE)); //Analog comparator off
-
-		//uart_putchar('W');
-
-		TCCR1B &= ~(_BV(CS12)| _BV(CS11) | _BV(CS10));
-		reception_int_flag = TRUE;
-		//Measure distance
+//
+//		TIMSK &= ~(_BV(OCIE1A)); //Timer Interrupt off
+//		ACSR &= ~( _BV(ACIE)); //Analog comparator off
+//
+//
+//		TCCR1B &= ~(_BV(CS12)| _BV(CS11) | _BV(CS10));
+		reception_int_flag = 1;
+//		//Measure distance
 		distance = (char)TCNT1L;
-
+//
 		hits_count = 0;
+//		uart_putchar('V');
+//
 	}
 }
 
@@ -378,6 +426,12 @@ void uart_putchar(char c) {
 
 /* note [1]: to calculate the value of the 4kHz pulse we follow this equation:  10MHz / ( 64 (prescale) * 39 (compare value)) = 4006,41 Hz */
 
+//****************************************************************************
+//****************************************************************************
+//****************************************************************************
+//****************************************************************************
+
+
 ///* setting serial communication params */
 //#define F_CPU 16000000UL
 //#define BAUD 115200
@@ -392,7 +446,7 @@ void uart_putchar(char c) {
 //void init_comp()
 //{
 //    // Disable the digital input buffers.
-//    DIDR0 = (1<<AIN1D) | (1<<AIN0D);
+//    //DIDR0 = (1<<AIN1D) | (1<<AIN0D);
 //
 //    // Setup the comparator...
 //    // Enabled, no bandgap, interrupt enabled,
@@ -402,6 +456,9 @@ void uart_putchar(char c) {
 //    ADCSRB |= _BV(ACME);
 //    ADCSRA &= ~(_BV(ADEN));
 //    ADMUX |= _BV(MUX0);
+//    //PORTF |= _BV(PF1);
+//    //PORTF |= _BV(PF0);
+//    //PORTE |= _BV(PE3);
 //
 //    sei();
 //}
@@ -473,5 +530,5 @@ void uart_putchar(char c) {
 //    UCSR0B = _BV(TXEN0);   /* Enable RX and TX */
 //}
 //
-//
-//
+
+
