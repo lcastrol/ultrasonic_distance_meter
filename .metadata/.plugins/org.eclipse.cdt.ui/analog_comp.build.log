@@ -1,4 +1,4 @@
-17:38:24 **** Incremental Build of configuration Release for project analog_comp ****
+19:25:26 **** Incremental Build of configuration Release for project analog_comp ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p analog_comp.elf
@@ -16,5 +16,5 @@ Data:          1 bytes (0.0% Full)
 Finished building: sizedummy
  
 
-17:38:24 Build Finished (took 65ms)
+19:25:26 Build Finished (took 67ms)
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="27" version="2.0">
+<workbench progressCount="25" version="2.0">
 <workbenchAdvisor/>
-<window height="795" maximized="true" width="1018" x="65" y="24">
+<window height="813" maximized="true" width="1026" x="323" y="24">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -37,13 +37,13 @@
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="/home/lcastrol/eagle/ultrasonic_distance_meter/smart_sensor/main.c" title="main.c" tooltip="smart_sensor/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/smart_sensor/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="11984" selectionTopPixel="6021"/>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="/home/lcastrol/eagle/ultrasonic_distance_meter/src/main.c" title="main.c" tooltip="src/main.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/src/main.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10371" selectionTopPixel="625"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="udm_utils.h" partName="udm_utils.h" path="/home/lcastrol/eagle/ultrasonic_distance_meter/smart_sensor/udm_utils.h" title="udm_utils.h" tooltip="smart_sensor/udm_utils.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/smart_sensor/udm_utils.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="256" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="udm_utils.h" partName="udm_utils.h" path="/home/lcastrol/eagle/ultrasonic_distance_meter/src/udm_utils.h" title="udm_utils.h" tooltip="src/udm_utils.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/src/udm_utils.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1616" selectionTopPixel="513"/>
 </editor>
 </editors>
 <views>
@@ -55,10 +55,9 @@
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
 <category IMemento.internal.id="Errors"/>
-<category IMemento.internal.id="Errors (30 items)"/>
-<category IMemento.internal.id="Warnings"/>
+<category IMemento.internal.id="Errors (2 items)"/>
 </expanded>
-<columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="830" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
+<columnWidths org.eclipse.ui.ide.locationField="434" org.eclipse.ui.ide.markerType="830" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="540"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
@@ -301,6 +300,7 @@
 <show_view_action id="org.eclipse.cdt.make.ui.views.MakeView"/>
 <show_view_action id="org.eclipse.ui.navigator.ProjectExplorer"/>
 <show_view_action id="org.eclipse.cdt.ui.includeBrowser"/>
+<show_in_time id="org.eclipse.cdt.codan.internal.ui.views.ProblemDetails" time="1481821310958"/>
 <new_wizard_action id="org.eclipse.cdt.ui.wizards.NewCWizard1"/>
 <new_wizard_action id="org.eclipse.cdt.ui.wizards.NewCWizard2"/>
 <new_wizard_action id="org.eclipse.cdt.ui.wizards.ConvertToMakeWizard"/>
@@ -343,13 +343,14 @@
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.16160521" ratioLeft="298" ratioRight="1546" relationship="2" relative="topLeft"/>
-<info folder="true" part="bottom" ratio="0.69904965" ratioLeft="662" ratioRight="285" relationship="4" relative="org.eclipse.ui.editorss">
+<info part="org.eclipse.ui.editorss" ratio="0.16935484" ratioLeft="231" ratioRight="1133" relationship="2" relative="topLeft"/>
+<info folder="true" part="bottom" ratio="0.7655755" ratioLeft="725" ratioRight="222" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
+<page content="org.eclipse.cdt.codan.internal.ui.views.ProblemDetails" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
@@ -374,34 +375,164 @@
 <workingSets/>
 <navigationHistory>
 <editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/smart_sensor/udm_utils.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/smart_sensor/main.c"/>
+<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" uri="file:/usr/lib/avr/include/util/setbaud.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" path="/src/Release/makefile"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/src/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/src/udm_utils.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/smart_sensor/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/analog_comp/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/smart_sensor/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/smart_sensor/udm_utils.h"/>
 </editors>
-<item historyLabel="main.c" index="0">
-<position/>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="3225" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
+<item historyLabel="udm_utils.h" index="0">
 <position/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="12092" y="0"/>
 </item>
 <item historyLabel="main.c" index="1">
-<position info="not_deleted" x="310" y="0"/>
+<position info="not_deleted" x="3225" y="0"/>
 </item>
-<item historyLabel="main.c" index="2">
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="3" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="10934" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="920" y="9"/>
+</item>
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="423" y="9"/>
+</item>
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="579" y="13"/>
+</item>
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="368" y="13"/>
+</item>
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="943" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="10934" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="445" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="2374" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="945" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="2374" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="945" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="2541" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="735" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="2351" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="735" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="2653" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="735" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="2351" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="902" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="2351" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="9440" y="0"/>
+</item>
+<item historyLabel="setbaud.h" index="2">
+<position info="not_deleted" x="3708" y="4"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="11175" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="0">
+<position info="not_deleted" x="902" y="0"/>
+</item>
+<item historyLabel="makefile" index="3">
+<position info="not_deleted" x="1007" y="28"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="11175" y="0"/>
+</item>
+<item historyLabel="makefile" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="main.c" index="2">
-<position info="not_deleted" x="12619" y="3"/>
+<item historyLabel="makefile" index="3">
+<position/>
 </item>
-<item historyLabel="udm_utils.h" index="3">
-<position info="not_deleted" x="256" y="0"/>
+<item historyLabel="makefile" index="3">
+<position info="not_deleted" x="1007" y="28"/>
 </item>
-<item active="true" historyLabel="main.c" index="2">
-<position info="not_deleted" x="12619" y="3"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="makefile" index="3">
+<position info="not_deleted" x="1007" y="28"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="8929" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="2662" y="11"/>
+</item>
+<item historyLabel="udm_utils.h" index="5">
+<position info="not_deleted" x="3" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="11419" y="0"/>
+</item>
+<item historyLabel="main.c" index="6">
+<position info="not_deleted" x="13033" y="0"/>
+</item>
+<item historyLabel="main.c" index="7">
+<position info="not_deleted" x="3808" y="0"/>
+</item>
+<item historyLabel="main.c" index="6">
+<position info="not_deleted" x="2351" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="5">
+<position info="not_deleted" x="3" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="2831" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="5">
+<position info="not_deleted" x="1207" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="8443" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="5">
+<position info="not_deleted" x="1616" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="8443" y="0"/>
+</item>
+<item active="true" historyLabel="main.c" index="4">
+<position/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -420,50 +551,50 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="udm_utils.h" tooltip="smart_sensor/udm_utils.h">
-<persistable path="/smart_sensor/udm_utils.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="analog_comp/main.c">
+<persistable path="/analog_comp/main.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="smart_sensor/main.c">
 <persistable path="/smart_sensor/main.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="analog_comp/main.c">
-<persistable path="/analog_comp/main.c"/>
-</file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sfr_defs.h" tooltip="/usr/lib/avr/include/avr/sfr_defs.h">
-<persistable path="/usr/lib/avr/include/avr/sfr_defs.h" project="smart_sensor"/>
-</file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iomxx0_1.h" tooltip="/usr/lib/avr/include/avr/iomxx0_1.h">
-<persistable path="/usr/lib/avr/include/avr/iomxx0_1.h" project="smart_sensor"/>
-</file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="delay.h" tooltip="/usr/lib/avr/include/util/delay.h">
-<persistable path="/usr/lib/avr/include/util/delay.h" project="smart_sensor"/>
-</file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="delay.h" tooltip="/usr/lib/avr/include/avr/delay.h">
-<persistable path="/usr/lib/avr/include/avr/delay.h" project="smart_sensor"/>
-</file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stdlib.h" tooltip="/usr/lib/avr/include/stdlib.h">
-<persistable path="/usr/lib/avr/include/stdlib.h" project="smart_sensor"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="udm_utils.h" tooltip="src/udm_utils.h">
+<persistable path="/src/udm_utils.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="src/main.c">
 <persistable path="/src/main.c"/>
 </file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="interrupt.h" tooltip="/usr/lib/avr/include/avr/interrupt.h">
-<persistable path="/usr/lib/avr/include/avr/interrupt.h" project="smart_sensor"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" name="makefile" tooltip="src/Release/makefile">
+<persistable path="/src/Release/makefile"/>
+</file>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="setbaud.h" tooltip="/usr/lib/avr/include/util/setbaud.h">
+<persistable uri="file:/usr/lib/avr/include/util/setbaud.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="udm_utils.h" tooltip="smart_sensor/udm_utils.h">
+<persistable path="/smart_sensor/udm_utils.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iocompat.h" tooltip="src/iocompat.h">
+<persistable path="/src/iocompat.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iocompat.h" tooltip="smart_sensor/iocompat.h">
 <persistable path="/smart_sensor/iocompat.h"/>
 </file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stdint.h" tooltip="/usr/lib/avr/include/stdint.h">
-<persistable path="/usr/lib/avr/include/stdint.h" project="smart_sensor"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.binaryEditor" name="src.elf" tooltip="src/Debug/src.elf">
+<persistable path="/src/Debug/src.elf"/>
 </file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iom2560.h" tooltip="/usr/lib/avr/include/avr/iom2560.h">
-<persistable path="/usr/lib/avr/include/avr/iom2560.h" project="smart_sensor"/>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iotnx4.h" tooltip="/usr/lib/avr/include/avr/iotnx4.h">
+<persistable path="/usr/lib/avr/include/avr/iotnx4.h" project="src"/>
 </file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="io.h" tooltip="/usr/lib/avr/include/avr/io.h">
-<persistable path="/usr/lib/avr/include/avr/io.h" project="smart_sensor"/>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iom328p.h" tooltip="/usr/lib/avr/include/avr/iom328p.h">
+<persistable path="/usr/lib/avr/include/avr/iom328p.h" project="smart_sensor"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="smart_main.c" tooltip="smart_sensor/smart_main.c">
-<persistable path="/smart_sensor/smart_main.c"/>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iotn24.h" tooltip="/usr/lib/avr/include/avr/iotn24.h">
+<persistable path="/usr/lib/avr/include/avr/iotn24.h" project="src"/>
+</file>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iomxx0_1.h" tooltip="/usr/lib/avr/include/avr/iomxx0_1.h">
+<persistable path="/usr/lib/avr/include/avr/iomxx0_1.h" project="smart_sensor"/>
+</file>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sfr_defs.h" tooltip="/usr/lib/avr/include/avr/sfr_defs.h">
+<persistable path="/usr/lib/avr/include/avr/sfr_defs.h" project="smart_sensor"/>
 </file>
 </mruList>
 </workbench>

@@ -887,9 +887,9 @@
 <definedSymbol symbol="__INT24_MIN__=(-__INT24_MAX__-1)"/>
 <definedSymbol symbol="__UINT24_MAX__=16777215UL"/>
 <definedSymbol symbol="__ELF__=1"/>
-<definedSymbol symbol="__AVR_ATmega16__=1"/>
-<definedSymbol symbol="__AVR_DEVICE_NAME__=atmega16"/>
-<definedSymbol symbol="F_CPU=1000000UL"/>
+<definedSymbol symbol="__AVR_ATmega328P__=1"/>
+<definedSymbol symbol="__AVR_DEVICE_NAME__=atmega328p"/>
+<definedSymbol symbol="F_CPU=16000000UL"/>
 </collector>
 </instance>
 <instance id="de.innot.avreclipse.configuration.app.debug.1032559969;de.innot.avreclipse.configuration.app.debug.1032559969.;de.innot.avreclipse.tool.compiler.winavr.app.debug.434017496;de.innot.avreclipse.compiler.winavr.input.200852321">
@@ -1669,26 +1669,19 @@
 <definedSymbol symbol="__AVR=1"/>
 <definedSymbol symbol="__AVR__=1"/>
 <definedSymbol symbol="AVR=1"/>
-<definedSymbol symbol="__AVR_ARCH__=6"/>
-<definedSymbol symbol="__AVR_HAVE_RAMPZ__=1"/>
-<definedSymbol symbol="__AVR_HAVE_ELPM__=1"/>
-<definedSymbol symbol="__AVR_HAVE_ELPMX__=1"/>
+<definedSymbol symbol="__AVR_ARCH__=5"/>
 <definedSymbol symbol="__AVR_HAVE_MOVW__=1"/>
 <definedSymbol symbol="__AVR_HAVE_LPMX__=1"/>
 <definedSymbol symbol="__AVR_ENHANCED__=1"/>
 <definedSymbol symbol="__AVR_HAVE_MUL__=1"/>
 <definedSymbol symbol="__AVR_MEGA__=1"/>
 <definedSymbol symbol="__AVR_HAVE_JMP_CALL__=1"/>
-<definedSymbol symbol="__AVR_HAVE_EIJMP_EICALL__=1"/>
-<definedSymbol symbol="__AVR_3_BYTE_PC__=1"/>
+<definedSymbol symbol="__AVR_2_BYTE_PC__=1"/>
 <definedSymbol symbol="__AVR_HAVE_16BIT_SP__=1"/>
 <definedSymbol symbol="__AVR_HAVE_SPH__=1"/>
 <definedSymbol symbol="__AVR_SFR_OFFSET__=0x20"/>
 <definedSymbol symbol="__WITH_AVRLIBC__=1"/>
 <definedSymbol symbol="__FLASH=1"/>
-<definedSymbol symbol="__FLASH1=1"/>
-<definedSymbol symbol="__FLASH2=1"/>
-<definedSymbol symbol="__FLASH3=1"/>
 <definedSymbol symbol="__MEMX=1"/>
 <definedSymbol symbol="__BUILTIN_AVR_NOP=1"/>
 <definedSymbol symbol="__BUILTIN_AVR_SEI=1"/>
@@ -1781,8 +1774,8 @@
 <definedSymbol symbol="__INT24_MIN__=(-__INT24_MAX__-1)"/>
 <definedSymbol symbol="__UINT24_MAX__=16777215UL"/>
 <definedSymbol symbol="__ELF__=1"/>
-<definedSymbol symbol="__AVR_ATmega2560__=1"/>
-<definedSymbol symbol="__AVR_DEVICE_NAME__=atmega2560"/>
+<definedSymbol symbol="__AVR_ATmega328P__=1"/>
+<definedSymbol symbol="__AVR_DEVICE_NAME__=atmega328p"/>
 <definedSymbol symbol="F_CPU=16000000UL"/>
 </collector>
 </instance>

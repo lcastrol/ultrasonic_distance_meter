@@ -1,4 +1,4 @@
-17:38:24 **** Incremental Build of configuration Release for project src ****
+20:51:54 **** Incremental Build of configuration Release for project src ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=attiny24 src.elf
@@ -6,15 +6,15 @@ AVR Memory Usage
 ----------------
 Device: attiny24
 
-Program:     120 bytes (5.9% Full)
+Program:     458 bytes (22.4% Full)
 (.text + .data + .bootloader)
 
-Data:          1 bytes (0.8% Full)
+Data:         19 bytes (14.8% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
 
-17:38:24 Build Finished (took 68ms)
+20:51:54 Build Finished (took 89ms)
 
