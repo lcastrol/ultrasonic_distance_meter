@@ -84,10 +84,10 @@ DAMAGE.
 
 	//Ultrasonic generator
 	#define T0_PRESCALE 1
-	#define ULTRASONIC_MATCH 99 // = F_CPU/(2 * T0_PRESCALE * 40000UL) - 1) -> 25 us = 40kHz
+	#define ULTRASONIC_MATCH 11 // = F_CPU/(2 * T0_PRESCALE * 40000UL) - 1) -> 25 us = 40kHz
 
 	//Global time
-	#define T1_PRESCALE 1024
+	#define T1_PRESCALE 64
 	#define TRAIN_LENGTH 2 // = floor((F_CPU  * 2)/(T1_PRESCALE *1000)) for 2ms
 	#define TIMEOUT_VALUE_L 0xA4 // (floor((F_CPU * 11)/(T1_PRESCALE * 1000))&0xFF) for 11ms
 	#define TIMEOUT_VALUE_H 0x00 // (floor((F_CPU * 11)/(T1_PRESCALE * 1000))&0xFF00)>>8 for 11ms
@@ -168,26 +168,23 @@ ioinit (void)
     DDR_OC0A |= _BV(OC0A);
 
     //Drive the pin to ground
-    //COMP_SIGNAL_DDR &= ~(_BV(SIGNAL_PIN));
+    COMP_SIGNAL_DDR &= ~(_BV(SIGNAL_PIN));
 
     //--------------------------------------------------------------------
     //Configure pin to turn on the MAX233
-    //MAX_DDR |= _BV(MAX_PIN);
-    //MAX_PORT &= ~(_BV(MAX_PIN)); //MAX ON, pin 25 in arduino mega256
+    MAX_DDR |= _BV(MAX_PIN);
+    MAX_PORT &= ~(_BV(MAX_PIN)); //MAX ON, pin 25 in arduino mega256
 
     //--------------------------------------------------------------------
     /* Timer 1 */
-    //TCCR1A |= _BV(COM1A0) | _BV(WGM11); /* CTC,*/
-    //OCR1AL = TIMEOUT_VALUE_L;
-    //OCR1AH = TIMEOUT_VALUE_H;
+    TCCR1A |= _BV(COM1A0) | _BV(WGM11); /* CTC,*/
+    OCR1AL = TIMEOUT_VALUE_L;
+    OCR1AH = TIMEOUT_VALUE_H;
 
     //--------------------------------------------------------------------
     //Analog comparator configuration
-    //ACSR |= _BV(ACIE) | _BV(ACIS1) | _BV(ACIS0); /* raising edge */
-	//ACSR = (0<<ACD) | (1<<ACBG) | (1<<ACIE) | (0<<ACIC) | (1<<ACIS1) | (1<<ACIS0);
-
 	//No bandgap reference
-	//ACSR = (0<<ACD) | (0<<ACBG) | (1<<ACIE) | (0<<ACIC) | (1<<ACIS1) | (1<<ACIS0);
+	ACSR = (0<<ACD) | (0<<ACBG) | (1<<ACIE) | (0<<ACIC) | (1<<ACIS1) | (1<<ACIS0);
 
     //ATMEGA configuration, not required for attiny24
     //The arduino mega 256 has no AIN0 connected in the board, we will use ADC1/PF1 in the device, A0	 in the mega board
@@ -197,7 +194,7 @@ ioinit (void)
 
     //--------------------------------------------------------------------
     /* Enable timer 1 compare A match. */
-    //TIMSK = _BV (OCIE1A);
+    TIMSK = _BV (OCIE1A);
     sei();
 }
 
@@ -266,8 +263,7 @@ main (void)
     /* loop forever, the interrupts are doing the rest */
     while(1)
     {
-    	//current_state = get_next_state();
-    	current_state = SEND;
+    	current_state = get_next_state();
     	execute_state();
     }
     return (0);
@@ -351,21 +347,21 @@ void send_function(void){
 
 	//------------------TURN ON Interrupts ----------------------
 	TIMSK |= _BV(OCIE1A); //Timer Interrupt on
-    //ACSR &= ~(_BV(ACIE)); //Analog comparator on
+    ACSR |= _BV(ACIE); //Analog comparator on
 
 	//Clear counter 0
-	//TCNT0 = 0;
+	TCNT0 = 0;
 
     //clean counter 1
-    //TCNT1L = 0;
-    //TCNT1H = 0;
+    TCNT1L = 0;
+    TCNT1H = 0;
 
 	//Configure direction of pin for PWM
 	DDR_OC0A |= _BV(OC0A);
 	DDR_OC0B |= _BV(OC0B);
 
 	//MAX ON
-	//TURN_MAX_ON;
+	TURN_MAX_ON;
 
 	//-------------------TURN ON TIMERS ---------------------------
 	//Timer0 prescaler PWM train generation on
@@ -374,19 +370,20 @@ void send_function(void){
 
     //Timer1 for train on distance measure on
     //TCCR1B |= _BV(CS12) | _BV(CS10); // Set the prescaler to 1024
-    //TIMER1_ON;
+    TIMER1_ON;
 
     //MAX OFF, This is for noise contention, funny thing it works,
     //MAX will be on for a while after
+
+
+    while(TCNT1L <= TRAIN_LENGTH){} //Do nothing while waiting
+
     //TURN_MAX_OFF;
-
-    //while(TCNT1L <= TRAIN_LENGTH){} //Do nothing while waiting
-
     //Timer off
-    //TIMER0_OFF;
+    TIMER0_OFF;
     // This drives the pin to ground when of, this must be changed depending on the MCU
-    //DDR_OC0A &= ~(_BV(OC0A));
-    //DDR_OC0B &= ~(_BV(OC0B));
+    DDR_OC0A &= ~(_BV(OC0A));
+    DDR_OC0B &= ~(_BV(OC0B));
 
 }
 
@@ -396,7 +393,7 @@ void send_function(void){
 ISR (TIM1_COMPA_vect)       /* Note [2] */
 {
 	TIMSK &= ~(_BV(OCIE1A)); //Timer Interrupt off
-	//ACSR &= ~(_BV(ACIE)); //Analog comparator off
+	ACSR &= ~(_BV(ACIE)); //Analog comparator off
 
 	TCCR1B &= ~(_BV(CS12) | _BV(CS11) | _BV(CS10));
 	//TCNT1L = 0;

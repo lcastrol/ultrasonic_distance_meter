@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="distance" key="selection"/>
+		<item value="MAX" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="max"/>
 			<item value="distance"/>
 			<item value="MAX_ON"/>
 			<item value="uart_put"/>
@@ -15,16 +16,15 @@
 			<item value="A#"/>
 			<item value="putchar"/>
 			<item value="charput"/>
-			<item value="/putchar"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="352" key="DIALOG_WIDTH"/>
+		<item value="372" key="DIALOG_WIDTH"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-		<item value="532" key="DIALOG_HEIGHT"/>
+		<item value="552" key="DIALOG_HEIGHT"/>
 		<item value="964" key="DIALOG_X_ORIGIN"/>
 		<item value="340" key="DIALOG_Y_ORIGIN"/>
 	</section>

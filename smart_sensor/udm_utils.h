@@ -31,7 +31,7 @@
 		#define T1_SET_PRESCALER _BV(CS11)
 	#endif
 	#if T1_PRESCALE == 64
-		#define T1_SET_PRESCALER (_BV(11) | _BV(CS10))
+		#define T1_SET_PRESCALER (_BV(CS11) | _BV(CS10))
 	#endif
 	#if T1_PRESCALE == 256
 		#define T1_SET_PRESCALER _BV(CS12)

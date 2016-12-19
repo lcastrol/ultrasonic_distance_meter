@@ -67,6 +67,7 @@ DAMAGE.
 	#define F_CPU 8000000UL
 #endif
 
+#define SILENCE_TIME 40
 
 #define HITS_TO_VALID 10
 
@@ -75,10 +76,10 @@ DAMAGE.
 	#define T0_PRESCALE 8
 	#define ULTRASONIC_MATCH 24 // = ((F_CPU/(2 * T0_PRESCALE * 40000UL)) - 1) -> 25 us = 40kHz
 
-	#define T1_PRESCALE 256
-	#define TRAIN_LENGTH 200 // = floor(((T1_PRESCALE) * 2)/F_CPU) for 2ms
-	#define TIMEOUT_VALUE_L 0xA4 // (floor(((T1_PRESCALE) * 11)/F_CPU)&0xFF00)>>8 for 11ms
-	#define TIMEOUT_VALUE_H 0x00 // (floor(((T1_PRESCALE) * 11)/F_CPU)&0xFF) for 11ms
+	#define T1_PRESCALE 1024
+	#define TRAIN_LENGTH 3 // = floor(((T1_PRESCALE) * 2)/F_CPU) for 2ms
+	#define TIMEOUT_VALUE_L 0xFF // (floor(((T1_PRESCALE) * 11)/F_CPU)&0xFF00)>>8 for 11ms
+	#define TIMEOUT_VALUE_H 0x10 // (floor(((T1_PRESCALE) * 11)/F_CPU)&0xFF) for 11ms
 
 #elif defined(__AVR_ATtiny24__)
 
@@ -92,7 +93,7 @@ DAMAGE.
 
 #endif
 
-#define DEBUG_STATES 0
+#define DEBUG_STATES 1
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -180,7 +181,6 @@ ioinit (void)
 	//TIMSK0 = 1;
 	TCCR0B |= _BV(WGM02);
 	OCR0A = ULTRASONIC_MATCH; /* note [1], This is Arduino Mega pin 13*/
-	//OCR0A = 80;
 	OCR0B = ULTRASONIC_MATCH; /* note [1] */
 
     /* Enable OC0A and OC0B as outputs. */
@@ -218,7 +218,7 @@ ioinit (void)
 
     //--------------------------------------------------------------------
     /* Enable timer 1 compare A match. */
-    //TIMSK = _BV (OCIE1A);
+    TIMSK = _BV (OCIE1A);
     sei();
 }
 
@@ -393,11 +393,9 @@ void send_function(void){
 
 	//-------------------TURN ON TIMERS ---------------------------
 	//Timer0 prescaler PWM train generation on
-    //TCCR0B |=  _BV(CS01); /* Set the prescale to 8, note [1] */
-	TIMER0_ON;
+    TIMER0_ON;
 
     //Timer1 for train on distance measure on
-    //TCCR1B |= _BV(CS12) | _BV(CS10); // Set the prescaler to 1024
     TIMER1_ON;
 
     //MAX OFF, This is for noise contention, funny thing it works,
@@ -425,7 +423,6 @@ ISR (TIMER1_COMPA_vect)       /* Note [2] */
 	//TCNT1L = 0;
 	hits_count = 0;
 	time_out_flag = TRUE;
-	//uart_putchar('V');
 }
 
 /*************************************
@@ -433,7 +430,7 @@ ISR (TIMER1_COMPA_vect)       /* Note [2] */
  ************************************/
 ISR (ANALOG_COMP_vect)
 {
-	if(TCNT1L > 15){
+	if(TCNT1L > SILENCE_TIME){
 		hits_count += 1;
 	}
 

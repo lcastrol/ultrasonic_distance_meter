@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="25" version="2.0">
+<workbench progressCount="27" version="2.0">
 <workbenchAdvisor/>
-<window height="813" maximized="true" width="1026" x="323" y="24">
+<window height="784" maximized="true" width="1020" x="1805" y="99">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -32,18 +32,13 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
-<part id="1"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="/home/lcastrol/eagle/ultrasonic_distance_meter/src/main.c" title="main.c" tooltip="src/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/src/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10371" selectionTopPixel="625"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="udm_utils.h" partName="udm_utils.h" path="/home/lcastrol/eagle/ultrasonic_distance_meter/src/udm_utils.h" title="udm_utils.h" tooltip="src/udm_utils.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/src/udm_utils.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1616" selectionTopPixel="513"/>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="/home/lcastrol/eagle/ultrasonic_distance_meter/smart_sensor/main.c" title="main.c" tooltip="smart_sensor/main.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/smart_sensor/main.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="10" selectionOffset="11279" selectionTopPixel="5925"/>
 </editor>
 </editors>
 <views>
@@ -55,7 +50,7 @@
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
 <category IMemento.internal.id="Errors"/>
-<category IMemento.internal.id="Errors (2 items)"/>
+<category IMemento.internal.id="Warnings (1 item)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="434" org.eclipse.ui.ide.markerType="830" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="540"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -345,7 +340,7 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.16935484" ratioLeft="231" ratioRight="1133" relationship="2" relative="topLeft"/>
 <info folder="true" part="bottom" ratio="0.7655755" ratioLeft="725" ratioRight="222" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
@@ -375,164 +370,166 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/smart_sensor/udm_utils.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/smart_sensor/main.c"/>
-<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" uri="file:/usr/lib/avr/include/util/setbaud.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" path="/src/Release/makefile"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/src/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/src/iocompat.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/src/udm_utils.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/smart_sensor/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/analog_comp/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/smart_sensor/iocompat.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/src/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/smart_sensor/iocompat.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/smart_sensor/udm_utils.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/smart_sensor/udm_utils.h"/>
 </editors>
 <item historyLabel="main.c" index="1">
-<position info="not_deleted" x="3225" y="0"/>
+<position/>
 </item>
-<item historyLabel="udm_utils.h" index="0">
+<item historyLabel="main.c" index="0">
 <position/>
 </item>
 <item historyLabel="main.c" index="1">
-<position info="not_deleted" x="3225" y="0"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="3" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="10934" y="0"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="920" y="9"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="423" y="9"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="579" y="13"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="368" y="13"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="943" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="10934" y="0"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="445" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="2374" y="0"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="945" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="2374" y="0"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="945" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="2541" y="0"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="735" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="2351" y="0"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="735" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="2653" y="0"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="735" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="2351" y="0"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="902" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="2351" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="9440" y="0"/>
-</item>
-<item historyLabel="setbaud.h" index="2">
-<position info="not_deleted" x="3708" y="4"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="11175" y="0"/>
-</item>
-<item historyLabel="udm_utils.h" index="0">
-<position info="not_deleted" x="902" y="0"/>
-</item>
-<item historyLabel="makefile" index="3">
-<position info="not_deleted" x="1007" y="28"/>
-</item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="11175" y="0"/>
-</item>
-<item historyLabel="makefile" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="makefile" index="3">
 <position/>
 </item>
-<item historyLabel="makefile" index="3">
-<position info="not_deleted" x="1007" y="28"/>
+<item historyLabel="main.c" index="0">
+<position/>
+</item>
+<item historyLabel="main.c" index="1">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position/>
+</item>
+<item historyLabel="main.c" index="1">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position/>
+</item>
+<item historyLabel="main.c" index="1">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="2913" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="2791" y="11"/>
+</item>
+<item historyLabel="iocompat.h" index="2">
+<position info="not_deleted" x="83" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="3">
+<position info="not_deleted" x="1471" y="0"/>
+</item>
+<item historyLabel="iocompat.h" index="2">
+<position info="not_deleted" x="83" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="2830" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="3062" y="0"/>
+</item>
+<item historyLabel="main.c" index="1">
+<position info="not_deleted" x="2830" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position/>
+</item>
+<item historyLabel="iocompat.h" index="5">
+<position info="not_deleted" x="6299" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position/>
+</item>
+<item historyLabel="iocompat.h" index="5">
+<position info="not_deleted" x="6125" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position/>
+</item>
+<item historyLabel="main.c" index="6">
+<position info="not_deleted" x="9282" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="10477" y="4"/>
+</item>
+<item historyLabel="main.c" index="6">
+<position info="not_deleted" x="9282" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="5742" y="15"/>
+</item>
+<item historyLabel="iocompat.h" index="7">
+<position info="not_deleted" x="6183" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="5742" y="15"/>
+</item>
+<item historyLabel="iocompat.h" index="7">
+<position info="not_deleted" x="6183" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="5742" y="15"/>
+</item>
+<item historyLabel="iocompat.h" index="7">
+<position info="not_deleted" x="6183" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="5892" y="3"/>
+</item>
+<item historyLabel="iocompat.h" index="7">
+<position info="not_deleted" x="6056" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="5892" y="3"/>
+</item>
+<item historyLabel="iocompat.h" index="7">
+<position info="not_deleted" x="6056" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="2354" y="0"/>
+</item>
+<item historyLabel="iocompat.h" index="7">
+<position info="not_deleted" x="6056" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="2354" y="0"/>
+</item>
+<item historyLabel="udm_utils.h" index="8">
+<position info="not_deleted" x="735" y="0"/>
+</item>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="2354" y="0"/>
 </item>
 <item historyLabel="main.c" index="4">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="makefile" index="3">
-<position info="not_deleted" x="1007" y="28"/>
+<item historyLabel="main.c" index="4">
+<position info="not_deleted" x="5148" y="52"/>
 </item>
 <item historyLabel="main.c" index="4">
-<position info="not_deleted" x="8929" y="0"/>
+<position info="not_deleted" x="3225" y="0"/>
 </item>
 <item historyLabel="main.c" index="4">
-<position info="not_deleted" x="2662" y="11"/>
+<position info="not_deleted" x="11279" y="10"/>
 </item>
-<item historyLabel="udm_utils.h" index="5">
-<position info="not_deleted" x="3" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="11419" y="0"/>
-</item>
-<item historyLabel="main.c" index="6">
-<position info="not_deleted" x="13033" y="0"/>
-</item>
-<item historyLabel="main.c" index="7">
-<position info="not_deleted" x="3808" y="0"/>
-</item>
-<item historyLabel="main.c" index="6">
-<position info="not_deleted" x="2351" y="0"/>
-</item>
-<item historyLabel="udm_utils.h" index="5">
-<position info="not_deleted" x="3" y="0"/>
+<item historyLabel="udm_utils.h" index="9">
+<position/>
 </item>
 <item historyLabel="main.c" index="4">
-<position info="not_deleted" x="2831" y="0"/>
+<position info="not_deleted" x="11279" y="10"/>
 </item>
-<item historyLabel="udm_utils.h" index="5">
-<position info="not_deleted" x="1207" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="8443" y="0"/>
-</item>
-<item historyLabel="udm_utils.h" index="5">
-<position info="not_deleted" x="1616" y="0"/>
-</item>
-<item historyLabel="main.c" index="4">
-<position info="not_deleted" x="8443" y="0"/>
+<item historyLabel="udm_utils.h" index="9">
+<position info="not_deleted" x="0" y="0"/>
 </item>
 <item active="true" historyLabel="main.c" index="4">
-<position/>
+<position info="not_deleted" x="11279" y="10"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -551,8 +548,14 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="analog_comp/main.c">
-<persistable path="/analog_comp/main.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="udm_utils.h" tooltip="smart_sensor/udm_utils.h">
+<persistable path="/smart_sensor/udm_utils.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iocompat.h" tooltip="smart_sensor/iocompat.h">
+<persistable path="/smart_sensor/iocompat.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="src/main.c">
+<persistable path="/src/main.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="smart_sensor/main.c">
 <persistable path="/smart_sensor/main.c"/>
@@ -560,23 +563,17 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="udm_utils.h" tooltip="src/udm_utils.h">
 <persistable path="/src/udm_utils.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="src/main.c">
-<persistable path="/src/main.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iocompat.h" tooltip="src/iocompat.h">
+<persistable path="/src/iocompat.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="analog_comp/main.c">
+<persistable path="/analog_comp/main.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" name="makefile" tooltip="src/Release/makefile">
 <persistable path="/src/Release/makefile"/>
 </file>
 <file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="setbaud.h" tooltip="/usr/lib/avr/include/util/setbaud.h">
 <persistable uri="file:/usr/lib/avr/include/util/setbaud.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="udm_utils.h" tooltip="smart_sensor/udm_utils.h">
-<persistable path="/smart_sensor/udm_utils.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iocompat.h" tooltip="src/iocompat.h">
-<persistable path="/src/iocompat.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="iocompat.h" tooltip="smart_sensor/iocompat.h">
-<persistable path="/smart_sensor/iocompat.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.binaryEditor" name="src.elf" tooltip="src/Debug/src.elf">
 <persistable path="/src/Debug/src.elf"/>
