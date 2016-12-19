@@ -49,7 +49,7 @@ all: smart_sensor.elf secondary-outputs
 smart_sensor.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega2560 -o "smart_sensor.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -73,7 +73,7 @@ smart_sensor.eep: smart_sensor.elf
 
 sizedummy: smart_sensor.elf
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega2560 smart_sensor.elf
+	-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 

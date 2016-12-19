@@ -58,10 +58,33 @@
 #  define DDROC DDRB
 #elif defined(__AVR_ATtiny24__) || defined(__AVR_ATtiny44__) || \
       defined(__AVR_ATtiny84__)
+
 #  define OC0A DDB2
 #  define OC0B DDA7
 #  define DDRA_OC0B DDRA
 #  define DDRB_OC0A DDRB
+
+/* lcastrol added defines */
+#  define OC0A DDB2
+#  define OC0B DDA7
+#  define DDR_OC0B DDRA
+#  define DDR_OC0A DDRB
+
+#  define OC1 PB5
+#  define DDROC DDRB
+#  define OCR OCR1A
+
+#  define MAX_DDR DDRA
+#  define MAX_PIN DDA3
+#  define MAX_PORT PORTA
+
+#  define COMP_SIGNAL_DDR DDRA
+#  define SIGNAL_PIN DDA2
+
+//The atmega328p board uses a NPN instead of a PNP, this means this inverts the polarity of the pin
+# define TURN_MAX_ON MAX_PORT &= ~(_BV(MAX_PIN))
+# define TURN_MAX_OFF MAX_PORT |= _BV(MAX_PIN)
+
 #  if !defined(OCR1A)
 #    /* work around misspelled name in avr-libc 1.4.[0..1] */
 #    define OCR OCRA1
@@ -125,9 +148,49 @@
       defined(__AVR_ATmega1280__) || defined(__AVR_ATmega1281__) || \
       defined(__AVR_ATmega2560__) || defined(__AVR_ATmega2561__) || \
       defined(__AVR_ATmega32U4__)
+
+/* lcastrol added defines */
+#  define OC0A DDB7
+#  define OC0B DDG5
+#  define DDR_OC0B DDRG
+#  define DDR_OC0A DDRB
+
 #  define OC1 PB5
 #  define DDROC DDRB
 #  define OCR OCR1A
+
+#  define MAX_DDR DDRA
+#  define MAX_PIN DDA3
+#  define MAX_PORT PORTA
+
+#  if !defined(PB5) 		/* work around missing bit definition */
+#    define PB5 5
+#  endif
+#  if !defined(TIMSK)		/* new ATmegas */
+#    define TIMSK TIMSK1
+#  endif
+#elif defined(__AVR_ATmega328P__)
+
+/* lcastrol added defines */
+#  define OC0A DDD6
+#  define OC0B DDD5 /* Pin5 arduino uno */
+#  define DDR_OC0B DDRD
+#  define DDR_OC0A DDRD
+
+#  define OC1 PB5
+#  define DDROC DDRB
+#  define OCR OCR1A
+
+#  define MAX_DDR DDRB
+#  define MAX_PIN DDD0
+#  define MAX_PORT PORTB
+
+#  define COMP_SIGNAL_DDR DDRB
+#  define SIGNAL_PIN DDB7
+
+# define TURN_MAX_OFF MAX_PORT &= ~(_BV(MAX_PIN))
+# define TURN_MAX_ON MAX_PORT |= _BV(MAX_PIN)
+
 #  if !defined(PB5) 		/* work around missing bit definition */
 #    define PB5 5
 #  endif
