@@ -67,19 +67,20 @@ DAMAGE.
 	#define F_CPU 8000000UL
 #endif
 
+//#define SILENCE_TIME 10
 #define SILENCE_TIME 40
 
-#define HITS_TO_VALID 10
+#define HITS_TO_VALID 3
 
 #if defined(__AVR_ATmega2560__) || defined(__AVR_ATmega328P__)
 
 	#define T0_PRESCALE 8
-	#define ULTRASONIC_MATCH 24 // = ((F_CPU/(2 * T0_PRESCALE * 40000UL)) - 1) -> 25 us = 40kHz
+	#define ULTRASONIC_MATCH 26 // = ((F_CPU/(2 * T0_PRESCALE * 40000UL)) - 1) -> 25 us = 40kHz
 
-	#define T1_PRESCALE 1024
-	#define TRAIN_LENGTH 3 // = floor(((T1_PRESCALE) * 2)/F_CPU) for 2ms
+	#define T1_PRESCALE 256
+	#define TRAIN_LENGTH 11 // = floor(((T1_PRESCALE) * 2)/F_CPU) for 2ms
 	#define TIMEOUT_VALUE_L 0xFF // (floor(((T1_PRESCALE) * 11)/F_CPU)&0xFF00)>>8 for 11ms
-	#define TIMEOUT_VALUE_H 0x10 // (floor(((T1_PRESCALE) * 11)/F_CPU)&0xFF) for 11ms
+	#define TIMEOUT_VALUE_H 0xFF // (floor(((T1_PRESCALE) * 11)/F_CPU)&0xFF) for 11ms
 
 #elif defined(__AVR_ATtiny24__)
 
@@ -93,7 +94,7 @@ DAMAGE.
 
 #endif
 
-#define DEBUG_STATES 1
+#define DEBUG_STATES 0
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -179,7 +180,7 @@ ioinit (void)
 	TCCR0A |= _BV(COM0A0) |_BV(COM0B0) | _BV(WGM01) ; /* CTC, and toggle OC0A on Compare Match */
 
 	//TIMSK0 = 1;
-	TCCR0B |= _BV(WGM02);
+	TCCR0B |= _BV(WGM02); //TODO: check this, this is not needed for CTC
 	OCR0A = ULTRASONIC_MATCH; /* note [1], This is Arduino Mega pin 13*/
 	OCR0B = ULTRASONIC_MATCH; /* note [1] */
 
@@ -198,14 +199,16 @@ ioinit (void)
     //--------------------------------------------------------------------
     /* Timer 1 */
     TCCR1A |= _BV(COM1A0) | _BV(WGM11); /* CTC,*/
-    //OCR1A = TIMEOUT_VALUE;
+    //OCR1A = 0x02FF;
+
+
+    OCR1AH = TIMEOUT_VALUE_H; //TODO: test the writing method
     OCR1AL = TIMEOUT_VALUE_L;
-    OCR1AH = TIMEOUT_VALUE_H;
 
     //--------------------------------------------------------------------
     //Analog comparator configuration
     //ACSR |= _BV(ACIE) | _BV(ACIS1) | _BV(ACIS0); /* raising edge */
-	//ACSR = (0<<ACD) | (1<<ACBG) | (1<<ACIE) | (0<<ACIC) | (1<<ACIS1) | (1<<ACIS0);
+	//ACSR = (0<<ACD) | (1<<ACBG) | (1<<ACIE) | (0<<ACIC) | (1<<ACIS1) | (1<<ACIS0); //TODO: remove this if not required
 
 	//No bandgap reference
 	ACSR = (0<<ACD) | (0<<ACBG) | (1<<ACIE) | (0<<ACIC) | (1<<ACIS1) | (1<<ACIS0);
@@ -218,8 +221,13 @@ ioinit (void)
 
     //--------------------------------------------------------------------
     /* Enable timer 1 compare A match. */
-    TIMSK = _BV (OCIE1A);
+    TIMSK = _BV (OCIE1A); //TODO: Figure out if required
     sei();
+
+    //Debug pin for hits
+    //enable output
+    DDRB |= _BV(DDB1);
+
 }
 
 /**************************
@@ -373,6 +381,19 @@ void send_function(void){
     command_status = ALIVE;
     tx_triggered = TRUE;
 
+    ////////////////////////////////////////////////////////////////
+
+    TIMSK |= _BV(OCIE1A); //Timer Interrupt on
+    TIMER1_OFF;
+    TCNT1L = 0;
+    TCNT1H = 0;
+    TIMER1_ON;
+    while(time_out_flag == FALSE){}
+    time_out_flag = FALSE;
+    TIMER1_OFF;
+
+    ///////////////////////////////////////////////////////
+
 	//------------------TURN ON Interrupts ----------------------
 	TIMSK |= _BV(OCIE1A); //Timer Interrupt on
     ACSR &= ~(_BV(ACIE)); //Analog comparator on
@@ -409,6 +430,9 @@ void send_function(void){
     //DDR_OC0A &= ~(_BV(OC0A));
     DDR_OC0B &= ~(_BV(OC0B));
 
+    //DEBUG clean
+    PORTB &= ~(_BV(DDB1));
+
 }
 
 /*********************************
@@ -443,8 +467,11 @@ ISR (ANALOG_COMP_vect)
 
 		//Measure distance
 		distance = (char)TCNT1L;
-//
-		hits_count = 0;
+
+		//DEBUG capture
+		PORTB = (_BV(DDB1) ^ PORTB);
+
+		//hits_count = 0;
 	}
 }
 

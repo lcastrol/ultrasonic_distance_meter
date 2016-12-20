@@ -3319,3 +3319,426 @@ org.eclipse.core.internal.resources.ResourceException: Resource '/smart_sensor/R
 !MESSAGE Resource '/smart_sensor/Release/bak' does not exist.
 !SUBENTRY 1 org.eclipse.core.resources 4 368 2016-12-19 20:24:05.339
 !MESSAGE Resource '/smart_sensor/Release/bak' does not exist.
+
+!ENTRY org.eclipse.ui.ide 4 4 2016-12-19 22:14:17.171
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 2 1 2016-12-19 22:14:17.172
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2016-12-19 22:14:17.172
+!MESSAGE The project description file (.project) for 'src' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SESSION 2016-12-20 12:43:45.415 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.resources 4 4 2016-12-20 12:43:51.554
+!MESSAGE Exception loading preferences from: /src/.settings/org.eclipse.cdt.codan.core.prefs.
+!STACK 1
+org.eclipse.core.runtime.CoreException: File not found: /home/lcastrol/eagle/ultrasonic_distance_meter/src/.settings/org.eclipse.cdt.codan.core.prefs.
+	at org.eclipse.core.internal.filesystem.Policy.error(Policy.java:55)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:371)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:797)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.ProjectPreferences.load(ProjectPreferences.java:461)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.create(EclipsePreferences.java:410)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.getChild(EclipsePreferences.java:527)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalNode(EclipsePreferences.java:661)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.node(EclipsePreferences.java:805)
+	at org.eclipse.core.internal.resources.ProjectPreferences.deleted(ProjectPreferences.java:84)
+	at org.eclipse.core.internal.resources.ProjectPreferences.deleted(ProjectPreferences.java:135)
+	at org.eclipse.core.internal.resources.Resource.deleteResource(Resource.java:872)
+	at org.eclipse.core.internal.localstore.RefreshLocalVisitor.deleteResource(RefreshLocalVisitor.java:99)
+	at org.eclipse.core.internal.localstore.RefreshLocalAliasVisitor.deleteResource(RefreshLocalAliasVisitor.java:43)
+	at org.eclipse.core.internal.localstore.RefreshLocalVisitor.synchronizeExistence(RefreshLocalVisitor.java:187)
+	at org.eclipse.core.internal.localstore.RefreshLocalVisitor.visit(RefreshLocalVisitor.java:291)
+	at org.eclipse.core.internal.localstore.UnifiedTree.accept(UnifiedTree.java:110)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refreshResource(FileSystemResourceManager.java:920)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refresh(FileSystemResourceManager.java:904)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1699)
+	at org.eclipse.cdt.internal.core.pdom.PDOMSetupJob.syncronizeProjectSettings(PDOMSetupJob.java:73)
+	at org.eclipse.cdt.internal.core.pdom.PDOMSetupJob.run(PDOMSetupJob.java:55)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.io.FileNotFoundException: /home/lcastrol/eagle/ultrasonic_distance_meter/src/.settings/org.eclipse.cdt.codan.core.prefs (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:362)
+	... 21 more
+!SUBENTRY 1 org.eclipse.core.filesystem 4 271 2016-12-20 12:43:51.561
+!MESSAGE File not found: /home/lcastrol/eagle/ultrasonic_distance_meter/src/.settings/org.eclipse.cdt.codan.core.prefs.
+!STACK 0
+java.io.FileNotFoundException: /home/lcastrol/eagle/ultrasonic_distance_meter/src/.settings/org.eclipse.cdt.codan.core.prefs (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:362)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:797)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.ProjectPreferences.load(ProjectPreferences.java:461)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.create(EclipsePreferences.java:410)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.getChild(EclipsePreferences.java:527)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalNode(EclipsePreferences.java:661)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.node(EclipsePreferences.java:805)
+	at org.eclipse.core.internal.resources.ProjectPreferences.deleted(ProjectPreferences.java:84)
+	at org.eclipse.core.internal.resources.ProjectPreferences.deleted(ProjectPreferences.java:135)
+	at org.eclipse.core.internal.resources.Resource.deleteResource(Resource.java:872)
+	at org.eclipse.core.internal.localstore.RefreshLocalVisitor.deleteResource(RefreshLocalVisitor.java:99)
+	at org.eclipse.core.internal.localstore.RefreshLocalAliasVisitor.deleteResource(RefreshLocalAliasVisitor.java:43)
+	at org.eclipse.core.internal.localstore.RefreshLocalVisitor.synchronizeExistence(RefreshLocalVisitor.java:187)
+	at org.eclipse.core.internal.localstore.RefreshLocalVisitor.visit(RefreshLocalVisitor.java:291)
+	at org.eclipse.core.internal.localstore.UnifiedTree.accept(UnifiedTree.java:110)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refreshResource(FileSystemResourceManager.java:920)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refresh(FileSystemResourceManager.java:904)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1699)
+	at org.eclipse.cdt.internal.core.pdom.PDOMSetupJob.syncronizeProjectSettings(PDOMSetupJob.java:73)
+	at org.eclipse.cdt.internal.core.pdom.PDOMSetupJob.run(PDOMSetupJob.java:55)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.preferences 4 4 2016-12-20 12:43:51.580
+!MESSAGE Exception loading preferences from: /home/lcastrol/eagle/ultrasonic_distance_meter/src/.settings/org.eclipse.cdt.codan.core.prefs.
+!STACK 0
+org.osgi.service.prefs.BackingStoreException: Exception loading preferences from: /src/.settings/org.eclipse.cdt.codan.core.prefs.
+	at org.eclipse.core.internal.resources.ProjectPreferences.load(ProjectPreferences.java:466)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.create(EclipsePreferences.java:410)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.getChild(EclipsePreferences.java:527)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalNode(EclipsePreferences.java:661)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.node(EclipsePreferences.java:805)
+	at org.eclipse.core.internal.resources.ProjectPreferences.deleted(ProjectPreferences.java:84)
+	at org.eclipse.core.internal.resources.ProjectPreferences.deleted(ProjectPreferences.java:135)
+	at org.eclipse.core.internal.resources.Resource.deleteResource(Resource.java:872)
+	at org.eclipse.core.internal.localstore.RefreshLocalVisitor.deleteResource(RefreshLocalVisitor.java:99)
+	at org.eclipse.core.internal.localstore.RefreshLocalAliasVisitor.deleteResource(RefreshLocalAliasVisitor.java:43)
+	at org.eclipse.core.internal.localstore.RefreshLocalVisitor.synchronizeExistence(RefreshLocalVisitor.java:187)
+	at org.eclipse.core.internal.localstore.RefreshLocalVisitor.visit(RefreshLocalVisitor.java:291)
+	at org.eclipse.core.internal.localstore.UnifiedTree.accept(UnifiedTree.java:110)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refreshResource(FileSystemResourceManager.java:920)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refresh(FileSystemResourceManager.java:904)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1699)
+	at org.eclipse.cdt.internal.core.pdom.PDOMSetupJob.syncronizeProjectSettings(PDOMSetupJob.java:73)
+	at org.eclipse.cdt.internal.core.pdom.PDOMSetupJob.run(PDOMSetupJob.java:55)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.core.resources 4 1 2016-12-20 12:43:51.667
+!MESSAGE Internal Error
+!STACK 0
+java.lang.IllegalArgumentException: Attempted to beginRule: P/src, does not match outer scope rule: L/src/.cproject
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:286)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:118)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2282)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1691)
+	at org.eclipse.core.internal.resources.File.refreshLocal(File.java:333)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$1.run(XmlProjectDescriptionStorage.java:758)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(CProjectDescriptionManager.java:523)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(CProjectDescriptionManager.java:519)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.access$2(CProjectDescriptionManager.java:517)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$4.run(CProjectDescriptionManager.java:498)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.core.resources 4 1 2016-12-20 12:43:51.668
+!MESSAGE Internal Error
+!STACK 0
+java.lang.IllegalArgumentException: Attempted to beginRule: P/src, does not match outer scope rule: L/src/.cproject
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:286)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:118)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2282)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1691)
+	at org.eclipse.core.internal.resources.File.refreshLocal(File.java:333)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$1.run(XmlProjectDescriptionStorage.java:758)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(CProjectDescriptionManager.java:523)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(CProjectDescriptionManager.java:519)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.access$2(CProjectDescriptionManager.java:517)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$4.run(CProjectDescriptionManager.java:498)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.core.resources 4 1 2016-12-20 12:43:51.669
+!MESSAGE Internal Error
+!STACK 0
+java.lang.IllegalArgumentException: Attempted to beginRule: P/src, does not match outer scope rule: L/src/.cproject
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:286)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:118)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2282)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1691)
+	at org.eclipse.core.internal.resources.File.refreshLocal(File.java:333)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$1.run(XmlProjectDescriptionStorage.java:758)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(CProjectDescriptionManager.java:523)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(CProjectDescriptionManager.java:519)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.access$2(CProjectDescriptionManager.java:517)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$4.run(CProjectDescriptionManager.java:498)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.core.resources 4 1 2016-12-20 12:43:51.670
+!MESSAGE Internal Error
+!STACK 0
+java.lang.IllegalArgumentException: Attempted to beginRule: P/src, does not match outer scope rule: L/src/.cproject
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:286)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:118)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2282)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1691)
+	at org.eclipse.core.internal.resources.File.refreshLocal(File.java:333)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$1.run(XmlProjectDescriptionStorage.java:758)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(CProjectDescriptionManager.java:523)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(CProjectDescriptionManager.java:519)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.access$2(CProjectDescriptionManager.java:517)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$4.run(CProjectDescriptionManager.java:498)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.core.resources 4 1 2016-12-20 12:43:51.671
+!MESSAGE Internal Error
+!STACK 0
+java.lang.IllegalArgumentException: Attempted to beginRule: P/src, does not match outer scope rule: L/src/.cproject
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:286)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:118)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2282)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1691)
+	at org.eclipse.core.internal.resources.File.refreshLocal(File.java:333)
+	at org.eclipse.cdt.internal.core.settings.model.xml.XmlProjectDescriptionStorage$1.run(XmlProjectDescriptionStorage.java:758)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(CProjectDescriptionManager.java:523)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(CProjectDescriptionManager.java:519)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.access$2(CProjectDescriptionManager.java:517)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$4.run(CProjectDescriptionManager.java:498)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SESSION 2016-12-20 14:11:49.142 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.ui 4 0 2016-12-20 17:03:59.468
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+	at de.innot.avreclipse.ui.actions.UploadProjectAction.run(UploadProjectAction.java:178)
+	at org.eclipse.ui.actions.ActionDelegate.runWithEvent(ActionDelegate.java:70)
+	at org.eclipse.ui.internal.PluginAction.runWithEvent(PluginAction.java:241)
+	at org.eclipse.ui.internal.WWinPluginAction.runWithEvent(WWinPluginAction.java:229)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+	at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+	at org.eclipse.jface.action.ActionContributionItem$6.handleEvent(ActionContributionItem.java:452)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3562)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3186)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+
+!ENTRY org.eclipse.ui 4 0 2016-12-20 17:04:11.822
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+	at de.innot.avreclipse.ui.actions.UploadProjectAction.run(UploadProjectAction.java:178)
+	at org.eclipse.ui.actions.ActionDelegate.runWithEvent(ActionDelegate.java:70)
+	at org.eclipse.ui.internal.PluginAction.runWithEvent(PluginAction.java:241)
+	at org.eclipse.ui.internal.WWinPluginAction.runWithEvent(WWinPluginAction.java:229)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+	at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+	at org.eclipse.jface.action.ActionContributionItem$6.handleEvent(ActionContributionItem.java:452)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3562)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3186)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+
+!ENTRY org.eclipse.ui 4 0 2016-12-20 17:04:22.022
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+	at de.innot.avreclipse.ui.actions.UploadProjectAction.run(UploadProjectAction.java:178)
+	at org.eclipse.ui.actions.ActionDelegate.runWithEvent(ActionDelegate.java:70)
+	at org.eclipse.ui.internal.PluginAction.runWithEvent(PluginAction.java:241)
+	at org.eclipse.ui.internal.WWinPluginAction.runWithEvent(WWinPluginAction.java:229)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+	at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+	at org.eclipse.jface.action.ActionContributionItem$6.handleEvent(ActionContributionItem.java:452)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3562)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3186)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+
+!ENTRY org.eclipse.ui 4 0 2016-12-20 17:04:30.667
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+	at de.innot.avreclipse.ui.actions.UploadProjectAction.run(UploadProjectAction.java:178)
+	at org.eclipse.ui.actions.ActionDelegate.runWithEvent(ActionDelegate.java:70)
+	at org.eclipse.ui.internal.PluginAction.runWithEvent(PluginAction.java:241)
+	at org.eclipse.ui.internal.WWinPluginAction.runWithEvent(WWinPluginAction.java:229)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+	at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+	at org.eclipse.jface.action.ActionContributionItem$6.handleEvent(ActionContributionItem.java:452)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3562)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3186)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+!SESSION 2016-12-20 17:25:39.000 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.jface 2 0 2016-12-20 18:38:27.589
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-12-20 18:38:27.589
+!MESSAGE A conflict occurred for F3:
+Binding(F3,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.opendecl,Open Declaration,
+		Opens an editor on the selected element's declaration(s),
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.cdt.internal.ui.text.c.hover.CMacroExpansionExplorationControl$5@58545c2e,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.macroExpansionHoverScope,,,system)
+Binding(F3,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.open.editor,Open Declaration,
+		Open an editor on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-12-20 18:38:27.589
+!MESSAGE A conflict occurred for ALT+ARROW_RIGHT:
+Binding(ALT+ARROW_RIGHT,
+	ParameterizedCommand(Command(org.eclipse.ui.navigate.forwardHistory,Forward History,
+		Move forward in the editor navigation history,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		ActionHandler(org.eclipse.ui.internal.NavigationHistoryAction@4163f505),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+ARROW_RIGHT,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.hover.forwardMacroExpansion,Forward,
+		Steps forward in macro expansions,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.cdt.internal.ui.text.c.hover.CMacroExpansionExplorationControl$4@19cad9f0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.macroExpansionHoverScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-12-20 18:38:27.589
+!MESSAGE A conflict occurred for ALT+ARROW_LEFT:
+Binding(ALT+ARROW_LEFT,
+	ParameterizedCommand(Command(org.eclipse.ui.navigate.backwardHistory,Backward History,
+		Move backward in the editor navigation history,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		ActionHandler(org.eclipse.ui.internal.NavigationHistoryAction@4cce421e),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+ARROW_LEFT,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.hover.backwardMacroExpansion,Back,
+		Steps backward in macro expansions,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		org.eclipse.cdt.internal.ui.text.c.hover.CMacroExpansionExplorationControl$3@3681c285,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.macroExpansionHoverScope,,,system)

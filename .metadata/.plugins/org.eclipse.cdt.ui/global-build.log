@@ -1,170 +1,12 @@
-20:21:52 **** Build of configuration Release for project smart_sensor ****
+17:24:56 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
-Building file: ../bak/main.c
-Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"bak/main.d" -MT"bak/main.d" -c -o "bak/main.o" "../bak/main.c"
-In file included from ../bak/main.c:100:0:
-/usr/lib/avr/include/util/setbaud.h:222:4: warning: #warning "Baud rate achieved is higher than allowed" [-Wcpp]
- #  warning "Baud rate achieved is higher than allowed"
-    ^
-Finished building: ../bak/main.c
- 
-Building file: ../main.c
-Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
-Finished building: ../main.c
- 
-Building target: smart_sensor.elf
-Invoking: AVR C Linker
-avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./bak/main.o  ./main.o   
-./main.o: In function `idle_function':
-main.c:(.text.idle_function+0x0): multiple definition of `idle_function'
-./bak/main.o:main.c:(.text.idle_function+0x0): first defined here
-./main.o: In function `send_function':
-main.c:(.text.send_function+0x0): multiple definition of `send_function'
-./bak/main.o:main.c:(.text.send_function+0x0): first defined here
-./main.o: In function `uart_init':
-main.c:(.text.uart_init+0x0): multiple definition of `uart_init'
-./bak/main.o:main.c:(.text.uart_init+0x0): first defined here
-./main.o: In function `ioinit':
-main.c:(.text.ioinit+0x0): multiple definition of `ioinit'
-./bak/main.o:main.c:(.text.ioinit+0x0): first defined here
-./main.o: In function `listen_function':
-main.c:(.text.listen_function+0x0): multiple definition of `listen_function'
-makefile:51: recipe for target 'smart_sensor.elf' failed
-./bak/main.o:main.c:(.text.listen_function+0x0): first defined here
-./main.o: In function `calculate_function':
-main.c:(.text.calculate_function+0x0): multiple definition of `calculate_function'
-./bak/main.o:main.c:(.text.calculate_function+0x0): first defined here
-./main.o: In function `get_next_state':
-main.c:(.text.get_next_state+0x0): multiple definition of `get_next_state'
-./bak/main.o:main.c:(.text.get_next_state+0x0): first defined here
-./main.o: In function `execute_state':
-main.c:(.text.execute_state+0x0): multiple definition of `execute_state'
-./bak/main.o:main.c:(.text.execute_state+0x0): first defined here
-./main.o: In function `main':
-main.c:(.text.startup.main+0x0): multiple definition of `main'
-./bak/main.o:main.c:(.text.startup.main+0x0): first defined here
-./main.o: In function `__vector_11':
-main.c:(.text.__vector_11+0x0): multiple definition of `__vector_11'
-./bak/main.o:main.c:(.text.__vector_11+0x0): first defined here
-./main.o: In function `__vector_23':
-main.c:(.text.__vector_23+0x0): multiple definition of `__vector_23'
-./bak/main.o:main.c:(.text.__vector_23+0x0): first defined here
-./main.o:(.data.distance+0x0): multiple definition of `distance'
-./bak/main.o:(.data.distance+0x0): first defined here
-./main.o: In function `uart_putchar':
-main.c:(.text.uart_putchar+0x0): multiple definition of `uart_putchar'
-./bak/main.o:main.c:(.text.uart_putchar+0x0): first defined here
-collect2: error: ld returned 1 exit status
-make: *** [smart_sensor.elf] Error 1
-20:22:38 **** Clean-only build of configuration Release for project smart_sensor ****
-make clean 
-rm -rf  smart_sensor.hex  ./bak/main.o  ./main.o  smart_sensor.eep  sizedummy  smart_sensor.lss  ./bak/main.d  ./main.d  smart_sensor.elf
- 
-20:22:52 **** Build of configuration Release for project smart_sensor ****
-make all 
-Building file: ../bak/main.c
-Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"bak/main.d" -MT"bak/main.d" -c -o "bak/main.o" "../bak/main.c"
-In file included from ../bak/main.c:100:0:
-/usr/lib/avr/include/util/setbaud.h:222:4: warning: #warning "Baud rate achieved is higher than allowed" [-Wcpp]
- #  warning "Baud rate achieved is higher than allowed"
-    ^
-Finished building: ../bak/main.c
- 
-Building file: ../main.c
-Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
-Finished building: ../main.c
- 
-Building target: smart_sensor.elf
-Invoking: AVR C Linker
-avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./bak/main.o  ./main.o   
-./main.o: In function `idle_function':
-main.c:(.text.idle_function+0x0): multiple definition of `idle_function'
-./bak/main.o:main.c:(.text.idle_function+0x0): first defined here
-./main.o: In function `send_function':
-main.c:(.text.send_function+0x0): multiple definition of `send_function'
-./bak/main.o:main.c:(.text.send_function+0x0): first defined here
-./main.o: In function `uart_init':
-main.c:(.text.uart_init+0x0): multiple definition of `uart_init'
-./bak/main.o:main.c:(.text.uart_init+0x0): first defined here
-./main.o: In function `ioinit':
-main.c:(.text.ioinit+0x0): multiple definition of `ioinit'
-./bak/main.o:main.c:(.text.ioinit+0x0): first defined here
-./main.o: In function `listen_function':
-main.c:(.text.listen_function+0x0): multiple definition of `listen_function'
-./bak/main.o:main.c:(.text.listen_function+0x0): first defined here
-makefile:51: recipe for target 'smart_sensor.elf' failed
-./main.o: In function `calculate_function':
-main.c:(.text.calculate_function+0x0): multiple definition of `calculate_function'
-./bak/main.o:main.c:(.text.calculate_function+0x0): first defined here
-./main.o: In function `get_next_state':
-main.c:(.text.get_next_state+0x0): multiple definition of `get_next_state'
-./bak/main.o:main.c:(.text.get_next_state+0x0): first defined here
-./main.o: In function `execute_state':
-main.c:(.text.execute_state+0x0): multiple definition of `execute_state'
-./bak/main.o:main.c:(.text.execute_state+0x0): first defined here
-./main.o: In function `main':
-main.c:(.text.startup.main+0x0): multiple definition of `main'
-./bak/main.o:main.c:(.text.startup.main+0x0): first defined here
-./main.o: In function `__vector_11':
-main.c:(.text.__vector_11+0x0): multiple definition of `__vector_11'
-./bak/main.o:main.c:(.text.__vector_11+0x0): first defined here
-./main.o: In function `__vector_23':
-main.c:(.text.__vector_23+0x0): multiple definition of `__vector_23'
-./bak/main.o:main.c:(.text.__vector_23+0x0): first defined here
-./main.o:(.data.distance+0x0): multiple definition of `distance'
-./bak/main.o:(.data.distance+0x0): first defined here
-./main.o: In function `uart_putchar':
-main.c:(.text.uart_putchar+0x0): multiple definition of `uart_putchar'
-./bak/main.o:main.c:(.text.uart_putchar+0x0): first defined here
-collect2: error: ld returned 1 exit status
-make: *** [smart_sensor.elf] Error 1
-20:22:52 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:24:04 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Building target: smart_sensor.elf
-Invoking: AVR C Linker
-avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
-Finished building target: smart_sensor.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
-Finished building: smart_sensor.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
-Finished building: smart_sensor.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
-Finished building: smart_sensor.eep
- 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     748 bytes (2.3% Full)
+Program:     768 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -173,28 +15,109 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:24:05 **** Incremental Build of configuration Release for project src ****
+17:24:58 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     458 bytes (22.4% Full)
+Program:     768 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-20:24:06 **** Clean-only build of configuration Release for project smart_sensor ****
-make clean 
-rm -rf  smart_sensor.hex  ./main.o  smart_sensor.eep  sizedummy  smart_sensor.lss  ./main.d  smart_sensor.elf
+17:24:59 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
  
-20:24:06 **** Incremental Build of configuration Release for project smart_sensor ****
+17:26:28 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+17:26:29 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+17:26:31 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+17:27:10 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+17:28:45 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -224,7 +147,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     748 bytes (2.3% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -233,92 +156,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:24:06 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:24:15 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     748 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:24:15 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:24:22 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     748 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:24:23 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:30:06 **** Incremental Build of configuration Release for project smart_sensor ****
+17:29:30 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -348,7 +186,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     748 bytes (2.3% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -357,24 +195,24 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:30:07 **** Incremental Build of configuration Release for project src ****
+17:29:33 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     458 bytes (22.4% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-20:30:27 **** Incremental Build of configuration Release for project smart_sensor ****
+17:29:50 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -404,7 +242,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     748 bytes (2.3% Full)
+Program:     768 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -413,24 +251,24 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:30:27 **** Incremental Build of configuration Release for project src ****
+17:29:51 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     458 bytes (22.4% Full)
+Program:     768 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-20:31:12 **** Incremental Build of configuration Release for project smart_sensor ****
+17:30:25 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -460,7 +298,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     748 bytes (2.3% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -469,24 +307,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:31:12 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:31:22 **** Incremental Build of configuration Release for project smart_sensor ****
+17:43:31 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -516,7 +337,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     748 bytes (2.3% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -525,24 +346,24 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:31:23 **** Incremental Build of configuration Release for project src ****
+17:43:35 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     458 bytes (22.4% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-20:31:33 **** Incremental Build of configuration Release for project smart_sensor ****
+17:43:59 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -572,7 +393,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -581,58 +402,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:31:33 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:31:39 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     750 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:31:39 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:32:10 **** Incremental Build of configuration Release for project smart_sensor ****
+17:44:14 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -662,7 +432,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -671,24 +441,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:32:11 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:32:11 **** Incremental Build of configuration Release for project smart_sensor ****
+17:44:16 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
@@ -696,7 +449,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -705,24 +458,24 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:32:11 **** Incremental Build of configuration Release for project src ****
+17:44:29 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     458 bytes (22.4% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-20:33:30 **** Incremental Build of configuration Release for project smart_sensor ****
+17:54:43 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -752,7 +505,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -761,58 +514,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:33:30 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:33:32 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     750 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:33:33 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:33:57 **** Incremental Build of configuration Release for project smart_sensor ****
+17:55:29 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -842,7 +544,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -851,58 +553,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:33:57 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:33:59 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     750 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:33:59 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:34:30 **** Incremental Build of configuration Release for project smart_sensor ****
+17:56:20 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -932,7 +583,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -941,24 +592,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:34:30 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:34:47 **** Incremental Build of configuration Release for project smart_sensor ****
+17:56:46 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -988,7 +622,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     760 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -997,24 +631,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:34:47 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:34:48 **** Incremental Build of configuration Release for project smart_sensor ****
+17:58:22 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
@@ -1022,7 +639,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     760 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1031,24 +648,24 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:34:48 **** Incremental Build of configuration Release for project src ****
+17:58:25 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     458 bytes (22.4% Full)
+Program:     760 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-20:35:07 **** Incremental Build of configuration Release for project smart_sensor ****
+17:58:43 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1078,7 +695,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     798 bytes (2.4% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1087,24 +704,24 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:35:07 **** Incremental Build of configuration Release for project src ****
+17:58:43 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     458 bytes (22.4% Full)
+Program:     798 bytes (2.4% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-20:37:02 **** Incremental Build of configuration Release for project smart_sensor ****
+17:59:30 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1134,7 +751,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     760 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1143,24 +760,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:37:02 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:37:03 **** Incremental Build of configuration Release for project smart_sensor ****
+17:59:34 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
@@ -1168,7 +768,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     760 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1177,24 +777,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:37:03 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:40:06 **** Incremental Build of configuration Release for project smart_sensor ****
+18:01:26 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1224,7 +807,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     748 bytes (2.3% Full)
+Program:     760 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1233,24 +816,41 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:40:06 **** Incremental Build of configuration Release for project src ****
+18:01:27 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     458 bytes (22.4% Full)
+Program:     760 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-20:40:40 **** Incremental Build of configuration Release for project smart_sensor ****
+18:01:32 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     760 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:01:49 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1280,7 +880,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     748 bytes (2.3% Full)
+Program:     760 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1289,24 +889,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:40:40 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:40:44 **** Incremental Build of configuration Release for project smart_sensor ****
+18:01:50 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
@@ -1314,7 +897,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     748 bytes (2.3% Full)
+Program:     760 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1323,24 +906,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:40:44 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:40:55 **** Incremental Build of configuration Release for project smart_sensor ****
+18:04:39 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1370,7 +936,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     760 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1379,24 +945,24 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:40:55 **** Incremental Build of configuration Release for project src ****
+18:04:42 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     458 bytes (22.4% Full)
+Program:     760 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-20:43:05 **** Incremental Build of configuration Release for project smart_sensor ****
+18:04:57 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1426,7 +992,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     760 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1435,24 +1001,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:43:06 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:43:22 **** Incremental Build of configuration Release for project smart_sensor ****
+18:05:31 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1482,7 +1031,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     762 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1491,24 +1040,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:43:23 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:43:35 **** Incremental Build of configuration Release for project smart_sensor ****
+18:05:47 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1538,7 +1070,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     762 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1547,24 +1079,24 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:43:36 **** Incremental Build of configuration Release for project src ****
+18:06:05 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     458 bytes (22.4% Full)
+Program:     762 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-20:43:59 **** Incremental Build of configuration Release for project smart_sensor ****
+18:06:08 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1594,7 +1126,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     762 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1603,24 +1135,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:43:59 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:44:08 **** Incremental Build of configuration Release for project smart_sensor ****
+18:06:23 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1650,7 +1165,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     762 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1659,24 +1174,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:44:08 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:44:25 **** Incremental Build of configuration Release for project smart_sensor ****
+18:07:18 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1706,7 +1204,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     762 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1715,24 +1213,41 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:44:26 **** Incremental Build of configuration Release for project src ****
+18:07:38 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     458 bytes (22.4% Full)
+Program:     762 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-20:44:42 **** Incremental Build of configuration Release for project smart_sensor ****
+18:09:19 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     762 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:09:29 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1762,7 +1277,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1771,24 +1286,41 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:44:42 **** Incremental Build of configuration Release for project src ****
+18:09:31 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     458 bytes (22.4% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-20:45:02 **** Incremental Build of configuration Release for project smart_sensor ****
+18:09:35 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     766 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:10:07 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1818,7 +1350,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     764 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1827,24 +1359,24 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:45:03 **** Incremental Build of configuration Release for project src ****
+18:10:08 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     458 bytes (22.4% Full)
+Program:     764 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-20:45:12 **** Incremental Build of configuration Release for project smart_sensor ****
+18:10:14 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1874,7 +1406,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     764 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1883,24 +1415,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:45:12 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:45:25 **** Incremental Build of configuration Release for project smart_sensor ****
+18:10:30 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1930,7 +1445,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1939,24 +1454,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:45:25 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:45:49 **** Incremental Build of configuration Release for project smart_sensor ****
+18:10:50 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -1986,7 +1484,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     748 bytes (2.3% Full)
+Program:     766 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -1995,24 +1493,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:45:49 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:46:01 **** Incremental Build of configuration Release for project smart_sensor ****
+18:11:02 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -2042,7 +1523,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     768 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -2051,24 +1532,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:46:01 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:46:13 **** Incremental Build of configuration Release for project smart_sensor ****
+18:11:23 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -2098,7 +1562,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     768 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -2107,122 +1571,37 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:46:13 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:47:05 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     750 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:47:05 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     458 bytes (22.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:55:39 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     750 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:55:39 **** Incremental Build of configuration Release for project src ****
+18:11:35 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:55:58 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     768 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -2231,88 +1610,37 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-20:55:58 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:59:27 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     750 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-20:59:27 **** Incremental Build of configuration Release for project src ****
+18:12:02 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:00:06 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     768 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -2321,92 +1649,37 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:00:06 **** Incremental Build of configuration Release for project src ****
+18:12:19 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
-In file included from ../main.c:104:0:
-../main.c: In function ‘send_function’:
-../udm_utils.h:71:30: error: ‘T1_SET_PRESCALER’ undeclared (first use in this function)
-  #define TIMER1_ON TCCR1B |= T1_SET_PRESCALER
-                              ^
-../main.c:373:5: note: in expansion of macro ‘TIMER1_ON’
-subdir.mk:18: recipe for target 'main.o' failed
-     TIMER1_ON;
-     ^
-../udm_utils.h:71:30: note: each undeclared identifier is reported only once for each function it appears in
-  #define TIMER1_ON TCCR1B |= T1_SET_PRESCALER
-                              ^
-../main.c:373:5: note: in expansion of macro ‘TIMER1_ON’
-     TIMER1_ON;
-     ^
-make: *** [main.o] Error 1
-21:00:35 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     750 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:00:36 **** Incremental Build of configuration Release for project src ****
-make all 
-Building file: ../main.c
-Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:00:50 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     762 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -2415,88 +1688,37 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:00:50 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:01:13 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     750 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:01:14 **** Incremental Build of configuration Release for project src ****
+18:12:30 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:01:42 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     762 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -2505,54 +1727,37 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:01:43 **** Incremental Build of configuration Release for project src ****
+18:12:54 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:03:11 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     762 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -2561,54 +1766,37 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:03:12 **** Incremental Build of configuration Release for project src ****
+18:16:26 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:04:01 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     808 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -2617,54 +1805,54 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:04:02 **** Incremental Build of configuration Release for project src ****
+18:16:34 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     808 bytes (2.5% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:17:02 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:04:03 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     812 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -2673,24 +1861,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:04:04 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:04:19 **** Incremental Build of configuration Release for project smart_sensor ****
+18:17:21 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
@@ -2698,7 +1869,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     812 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -2707,156 +1878,37 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:04:19 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:04:20 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     750 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:04:20 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:04:25 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     750 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:04:25 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:05:01 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     750 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:05:01 **** Incremental Build of configuration Release for project src ****
+18:17:37 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:05:21 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     812 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -2865,54 +1917,37 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:05:21 **** Incremental Build of configuration Release for project src ****
+18:18:52 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:05:40 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     822 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -2921,24 +1956,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:05:40 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     520 bytes (25.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:05:55 **** Incremental Build of configuration Release for project smart_sensor ****
+18:18:58 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
@@ -2946,7 +1964,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     822 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -2955,54 +1973,37 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:05:55 **** Incremental Build of configuration Release for project src ****
+18:22:23 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     518 bytes (25.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:06:36 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     822 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -3011,54 +2012,37 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:06:36 **** Incremental Build of configuration Release for project src ****
+18:23:40 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     518 bytes (25.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:06:53 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     822 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -3067,88 +2051,37 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:06:53 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     518 bytes (25.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:07:03 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     750 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:07:03 **** Incremental Build of configuration Release for project src ****
+18:23:46 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     518 bytes (25.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:07:19 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     822 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -3157,54 +2090,37 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:07:19 **** Incremental Build of configuration Release for project src ****
+18:24:28 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     518 bytes (25.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:07:20 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     750 bytes (2.3% Full)
+Program:     822 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -3213,80 +2129,521 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:07:20 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     518 bytes (25.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:11:42 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     750 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:11:42 **** Incremental Build of configuration Release for project src ****
+18:35:48 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
 Finished building: ../main.c
  
-Building target: src.elf
+Building target: smart_sensor.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
  
 Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
  
 Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
  
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     518 bytes (25.3% Full)
+Program:     762 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-21:24:22 **** Incremental Build of configuration Release for project smart_sensor ****
+18:35:49 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     762 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:36:47 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: smart_sensor.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     822 bytes (2.5% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:36:48 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     822 bytes (2.5% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:37:29 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: smart_sensor.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     828 bytes (2.5% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:37:38 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: smart_sensor.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     828 bytes (2.5% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:37:40 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     828 bytes (2.5% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:40:26 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: smart_sensor.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     828 bytes (2.5% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:40:47 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: smart_sensor.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:41:03 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: smart_sensor.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:41:20 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: smart_sensor.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:41:40 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: smart_sensor.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:41:52 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: smart_sensor.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:41:54 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:41:59 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:42:10 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: smart_sensor.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:42:20 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -3325,46 +2682,24 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:24:23 **** Incremental Build of configuration Release for project src ****
+18:42:21 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
-Building file: ../main.c
-Invoking: AVR Compiler
-avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=attiny24 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
-Finished building: ../main.c
- 
-Building target: src.elf
-Invoking: AVR C Linker
-avr-gcc -Wl,-Map,src.map -mmcu=attiny24 -o "src.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./main.o   
-Finished building target: src.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S src.elf  >"src.lss"
-Finished building: src.lss
- 
-Create Flash image (ihex format)
-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex src.elf  "src.hex"
-Finished building: src.hex
- 
-Create eeprom image (ihex format)
-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex src.elf  "src.eep"
-Finished building: src.eep
- 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     516 bytes (25.2% Full)
+Program:     756 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
-21:24:31 **** Incremental Build of configuration Release for project smart_sensor ****
+18:43:26 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -3394,7 +2729,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     794 bytes (2.4% Full)
+Program:     750 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -3403,24 +2738,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:24:31 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     516 bytes (25.2% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:25:06 **** Incremental Build of configuration Release for project smart_sensor ****
+18:43:27 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
@@ -3428,7 +2746,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     794 bytes (2.4% Full)
+Program:     750 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -3437,24 +2755,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:25:06 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     516 bytes (25.2% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:26:10 **** Incremental Build of configuration Release for project smart_sensor ****
+18:43:33 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
@@ -3462,7 +2763,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     794 bytes (2.4% Full)
+Program:     750 bytes (2.3% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -3471,24 +2772,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:26:10 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     516 bytes (25.2% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:26:12 **** Incremental Build of configuration Release for project smart_sensor ****
+18:44:19 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -3527,58 +2811,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:26:12 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     516 bytes (25.2% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:26:12 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     756 bytes (2.3% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:26:13 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     516 bytes (25.2% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:41:57 **** Incremental Build of configuration Release for project smart_sensor ****
+18:44:56 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -3608,7 +2841,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     794 bytes (2.4% Full)
+Program:     828 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -3617,92 +2850,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-21:41:57 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     516 bytes (25.2% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:41:58 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     794 bytes (2.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-21:41:58 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     516 bytes (25.2% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-22:11:13 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     794 bytes (2.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-22:11:13 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     516 bytes (25.2% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-22:12:03 **** Incremental Build of configuration Release for project smart_sensor ****
+18:46:23 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -3732,7 +2880,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     794 bytes (2.4% Full)
+Program:     828 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -3741,92 +2889,7 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-22:12:03 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     516 bytes (25.2% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-22:12:06 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     794 bytes (2.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-22:12:06 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     516 bytes (25.2% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-22:12:08 **** Incremental Build of configuration Release for project smart_sensor ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=atmega328p smart_sensor.elf
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     794 bytes (2.4% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (0.9% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-22:12:08 **** Incremental Build of configuration Release for project src ****
-make all 
-Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
-AVR Memory Usage
-----------------
-Device: attiny24
-
-Program:     516 bytes (25.2% Full)
-(.text + .data + .bootloader)
-
-Data:         19 bytes (14.8% Full)
-(.data + .bss + .noinit)
-
-
-Finished building: sizedummy
- 
-22:12:10 **** Incremental Build of configuration Release for project smart_sensor ****
+18:46:44 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -3856,7 +2919,7 @@ AVR Memory Usage
 ----------------
 Device: atmega328p
 
-Program:     800 bytes (2.4% Full)
+Program:     828 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
 Data:         19 bytes (0.9% Full)
@@ -3865,18 +2928,152 @@ Data:         19 bytes (0.9% Full)
 
 Finished building: sizedummy
  
-22:12:10 **** Incremental Build of configuration Release for project src ****
+18:47:01 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: smart_sensor.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
+ 
 Invoking: Print Size
-avr-size --format=avr --mcu=attiny24 src.elf
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
 AVR Memory Usage
 ----------------
-Device: attiny24
+Device: atmega328p
 
-Program:     516 bytes (25.2% Full)
+Program:     826 bytes (2.5% Full)
 (.text + .data + .bootloader)
 
-Data:         19 bytes (14.8% Full)
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:49:44 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: smart_sensor.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     826 bytes (2.5% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:49:52 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     826 bytes (2.5% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:50:13 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"main.d" -MT"main.d" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: smart_sensor.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,smart_sensor.map -mmcu=atmega328p -o "smart_sensor.elf"  ./main.o   
+Finished building target: smart_sensor.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S smart_sensor.elf  >"smart_sensor.lss"
+Finished building: smart_sensor.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex smart_sensor.elf  "smart_sensor.hex"
+Finished building: smart_sensor.hex
+ 
+Create eeprom image (ihex format)
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex smart_sensor.elf  "smart_sensor.eep"
+Finished building: smart_sensor.eep
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     826 bytes (2.5% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+18:51:41 **** Incremental Build of configuration Release for project smart_sensor ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega328p smart_sensor.elf
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     826 bytes (2.5% Full)
+(.text + .data + .bootloader)
+
+Data:         19 bytes (0.9% Full)
 (.data + .bss + .noinit)
 
 
