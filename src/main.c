@@ -375,10 +375,11 @@ void send_function(void){
     //MAX OFF, This is for noise contention, funny thing it works,
     //MAX will be on for a while after
 
-
     while(TCNT1L <= TRAIN_LENGTH){} //Do nothing while waiting
 
-    //TURN_MAX_OFF;
+    TURN_MAX_OFF;
+
+
     //Timer off
     TIMER0_OFF;
     // This drives the pin to ground when of, this must be changed depending on the MCU

@@ -1,0 +1,875 @@
+
+src.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000047a  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  000004ee  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000011  00800060  00800060  000004ee  2**0
+                  ALLOC
+  3 .stab         00000b7c  00000000  00000000  000004f0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000fb1  00000000  00000000  0000106c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      00000011  00000000  00000000  0000201d  2**0
+                  CONTENTS, READONLY
+  6 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00002030  2**2
+                  CONTENTS, READONLY
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	10 c0       	rjmp	.+32     	; 0x22 <__ctors_end>
+   2:	28 c0       	rjmp	.+80     	; 0x54 <__bad_interrupt>
+   4:	27 c0       	rjmp	.+78     	; 0x54 <__bad_interrupt>
+   6:	26 c0       	rjmp	.+76     	; 0x54 <__bad_interrupt>
+   8:	25 c0       	rjmp	.+74     	; 0x54 <__bad_interrupt>
+   a:	24 c0       	rjmp	.+72     	; 0x54 <__bad_interrupt>
+   c:	d4 c1       	rjmp	.+936    	; 0x3b6 <__vector_6>
+   e:	22 c0       	rjmp	.+68     	; 0x54 <__bad_interrupt>
+  10:	21 c0       	rjmp	.+66     	; 0x54 <__bad_interrupt>
+  12:	20 c0       	rjmp	.+64     	; 0x54 <__bad_interrupt>
+  14:	1f c0       	rjmp	.+62     	; 0x54 <__bad_interrupt>
+  16:	1e c0       	rjmp	.+60     	; 0x54 <__bad_interrupt>
+  18:	0c c2       	rjmp	.+1048   	; 0x432 <__vector_12>
+  1a:	1c c0       	rjmp	.+56     	; 0x54 <__bad_interrupt>
+  1c:	1b c0       	rjmp	.+54     	; 0x54 <__bad_interrupt>
+  1e:	1a c0       	rjmp	.+52     	; 0x54 <__bad_interrupt>
+  20:	19 c0       	rjmp	.+50     	; 0x54 <__bad_interrupt>
+
+00000022 <__ctors_end>:
+  22:	11 24       	eor	r1, r1
+  24:	1f be       	out	0x3f, r1	; 63
+  26:	cf ed       	ldi	r28, 0xDF	; 223
+  28:	cd bf       	out	0x3d, r28	; 61
+
+0000002a <__do_copy_data>:
+  2a:	10 e0       	ldi	r17, 0x00	; 0
+  2c:	a0 e6       	ldi	r26, 0x60	; 96
+  2e:	b0 e0       	ldi	r27, 0x00	; 0
+  30:	ea e7       	ldi	r30, 0x7A	; 122
+  32:	f4 e0       	ldi	r31, 0x04	; 4
+  34:	02 c0       	rjmp	.+4      	; 0x3a <__do_copy_data+0x10>
+  36:	05 90       	lpm	r0, Z+
+  38:	0d 92       	st	X+, r0
+  3a:	a0 36       	cpi	r26, 0x60	; 96
+  3c:	b1 07       	cpc	r27, r17
+  3e:	d9 f7       	brne	.-10     	; 0x36 <__do_copy_data+0xc>
+
+00000040 <__do_clear_bss>:
+  40:	20 e0       	ldi	r18, 0x00	; 0
+  42:	a0 e6       	ldi	r26, 0x60	; 96
+  44:	b0 e0       	ldi	r27, 0x00	; 0
+  46:	01 c0       	rjmp	.+2      	; 0x4a <.do_clear_bss_start>
+
+00000048 <.do_clear_bss_loop>:
+  48:	1d 92       	st	X+, r1
+
+0000004a <.do_clear_bss_start>:
+  4a:	a1 37       	cpi	r26, 0x71	; 113
+  4c:	b2 07       	cpc	r27, r18
+  4e:	e1 f7       	brne	.-8      	; 0x48 <.do_clear_bss_loop>
+  50:	e8 d0       	rcall	.+464    	; 0x222 <main>
+  52:	11 c2       	rjmp	.+1058   	; 0x476 <_exit>
+
+00000054 <__bad_interrupt>:
+  54:	d5 cf       	rjmp	.-86     	; 0x0 <__vectors>
+
+00000056 <ioinit>:
+ * Function: ioinit
+ * Description: initialize io and counters
+ *************************/
+void
+ioinit (void)
+{
+  56:	cf 93       	push	r28
+  58:	df 93       	push	r29
+  5a:	cd b7       	in	r28, 0x3d	; 61
+  5c:	dd 27       	eor	r29, r29
+
+	//------------------flags and states ------------------
+	/* Init state */
+	current_state = IDLE;
+  5e:	10 92 61 00 	sts	0x0061, r1
+	/* Init communication status */
+	comm_status = ONGOING;
+  62:	81 e0       	ldi	r24, 0x01	; 1
+  64:	80 93 6b 00 	sts	0x006B, r24
+	//Init triggered flag
+	tx_triggered = FALSE;
+  68:	10 92 62 00 	sts	0x0062, r1
+	//Init reception flag
+	//reception_int_flag = FALSE;
+	reception_int_flag = FALSE;
+  6c:	10 92 60 00 	sts	0x0060, r1
+	//Init hits counter
+	hits_count = 0;
+  70:	10 92 6d 00 	sts	0x006D, r1
+
+	//-------------------------------------------------------------------
+	/* Init function pointers */
+	state_function_ptr[IDLE] = &idle_function;
+  74:	8b e1       	ldi	r24, 0x1B	; 27
+  76:	91 e0       	ldi	r25, 0x01	; 1
+  78:	90 93 64 00 	sts	0x0064, r25
+  7c:	80 93 63 00 	sts	0x0063, r24
+	state_function_ptr[SEND] = &send_function;
+  80:	80 e6       	ldi	r24, 0x60	; 96
+  82:	91 e0       	ldi	r25, 0x01	; 1
+  84:	90 93 66 00 	sts	0x0066, r25
+  88:	80 93 65 00 	sts	0x0065, r24
+	state_function_ptr[LISTEN] = &listen_function;
+  8c:	82 e3       	ldi	r24, 0x32	; 50
+  8e:	91 e0       	ldi	r25, 0x01	; 1
+  90:	90 93 68 00 	sts	0x0068, r25
+  94:	80 93 67 00 	sts	0x0067, r24
+	state_function_ptr[CALCULATE] = &calculate_function;
+  98:	83 e5       	ldi	r24, 0x53	; 83
+  9a:	91 e0       	ldi	r25, 0x01	; 1
+  9c:	90 93 6a 00 	sts	0x006A, r25
+  a0:	80 93 69 00 	sts	0x0069, r24
+
+	//-------------------------------------------------------------------
+    /* Timer 0 is 8-bit PWM */
+	/* Timer 0 is used to generate the 40 KHz pulses in OC0A and OC0B */
+	TCCR0A |= _BV(COM0A0) |_BV(COM0B0) | _BV(WGM01) ; /* CTC, and toggle OC0A on Compare Match */
+  a4:	80 e5       	ldi	r24, 0x50	; 80
+  a6:	90 e0       	ldi	r25, 0x00	; 0
+  a8:	20 e5       	ldi	r18, 0x50	; 80
+  aa:	30 e0       	ldi	r19, 0x00	; 0
+  ac:	f9 01       	movw	r30, r18
+  ae:	20 81       	ld	r18, Z
+  b0:	22 65       	ori	r18, 0x52	; 82
+  b2:	fc 01       	movw	r30, r24
+  b4:	20 83       	st	Z, r18
+
+	//TIMSK0 = 1;
+	///TCCR0B |= _BV(WGM02);
+	OCR0A = ULTRASONIC_MATCH; /* note [1], This is Arduino Mega pin 13*/
+  b6:	86 e5       	ldi	r24, 0x56	; 86
+  b8:	90 e0       	ldi	r25, 0x00	; 0
+  ba:	2b e0       	ldi	r18, 0x0B	; 11
+  bc:	fc 01       	movw	r30, r24
+  be:	20 83       	st	Z, r18
+	OCR0B = ULTRASONIC_MATCH; /* note [1] */
+  c0:	8c e5       	ldi	r24, 0x5C	; 92
+  c2:	90 e0       	ldi	r25, 0x00	; 0
+  c4:	2b e0       	ldi	r18, 0x0B	; 11
+  c6:	fc 01       	movw	r30, r24
+  c8:	20 83       	st	Z, r18
+
+    /* Enable OC0A and OC0B as outputs. */
+    DDR_OC0B |= _BV(OC0B);
+  ca:	8a e3       	ldi	r24, 0x3A	; 58
+  cc:	90 e0       	ldi	r25, 0x00	; 0
+  ce:	2a e3       	ldi	r18, 0x3A	; 58
+  d0:	30 e0       	ldi	r19, 0x00	; 0
+  d2:	f9 01       	movw	r30, r18
+  d4:	20 81       	ld	r18, Z
+  d6:	20 68       	ori	r18, 0x80	; 128
+  d8:	fc 01       	movw	r30, r24
+  da:	20 83       	st	Z, r18
+    DDR_OC0A |= _BV(OC0A);
+  dc:	87 e3       	ldi	r24, 0x37	; 55
+  de:	90 e0       	ldi	r25, 0x00	; 0
+  e0:	27 e3       	ldi	r18, 0x37	; 55
+  e2:	30 e0       	ldi	r19, 0x00	; 0
+  e4:	f9 01       	movw	r30, r18
+  e6:	20 81       	ld	r18, Z
+  e8:	24 60       	ori	r18, 0x04	; 4
+  ea:	fc 01       	movw	r30, r24
+  ec:	20 83       	st	Z, r18
+
+    //Drive the pin to ground
+    COMP_SIGNAL_DDR &= ~(_BV(SIGNAL_PIN));
+  ee:	8a e3       	ldi	r24, 0x3A	; 58
+  f0:	90 e0       	ldi	r25, 0x00	; 0
+  f2:	2a e3       	ldi	r18, 0x3A	; 58
+  f4:	30 e0       	ldi	r19, 0x00	; 0
+  f6:	f9 01       	movw	r30, r18
+  f8:	20 81       	ld	r18, Z
+  fa:	2b 7f       	andi	r18, 0xFB	; 251
+  fc:	fc 01       	movw	r30, r24
+  fe:	20 83       	st	Z, r18
+
+    //--------------------------------------------------------------------
+    //Configure pin to turn on the MAX233
+    MAX_DDR |= _BV(MAX_PIN);
+ 100:	8a e3       	ldi	r24, 0x3A	; 58
+ 102:	90 e0       	ldi	r25, 0x00	; 0
+ 104:	2a e3       	ldi	r18, 0x3A	; 58
+ 106:	30 e0       	ldi	r19, 0x00	; 0
+ 108:	f9 01       	movw	r30, r18
+ 10a:	20 81       	ld	r18, Z
+ 10c:	28 60       	ori	r18, 0x08	; 8
+ 10e:	fc 01       	movw	r30, r24
+ 110:	20 83       	st	Z, r18
+    MAX_PORT &= ~(_BV(MAX_PIN)); //MAX ON, pin 25 in arduino mega256
+ 112:	8b e3       	ldi	r24, 0x3B	; 59
+ 114:	90 e0       	ldi	r25, 0x00	; 0
+ 116:	2b e3       	ldi	r18, 0x3B	; 59
+ 118:	30 e0       	ldi	r19, 0x00	; 0
+ 11a:	f9 01       	movw	r30, r18
+ 11c:	20 81       	ld	r18, Z
+ 11e:	27 7f       	andi	r18, 0xF7	; 247
+ 120:	fc 01       	movw	r30, r24
+ 122:	20 83       	st	Z, r18
+
+    //--------------------------------------------------------------------
+    /* Timer 1 */
+    TCCR1A |= _BV(COM1A0) | _BV(WGM11); /* CTC,*/
+ 124:	8f e4       	ldi	r24, 0x4F	; 79
+ 126:	90 e0       	ldi	r25, 0x00	; 0
+ 128:	2f e4       	ldi	r18, 0x4F	; 79
+ 12a:	30 e0       	ldi	r19, 0x00	; 0
+ 12c:	f9 01       	movw	r30, r18
+ 12e:	20 81       	ld	r18, Z
+ 130:	22 64       	ori	r18, 0x42	; 66
+ 132:	fc 01       	movw	r30, r24
+ 134:	20 83       	st	Z, r18
+    OCR1AL = TIMEOUT_VALUE_L;
+ 136:	8a e4       	ldi	r24, 0x4A	; 74
+ 138:	90 e0       	ldi	r25, 0x00	; 0
+ 13a:	24 ea       	ldi	r18, 0xA4	; 164
+ 13c:	fc 01       	movw	r30, r24
+ 13e:	20 83       	st	Z, r18
+    OCR1AH = TIMEOUT_VALUE_H;
+ 140:	8b e4       	ldi	r24, 0x4B	; 75
+ 142:	90 e0       	ldi	r25, 0x00	; 0
+ 144:	fc 01       	movw	r30, r24
+ 146:	10 82       	st	Z, r1
+
+    //--------------------------------------------------------------------
+    //Analog comparator configuration
+	//No bandgap reference
+	ACSR = (0<<ACD) | (0<<ACBG) | (1<<ACIE) | (0<<ACIC) | (1<<ACIS1) | (1<<ACIS0);
+ 148:	88 e2       	ldi	r24, 0x28	; 40
+ 14a:	90 e0       	ldi	r25, 0x00	; 0
+ 14c:	2b e0       	ldi	r18, 0x0B	; 11
+ 14e:	fc 01       	movw	r30, r24
+ 150:	20 83       	st	Z, r18
+    //ADCSRA &= ~(_BV(ADEN));
+    //ADMUX |= _BV(MUX0);
+
+    //--------------------------------------------------------------------
+    /* Enable timer 1 compare A match. */
+    TIMSK = _BV (OCIE1A);
+ 152:	8c e2       	ldi	r24, 0x2C	; 44
+ 154:	90 e0       	ldi	r25, 0x00	; 0
+ 156:	22 e0       	ldi	r18, 0x02	; 2
+ 158:	fc 01       	movw	r30, r24
+ 15a:	20 83       	st	Z, r18
+    sei();
+ 15c:	78 94       	sei
+}
+ 15e:	df 91       	pop	r29
+ 160:	cf 91       	pop	r28
+ 162:	08 95       	ret
+
+00000164 <get_next_state>:
+/**************************
+ * Function: get_next_state
+ * Description: calculate the next state
+ *************************/
+uint8_t
+get_next_state(void){
+ 164:	cf 93       	push	r28
+ 166:	df 93       	push	r29
+ 168:	1f 92       	push	r1
+ 16a:	cd b7       	in	r28, 0x3d	; 61
+ 16c:	dd 27       	eor	r29, r29
+	uint8_t nstate;
+
+	switch(current_state){
+ 16e:	80 91 61 00 	lds	r24, 0x0061
+ 172:	88 2f       	mov	r24, r24
+ 174:	90 e0       	ldi	r25, 0x00	; 0
+ 176:	81 30       	cpi	r24, 0x01	; 1
+ 178:	91 05       	cpc	r25, r1
+ 17a:	79 f0       	breq	.+30     	; 0x19a <get_next_state+0x36>
+ 17c:	82 30       	cpi	r24, 0x02	; 2
+ 17e:	91 05       	cpc	r25, r1
+ 180:	1c f4       	brge	.+6      	; 0x188 <get_next_state+0x24>
+ 182:	89 2b       	or	r24, r25
+ 184:	39 f0       	breq	.+14     	; 0x194 <get_next_state+0x30>
+ 186:	30 c0       	rjmp	.+96     	; 0x1e8 <get_next_state+0x84>
+ 188:	82 30       	cpi	r24, 0x02	; 2
+ 18a:	91 05       	cpc	r25, r1
+ 18c:	89 f0       	breq	.+34     	; 0x1b0 <get_next_state+0x4c>
+ 18e:	03 97       	sbiw	r24, 0x03	; 3
+ 190:	09 f1       	breq	.+66     	; 0x1d4 <get_next_state+0x70>
+ 192:	2a c0       	rjmp	.+84     	; 0x1e8 <get_next_state+0x84>
+		case IDLE:
+			nstate = SEND;
+ 194:	81 e0       	ldi	r24, 0x01	; 1
+ 196:	89 83       	std	Y+1, r24	; 0x01
+			break;
+ 198:	2b c0       	rjmp	.+86     	; 0x1f0 <get_next_state+0x8c>
+		case SEND:
+			if (tx_triggered == TRUE){
+ 19a:	80 91 62 00 	lds	r24, 0x0062
+ 19e:	81 30       	cpi	r24, 0x01	; 1
+ 1a0:	19 f4       	brne	.+6      	; 0x1a8 <get_next_state+0x44>
+				nstate = LISTEN;
+ 1a2:	82 e0       	ldi	r24, 0x02	; 2
+ 1a4:	89 83       	std	Y+1, r24	; 0x01
+			} else {
+				nstate = current_state;
+			}
+			break;
+ 1a6:	24 c0       	rjmp	.+72     	; 0x1f0 <get_next_state+0x8c>
+			break;
+		case SEND:
+			if (tx_triggered == TRUE){
+				nstate = LISTEN;
+			} else {
+				nstate = current_state;
+ 1a8:	80 91 61 00 	lds	r24, 0x0061
+ 1ac:	89 83       	std	Y+1, r24	; 0x01
+			}
+			break;
+ 1ae:	20 c0       	rjmp	.+64     	; 0x1f0 <get_next_state+0x8c>
+		case LISTEN:
+			//command_status = RECEIVED; //debug purposes
+			if (command_status == RECEIVED){
+ 1b0:	80 91 6c 00 	lds	r24, 0x006C
+ 1b4:	82 30       	cpi	r24, 0x02	; 2
+ 1b6:	19 f4       	brne	.+6      	; 0x1be <get_next_state+0x5a>
+				nstate = CALCULATE;
+ 1b8:	83 e0       	ldi	r24, 0x03	; 3
+ 1ba:	89 83       	std	Y+1, r24	; 0x01
+ 1bc:	0a c0       	rjmp	.+20     	; 0x1d2 <get_next_state+0x6e>
+			} else if (command_status == TIMEOUT){
+ 1be:	80 91 6c 00 	lds	r24, 0x006C
+ 1c2:	81 30       	cpi	r24, 0x01	; 1
+ 1c4:	11 f4       	brne	.+4      	; 0x1ca <get_next_state+0x66>
+				nstate = IDLE;
+ 1c6:	19 82       	std	Y+1, r1	; 0x01
+ 1c8:	04 c0       	rjmp	.+8      	; 0x1d2 <get_next_state+0x6e>
+			} else {
+				nstate = current_state;
+ 1ca:	80 91 61 00 	lds	r24, 0x0061
+ 1ce:	89 83       	std	Y+1, r24	; 0x01
+			}
+			break;
+ 1d0:	0f c0       	rjmp	.+30     	; 0x1f0 <get_next_state+0x8c>
+ 1d2:	0e c0       	rjmp	.+28     	; 0x1f0 <get_next_state+0x8c>
+		case CALCULATE:
+			if (comm_status == OVER){
+ 1d4:	80 91 6b 00 	lds	r24, 0x006B
+ 1d8:	88 23       	and	r24, r24
+ 1da:	11 f4       	brne	.+4      	; 0x1e0 <get_next_state+0x7c>
+				nstate = IDLE;
+ 1dc:	19 82       	std	Y+1, r1	; 0x01
+			} else {
+				nstate = current_state;
+			}
+			break;
+ 1de:	08 c0       	rjmp	.+16     	; 0x1f0 <get_next_state+0x8c>
+			break;
+		case CALCULATE:
+			if (comm_status == OVER){
+				nstate = IDLE;
+			} else {
+				nstate = current_state;
+ 1e0:	80 91 61 00 	lds	r24, 0x0061
+ 1e4:	89 83       	std	Y+1, r24	; 0x01
+			}
+			break;
+ 1e6:	04 c0       	rjmp	.+8      	; 0x1f0 <get_next_state+0x8c>
+		default:
+			nstate = current_state;
+ 1e8:	80 91 61 00 	lds	r24, 0x0061
+ 1ec:	89 83       	std	Y+1, r24	; 0x01
+			break;
+ 1ee:	00 00       	nop
+	}
+
+
+	return nstate;
+ 1f0:	89 81       	ldd	r24, Y+1	; 0x01
+}
+ 1f2:	0f 90       	pop	r0
+ 1f4:	df 91       	pop	r29
+ 1f6:	cf 91       	pop	r28
+ 1f8:	08 95       	ret
+
+000001fa <execute_state>:
+/************************************************************
+ * Function: execute_state
+ * Description: call the respective function of each state
+ ************************************************************/
+void
+execute_state(void){
+ 1fa:	cf 93       	push	r28
+ 1fc:	df 93       	push	r29
+ 1fe:	cd b7       	in	r28, 0x3d	; 61
+ 200:	dd 27       	eor	r29, r29
+	(* state_function_ptr[current_state]) ();
+ 202:	80 91 61 00 	lds	r24, 0x0061
+ 206:	88 2f       	mov	r24, r24
+ 208:	90 e0       	ldi	r25, 0x00	; 0
+ 20a:	88 0f       	add	r24, r24
+ 20c:	99 1f       	adc	r25, r25
+ 20e:	8d 59       	subi	r24, 0x9D	; 157
+ 210:	9f 4f       	sbci	r25, 0xFF	; 255
+ 212:	fc 01       	movw	r30, r24
+ 214:	80 81       	ld	r24, Z
+ 216:	91 81       	ldd	r25, Z+1	; 0x01
+ 218:	fc 01       	movw	r30, r24
+ 21a:	09 95       	icall
+}
+ 21c:	df 91       	pop	r29
+ 21e:	cf 91       	pop	r28
+ 220:	08 95       	ret
+
+00000222 <main>:
+ * Function: main
+ * Description: well main, loop forever
+ ************************************************************/
+int
+main (void)
+{
+ 222:	cf 93       	push	r28
+ 224:	df 93       	push	r29
+ 226:	cd b7       	in	r28, 0x3d	; 61
+ 228:	dd 27       	eor	r29, r29
+    ioinit ();
+ 22a:	15 df       	rcall	.-470    	; 0x56 <ioinit>
+    /* loop forever, the interrupts are doing the rest */
+    while(1)
+    {
+    	current_state = get_next_state();
+ 22c:	9b df       	rcall	.-202    	; 0x164 <get_next_state>
+ 22e:	80 93 61 00 	sts	0x0061, r24
+    	execute_state();
+ 232:	e3 df       	rcall	.-58     	; 0x1fa <execute_state>
+    }
+ 234:	fb cf       	rjmp	.-10     	; 0x22c <main+0xa>
+
+00000236 <idle_function>:
+
+/************************************************************
+ * Function: idle_function
+ * Description: execute idle state
+ ************************************************************/
+void idle_function(void){
+ 236:	cf 93       	push	r28
+ 238:	df 93       	push	r29
+ 23a:	cd b7       	in	r28, 0x3d	; 61
+ 23c:	dd 27       	eor	r29, r29
+	//Well do nothing, this state can be removed
+	TIMSK &= ~(_BV(OCIE1A));
+ 23e:	8c e2       	ldi	r24, 0x2C	; 44
+ 240:	90 e0       	ldi	r25, 0x00	; 0
+ 242:	2c e2       	ldi	r18, 0x2C	; 44
+ 244:	30 e0       	ldi	r19, 0x00	; 0
+ 246:	f9 01       	movw	r30, r18
+ 248:	20 81       	ld	r18, Z
+ 24a:	2d 7f       	andi	r18, 0xFD	; 253
+ 24c:	fc 01       	movw	r30, r24
+ 24e:	20 83       	st	Z, r18
+	//ACSR &= ~(_BV(ACIE));
+#if DEBUG_STATES
+	uart_putchar('I');
+#endif
+	comm_status = ONGOING;
+ 250:	81 e0       	ldi	r24, 0x01	; 1
+ 252:	80 93 6b 00 	sts	0x006B, r24
+	tx_triggered = FALSE;
+ 256:	10 92 62 00 	sts	0x0062, r1
+	time_out_flag = FALSE;
+ 25a:	10 92 6e 00 	sts	0x006E, r1
+}
+ 25e:	df 91       	pop	r29
+ 260:	cf 91       	pop	r28
+ 262:	08 95       	ret
+
+00000264 <listen_function>:
+
+/******************************
+ * Function: listen_function
+ * Description: LISTEN state function, this enables and listens to the RX hardware for the "ECHO"/"RESPONSE"
+ ******************************/
+void listen_function(void){
+ 264:	cf 93       	push	r28
+ 266:	df 93       	push	r29
+ 268:	cd b7       	in	r28, 0x3d	; 61
+ 26a:	dd 27       	eor	r29, r29
+	//time_out_flag = TRUE;
+
+	//Wait
+	//while(TCNT1L <= 2*TRAIN_LENGTH){}
+	//Listen to the RX
+	ACSR |= _BV(ACIE);
+ 26c:	88 e2       	ldi	r24, 0x28	; 40
+ 26e:	90 e0       	ldi	r25, 0x00	; 0
+ 270:	28 e2       	ldi	r18, 0x28	; 40
+ 272:	30 e0       	ldi	r19, 0x00	; 0
+ 274:	f9 01       	movw	r30, r18
+ 276:	20 81       	ld	r18, Z
+ 278:	28 60       	ori	r18, 0x08	; 8
+ 27a:	fc 01       	movw	r30, r24
+ 27c:	20 83       	st	Z, r18
+
+	if (time_out_flag == TRUE){
+ 27e:	80 91 6e 00 	lds	r24, 0x006E
+ 282:	81 30       	cpi	r24, 0x01	; 1
+ 284:	21 f4       	brne	.+8      	; 0x28e <listen_function+0x2a>
+		command_status = TIMEOUT;
+ 286:	81 e0       	ldi	r24, 0x01	; 1
+ 288:	80 93 6c 00 	sts	0x006C, r24
+ 28c:	09 c0       	rjmp	.+18     	; 0x2a0 <listen_function+0x3c>
+#if DEBUG_STATES
+		uart_putchar('T'); //debug
+		uart_putchar((char)TCNT1L);
+#endif
+	}
+	else if (reception_int_flag == TRUE) {
+ 28e:	80 91 60 00 	lds	r24, 0x0060
+ 292:	81 30       	cpi	r24, 0x01	; 1
+ 294:	29 f4       	brne	.+10     	; 0x2a0 <listen_function+0x3c>
+#if DEBUG_STATES
+		uart_putchar('R');
+#endif
+		reception_int_flag = FALSE;
+ 296:	10 92 60 00 	sts	0x0060, r1
+		command_status = RECEIVED;
+ 29a:	82 e0       	ldi	r24, 0x02	; 2
+ 29c:	80 93 6c 00 	sts	0x006C, r24
+	}
+
+}
+ 2a0:	df 91       	pop	r29
+ 2a2:	cf 91       	pop	r28
+ 2a4:	08 95       	ret
+
+000002a6 <calculate_function>:
+
+/******************************
+ * Function: calculate_function
+ * Description: transmit in serial the output of the sensor
+ ******************************/
+void calculate_function(void){
+ 2a6:	cf 93       	push	r28
+ 2a8:	df 93       	push	r29
+ 2aa:	cd b7       	in	r28, 0x3d	; 61
+ 2ac:	dd 27       	eor	r29, r29
+
+#if DEBUG_STATES
+	uart_putchar('C'); //debug
+#endif
+	if (time_out_flag == TRUE){
+ 2ae:	80 91 6e 00 	lds	r24, 0x006E
+ 2b2:	81 30       	cpi	r24, 0x01	; 1
+ 2b4:	11 f4       	brne	.+4      	; 0x2ba <calculate_function+0x14>
+		//Transmit the distance
+		comm_status = OVER;
+ 2b6:	10 92 6b 00 	sts	0x006B, r1
+	}
+}
+ 2ba:	df 91       	pop	r29
+ 2bc:	cf 91       	pop	r28
+ 2be:	08 95       	ret
+
+000002c0 <send_function>:
+/******************************
+ * Function: send_function
+ * Description: SEND state function, this triggers the
+ ******************************/
+void send_function(void){
+ 2c0:	cf 93       	push	r28
+ 2c2:	df 93       	push	r29
+ 2c4:	cd b7       	in	r28, 0x3d	; 61
+ 2c6:	dd 27       	eor	r29, r29
+
+#if DEBUG_STATES
+	uart_putchar('S'); //debug
+#endif
+    //---Update flags ----------------
+    tx_status = ON;
+ 2c8:	10 92 70 00 	sts	0x0070, r1
+    command_status = ALIVE;
+ 2cc:	10 92 6c 00 	sts	0x006C, r1
+    tx_triggered = TRUE;
+ 2d0:	81 e0       	ldi	r24, 0x01	; 1
+ 2d2:	80 93 62 00 	sts	0x0062, r24
+
+	//------------------TURN ON Interrupts ----------------------
+	TIMSK |= _BV(OCIE1A); //Timer Interrupt on
+ 2d6:	8c e2       	ldi	r24, 0x2C	; 44
+ 2d8:	90 e0       	ldi	r25, 0x00	; 0
+ 2da:	2c e2       	ldi	r18, 0x2C	; 44
+ 2dc:	30 e0       	ldi	r19, 0x00	; 0
+ 2de:	f9 01       	movw	r30, r18
+ 2e0:	20 81       	ld	r18, Z
+ 2e2:	22 60       	ori	r18, 0x02	; 2
+ 2e4:	fc 01       	movw	r30, r24
+ 2e6:	20 83       	st	Z, r18
+    ACSR |= _BV(ACIE); //Analog comparator on
+ 2e8:	88 e2       	ldi	r24, 0x28	; 40
+ 2ea:	90 e0       	ldi	r25, 0x00	; 0
+ 2ec:	28 e2       	ldi	r18, 0x28	; 40
+ 2ee:	30 e0       	ldi	r19, 0x00	; 0
+ 2f0:	f9 01       	movw	r30, r18
+ 2f2:	20 81       	ld	r18, Z
+ 2f4:	28 60       	ori	r18, 0x08	; 8
+ 2f6:	fc 01       	movw	r30, r24
+ 2f8:	20 83       	st	Z, r18
+
+	//Clear counter 0
+	TCNT0 = 0;
+ 2fa:	82 e5       	ldi	r24, 0x52	; 82
+ 2fc:	90 e0       	ldi	r25, 0x00	; 0
+ 2fe:	fc 01       	movw	r30, r24
+ 300:	10 82       	st	Z, r1
+
+    //clean counter 1
+    TCNT1L = 0;
+ 302:	8c e4       	ldi	r24, 0x4C	; 76
+ 304:	90 e0       	ldi	r25, 0x00	; 0
+ 306:	fc 01       	movw	r30, r24
+ 308:	10 82       	st	Z, r1
+    TCNT1H = 0;
+ 30a:	8d e4       	ldi	r24, 0x4D	; 77
+ 30c:	90 e0       	ldi	r25, 0x00	; 0
+ 30e:	fc 01       	movw	r30, r24
+ 310:	10 82       	st	Z, r1
+
+	//Configure direction of pin for PWM
+	DDR_OC0A |= _BV(OC0A);
+ 312:	87 e3       	ldi	r24, 0x37	; 55
+ 314:	90 e0       	ldi	r25, 0x00	; 0
+ 316:	27 e3       	ldi	r18, 0x37	; 55
+ 318:	30 e0       	ldi	r19, 0x00	; 0
+ 31a:	f9 01       	movw	r30, r18
+ 31c:	20 81       	ld	r18, Z
+ 31e:	24 60       	ori	r18, 0x04	; 4
+ 320:	fc 01       	movw	r30, r24
+ 322:	20 83       	st	Z, r18
+	DDR_OC0B |= _BV(OC0B);
+ 324:	8a e3       	ldi	r24, 0x3A	; 58
+ 326:	90 e0       	ldi	r25, 0x00	; 0
+ 328:	2a e3       	ldi	r18, 0x3A	; 58
+ 32a:	30 e0       	ldi	r19, 0x00	; 0
+ 32c:	f9 01       	movw	r30, r18
+ 32e:	20 81       	ld	r18, Z
+ 330:	20 68       	ori	r18, 0x80	; 128
+ 332:	fc 01       	movw	r30, r24
+ 334:	20 83       	st	Z, r18
+
+	//MAX ON
+	TURN_MAX_ON;
+ 336:	8b e3       	ldi	r24, 0x3B	; 59
+ 338:	90 e0       	ldi	r25, 0x00	; 0
+ 33a:	2b e3       	ldi	r18, 0x3B	; 59
+ 33c:	30 e0       	ldi	r19, 0x00	; 0
+ 33e:	f9 01       	movw	r30, r18
+ 340:	20 81       	ld	r18, Z
+ 342:	27 7f       	andi	r18, 0xF7	; 247
+ 344:	fc 01       	movw	r30, r24
+ 346:	20 83       	st	Z, r18
+
+	//-------------------TURN ON TIMERS ---------------------------
+	//Timer0 prescaler PWM train generation on
+    //TCCR0B |=  _BV(CS01); /* Set the prescale to 8, note [1] */
+	TIMER0_ON;
+ 348:	83 e5       	ldi	r24, 0x53	; 83
+ 34a:	90 e0       	ldi	r25, 0x00	; 0
+ 34c:	23 e5       	ldi	r18, 0x53	; 83
+ 34e:	30 e0       	ldi	r19, 0x00	; 0
+ 350:	f9 01       	movw	r30, r18
+ 352:	20 81       	ld	r18, Z
+ 354:	21 60       	ori	r18, 0x01	; 1
+ 356:	fc 01       	movw	r30, r24
+ 358:	20 83       	st	Z, r18
+
+    //Timer1 for train on distance measure on
+    //TCCR1B |= _BV(CS12) | _BV(CS10); // Set the prescaler to 1024
+    TIMER1_ON;
+ 35a:	8e e4       	ldi	r24, 0x4E	; 78
+ 35c:	90 e0       	ldi	r25, 0x00	; 0
+ 35e:	2e e4       	ldi	r18, 0x4E	; 78
+ 360:	30 e0       	ldi	r19, 0x00	; 0
+ 362:	f9 01       	movw	r30, r18
+ 364:	20 81       	ld	r18, Z
+ 366:	23 60       	ori	r18, 0x03	; 3
+ 368:	fc 01       	movw	r30, r24
+ 36a:	20 83       	st	Z, r18
+
+    //MAX OFF, This is for noise contention, funny thing it works,
+    //MAX will be on for a while after
+
+
+    while(TCNT1L <= TRAIN_LENGTH){} //Do nothing while waiting
+ 36c:	00 00       	nop
+ 36e:	8c e4       	ldi	r24, 0x4C	; 76
+ 370:	90 e0       	ldi	r25, 0x00	; 0
+ 372:	fc 01       	movw	r30, r24
+ 374:	80 81       	ld	r24, Z
+ 376:	83 30       	cpi	r24, 0x03	; 3
+ 378:	d0 f3       	brcs	.-12     	; 0x36e <send_function+0xae>
+
+    //TURN_MAX_OFF;
+    //Timer off
+    TIMER0_OFF;
+ 37a:	83 e5       	ldi	r24, 0x53	; 83
+ 37c:	90 e0       	ldi	r25, 0x00	; 0
+ 37e:	23 e5       	ldi	r18, 0x53	; 83
+ 380:	30 e0       	ldi	r19, 0x00	; 0
+ 382:	f9 01       	movw	r30, r18
+ 384:	20 81       	ld	r18, Z
+ 386:	28 7f       	andi	r18, 0xF8	; 248
+ 388:	fc 01       	movw	r30, r24
+ 38a:	20 83       	st	Z, r18
+    // This drives the pin to ground when of, this must be changed depending on the MCU
+    DDR_OC0A &= ~(_BV(OC0A));
+ 38c:	87 e3       	ldi	r24, 0x37	; 55
+ 38e:	90 e0       	ldi	r25, 0x00	; 0
+ 390:	27 e3       	ldi	r18, 0x37	; 55
+ 392:	30 e0       	ldi	r19, 0x00	; 0
+ 394:	f9 01       	movw	r30, r18
+ 396:	20 81       	ld	r18, Z
+ 398:	2b 7f       	andi	r18, 0xFB	; 251
+ 39a:	fc 01       	movw	r30, r24
+ 39c:	20 83       	st	Z, r18
+    DDR_OC0B &= ~(_BV(OC0B));
+ 39e:	8a e3       	ldi	r24, 0x3A	; 58
+ 3a0:	90 e0       	ldi	r25, 0x00	; 0
+ 3a2:	2a e3       	ldi	r18, 0x3A	; 58
+ 3a4:	30 e0       	ldi	r19, 0x00	; 0
+ 3a6:	f9 01       	movw	r30, r18
+ 3a8:	20 81       	ld	r18, Z
+ 3aa:	2f 77       	andi	r18, 0x7F	; 127
+ 3ac:	fc 01       	movw	r30, r24
+ 3ae:	20 83       	st	Z, r18
+
+}
+ 3b0:	df 91       	pop	r29
+ 3b2:	cf 91       	pop	r28
+ 3b4:	08 95       	ret
+
+000003b6 <__vector_6>:
+
+/*********************************
+ * Interrupt handler TIMER1_OVF vector
+ *********************************/
+ISR (TIM1_COMPA_vect)       /* Note [2] */
+{
+ 3b6:	1f 92       	push	r1
+ 3b8:	0f 92       	push	r0
+ 3ba:	00 90 5f 00 	lds	r0, 0x005F
+ 3be:	0f 92       	push	r0
+ 3c0:	11 24       	eor	r1, r1
+ 3c2:	2f 93       	push	r18
+ 3c4:	3f 93       	push	r19
+ 3c6:	8f 93       	push	r24
+ 3c8:	9f 93       	push	r25
+ 3ca:	ef 93       	push	r30
+ 3cc:	ff 93       	push	r31
+ 3ce:	cf 93       	push	r28
+ 3d0:	df 93       	push	r29
+ 3d2:	cd b7       	in	r28, 0x3d	; 61
+ 3d4:	dd 27       	eor	r29, r29
+	TIMSK &= ~(_BV(OCIE1A)); //Timer Interrupt off
+ 3d6:	8c e2       	ldi	r24, 0x2C	; 44
+ 3d8:	90 e0       	ldi	r25, 0x00	; 0
+ 3da:	2c e2       	ldi	r18, 0x2C	; 44
+ 3dc:	30 e0       	ldi	r19, 0x00	; 0
+ 3de:	f9 01       	movw	r30, r18
+ 3e0:	20 81       	ld	r18, Z
+ 3e2:	2d 7f       	andi	r18, 0xFD	; 253
+ 3e4:	fc 01       	movw	r30, r24
+ 3e6:	20 83       	st	Z, r18
+	ACSR &= ~(_BV(ACIE)); //Analog comparator off
+ 3e8:	88 e2       	ldi	r24, 0x28	; 40
+ 3ea:	90 e0       	ldi	r25, 0x00	; 0
+ 3ec:	28 e2       	ldi	r18, 0x28	; 40
+ 3ee:	30 e0       	ldi	r19, 0x00	; 0
+ 3f0:	f9 01       	movw	r30, r18
+ 3f2:	20 81       	ld	r18, Z
+ 3f4:	27 7f       	andi	r18, 0xF7	; 247
+ 3f6:	fc 01       	movw	r30, r24
+ 3f8:	20 83       	st	Z, r18
+
+	TCCR1B &= ~(_BV(CS12) | _BV(CS11) | _BV(CS10));
+ 3fa:	8e e4       	ldi	r24, 0x4E	; 78
+ 3fc:	90 e0       	ldi	r25, 0x00	; 0
+ 3fe:	2e e4       	ldi	r18, 0x4E	; 78
+ 400:	30 e0       	ldi	r19, 0x00	; 0
+ 402:	f9 01       	movw	r30, r18
+ 404:	20 81       	ld	r18, Z
+ 406:	28 7f       	andi	r18, 0xF8	; 248
+ 408:	fc 01       	movw	r30, r24
+ 40a:	20 83       	st	Z, r18
+	//TCNT1L = 0;
+	hits_count = 0;
+ 40c:	10 92 6d 00 	sts	0x006D, r1
+	time_out_flag = TRUE;
+ 410:	81 e0       	ldi	r24, 0x01	; 1
+ 412:	80 93 6e 00 	sts	0x006E, r24
+	//uart_putchar('V');
+}
+ 416:	df 91       	pop	r29
+ 418:	cf 91       	pop	r28
+ 41a:	ff 91       	pop	r31
+ 41c:	ef 91       	pop	r30
+ 41e:	9f 91       	pop	r25
+ 420:	8f 91       	pop	r24
+ 422:	3f 91       	pop	r19
+ 424:	2f 91       	pop	r18
+ 426:	0f 90       	pop	r0
+ 428:	00 92 5f 00 	sts	0x005F, r0
+ 42c:	0f 90       	pop	r0
+ 42e:	1f 90       	pop	r1
+ 430:	18 95       	reti
+
+00000432 <__vector_12>:
+
+/*************************************
+ * Interrupt handler ANALOG_COMP_vect
+ ************************************/
+ISR (ANA_COMP_vect)
+{
+ 432:	1f 92       	push	r1
+ 434:	0f 92       	push	r0
+ 436:	00 90 5f 00 	lds	r0, 0x005F
+ 43a:	0f 92       	push	r0
+ 43c:	11 24       	eor	r1, r1
+ 43e:	8f 93       	push	r24
+ 440:	cf 93       	push	r28
+ 442:	df 93       	push	r29
+ 444:	cd b7       	in	r28, 0x3d	; 61
+ 446:	dd 27       	eor	r29, r29
+	hits_count += 1;
+ 448:	80 91 6d 00 	lds	r24, 0x006D
+ 44c:	8f 5f       	subi	r24, 0xFF	; 255
+ 44e:	80 93 6d 00 	sts	0x006D, r24
+
+	if(hits_count >= HITS_TO_VALID){
+ 452:	80 91 6d 00 	lds	r24, 0x006D
+ 456:	84 30       	cpi	r24, 0x04	; 4
+ 458:	28 f0       	brcs	.+10     	; 0x464 <__vector_12+0x32>
+		reception_int_flag = TRUE;
+ 45a:	81 e0       	ldi	r24, 0x01	; 1
+ 45c:	80 93 60 00 	sts	0x0060, r24
+		hits_count = 0;
+ 460:	10 92 6d 00 	sts	0x006D, r1
+	}
+}
+ 464:	df 91       	pop	r29
+ 466:	cf 91       	pop	r28
+ 468:	8f 91       	pop	r24
+ 46a:	0f 90       	pop	r0
+ 46c:	00 92 5f 00 	sts	0x005F, r0
+ 470:	0f 90       	pop	r0
+ 472:	1f 90       	pop	r1
+ 474:	18 95       	reti
+
+00000476 <_exit>:
+ 476:	f8 94       	cli
+
+00000478 <__stop_program>:
+ 478:	ff cf       	rjmp	.-2      	; 0x478 <__stop_program>

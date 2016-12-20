@@ -1,4 +1,4 @@
-18:51:41 **** Incremental Build of configuration Release for project smart_sensor ****
+20:40:23 **** Incremental Build of configuration Release for project smart_sensor ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega328p smart_sensor.elf
@@ -16,5 +16,5 @@ Data:         19 bytes (0.9% Full)
 Finished building: sizedummy
  
 
-18:51:41 Build Finished (took 69ms)
+20:40:23 Build Finished (took 67ms)
 

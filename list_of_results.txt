@@ -1,0 +1,15 @@
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_4/boxing_1480912616.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_6/boxing_1480928072.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_10/boxing_1480958869.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_30/boxing_1481123279.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_28/boxing_1481105220.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_12/boxing_1480974509.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_14/boxing_1480990126.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_24/boxing_1481069203.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_20/boxing_1481036713.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_18/boxing_1481021392.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_2/boxing_1480897064.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_8/boxing_1480943195.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_16/boxing_1481005794.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_26/boxing_1481087177.csv
+/home/lcastrol/Documents/KTH/Research/work/plotter/exp_vs_random_0_22/boxing_1481052127.csv

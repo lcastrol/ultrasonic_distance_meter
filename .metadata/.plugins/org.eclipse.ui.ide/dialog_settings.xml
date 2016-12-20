@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="CleanDialogSettings">
-		<item value="583" key="DIALOG_WIDTH"/>
+		<item value="603" key="DIALOG_WIDTH"/>
 		<item value="true" key="TOGGLE_SELECTED"/>
-		<item value="406" key="DIALOG_HEIGHT"/>
+		<item value="426" key="DIALOG_HEIGHT"/>
 		<item value="729" key="DIALOG_X_ORIGIN"/>
 		<item value="216" key="DIALOG_Y_ORIGIN"/>
 	</section>
@@ -12,6 +12,8 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 	</section>
 	<section name="NewWizardAction">
+	</section>
+	<section name="BasicNewProjectResourceWizard">
 	</section>
 	<section name="SaveAsDialogSettings">
 		<item value="613" key="DIALOG_WIDTH"/>
