@@ -12,29 +12,31 @@ import statsmodels as sm
 import matplotlib.patches as patches
 import matplotlib.path as path
 import argparse
+import math
 
 def plot():
     #Set the style
     matplotlib.style.use('ggplot')
 
+    args = parse_arguments()
     # Create folder if it doesn't exits
+
     destiny = "./plot"
     if not os.path.isdir(destiny):
         os.makedirs(destiny)
     # Open data file
-    file_name = "11_0.txt"
-    iFile = open(file_name.rstrip(), 'rb')
+    file_name = args.data_file
+    iFile = open(file_name, 'rb')
 
     data = []
 
     for row in iFile:
-        data.append(int(row.rstrip()))
+        data.append(float(row.rstrip()))
 
-    #print element
+    #print data
 
     # Plot histogram
-    plt.hist(data, bins=range(min(data)-1,max(data)+1,1), color='g', normed=True)
-
+    plt.hist(data, bins=10, color='g', normed=True)
 
     distribution = st.norm
     params = distribution.fit(data)
@@ -75,6 +77,16 @@ def make_pdf(dist, params, size=10000):
 
     return pdf
 
-#ecute the program
+def parse_arguments():
+
+    parse = argparse.ArgumentParser()
+
+    parse.add_argument("data_file", type=str, help="input file")
+
+    #Parse the arguments
+    args = parse.parse_args()
+    return args
+
+#Execute the program
 if __name__ == "__main__":
     plot()

@@ -56,7 +56,7 @@ DAMAGE.
  *pin6 - midpoint
  *pin5 - Max Input
  *
- */
+ *************************************************/
 
 
 /* setting serial communication params */
@@ -67,20 +67,19 @@ DAMAGE.
 	#define F_CPU 8000000UL
 #endif
 
-//#define SILENCE_TIME 10
-#define SILENCE_TIME 40
 
-#define HITS_TO_VALID 3
+
+#define HITS_TO_VALID 2
 
 #if defined(__AVR_ATmega2560__) || defined(__AVR_ATmega328P__)
 
 	#define T0_PRESCALE 8
-	#define ULTRASONIC_MATCH 26 // = ((F_CPU/(2 * T0_PRESCALE * 40000UL)) - 1) -> 25 us = 40kHz
+	#define ULTRASONIC_MATCH 21 // = ((F_CPU/(2 * T0_PRESCALE * 40000UL)) - 1) -> 25 us = 40kHz
 
-	#define T1_PRESCALE 256
-	#define TRAIN_LENGTH 11 // = floor(((T1_PRESCALE) * 2)/F_CPU) for 2ms
-	#define TIMEOUT_VALUE_L 0xFF // (floor(((T1_PRESCALE) * 11)/F_CPU)&0xFF00)>>8 for 11ms
-	#define TIMEOUT_VALUE_H 0xFF // (floor(((T1_PRESCALE) * 11)/F_CPU)&0xFF) for 11ms
+	#define T1_PRESCALE 64
+	#define TRAIN_LENGTH 11*4 // = floor(((T1_PRESCALE) * 2)/F_CPU) for 2ms
+	#define SILENCE_TIME 40*4
+	#define TIMEOUT_VALUE 0x1A80;
 
 #elif defined(__AVR_ATtiny24__)
 
@@ -123,7 +122,7 @@ volatile boolean_t reception_int_flag; // Flag to communicate the reception of t
 volatile boolean_t time_out_flag; // Flag to communicate the timeout status
 volatile uint8_t hits_count;
 
-char distance_ss;
+volatile uint16_t distance_int16;
 volatile char distance = 'a';
 
 /**************************
@@ -180,7 +179,6 @@ ioinit (void)
 	TCCR0A |= _BV(COM0A0) |_BV(COM0B0) | _BV(WGM01) ; /* CTC, and toggle OC0A on Compare Match */
 
 	//TIMSK0 = 1;
-	TCCR0B |= _BV(WGM02); //TODO: check this, this is not needed for CTC
 	OCR0A = ULTRASONIC_MATCH; /* note [1], This is Arduino Mega pin 13*/
 	OCR0B = ULTRASONIC_MATCH; /* note [1] */
 
@@ -197,23 +195,18 @@ ioinit (void)
     MAX_PORT &= ~(_BV(MAX_PIN)); //MAX ON, pin 25 in arduino mega256
 
     //--------------------------------------------------------------------
-    /* Timer 1 */
-    TCCR1A |= _BV(COM1A0) | _BV(WGM11); /* CTC,*/
-    //OCR1A = 0x02FF;
 
-
-    OCR1AH = TIMEOUT_VALUE_H; //TODO: test the writing method
-    OCR1AL = TIMEOUT_VALUE_L;
+    //TODO, bug found, try the following code:
+    OCR1A = TIMEOUT_VALUE;
+    TCCR1B |= _BV(WGM12); //TIMER1_ON
 
     //--------------------------------------------------------------------
     //Analog comparator configuration
-    //ACSR |= _BV(ACIE) | _BV(ACIS1) | _BV(ACIS0); /* raising edge */
-	//ACSR = (0<<ACD) | (1<<ACBG) | (1<<ACIE) | (0<<ACIC) | (1<<ACIS1) | (1<<ACIS0); //TODO: remove this if not required
-
 	//No bandgap reference
 	ACSR = (0<<ACD) | (0<<ACBG) | (1<<ACIE) | (0<<ACIC) | (1<<ACIS1) | (1<<ACIS0);
 
-    //ATMEGA configuration, not required for attiny24
+    //TODO: remove this
+	//ATMEGA configuration, not required for attiny24
     //The arduino mega 256 has no AIN0 connected in the board, we will use ADC1/PF1 in the device, A0	 in the mega board
 	//ADCSRB |= _BV(ACME);
     //ADCSRA &= ~(_BV(ADEN));
@@ -221,7 +214,7 @@ ioinit (void)
 
     //--------------------------------------------------------------------
     /* Enable timer 1 compare A match. */
-    TIMSK = _BV (OCIE1A); //TODO: Figure out if required
+    TIMSK = _BV(OCIE1A); //TODO: Figure out if required
     sei();
 
     //Debug pin for hits
@@ -324,17 +317,12 @@ void idle_function(void){
  ******************************/
 void listen_function(void){
 
-	//reception_int_flag = TRUE; //debug
-	//uart_putchar('L');
-	//time_out_flag = TRUE;
-
-	//Wait
-	//while(TCNT1L <= 2*TRAIN_LENGTH){}
 	//Listen to the RX
 	ACSR |= _BV(ACIE);
 
 	if (time_out_flag == TRUE){
 		command_status = TIMEOUT;
+		uart_putchar(0xFF); // Timeout code
 		uart_putchar(0xFF); // Timeout code
 #if DEBUG_STATES
 		uart_putchar('T'); //debug
@@ -345,7 +333,6 @@ void listen_function(void){
 #if DEBUG_STATES
 		uart_putchar('R');
 #endif
-		//distance_ss = distance;
 		reception_int_flag = FALSE;
 		command_status = RECEIVED;
 	}
@@ -363,7 +350,10 @@ void calculate_function(void){
 #endif
 	if (time_out_flag == TRUE){
 		//Transmit the distance
-		uart_putchar(distance);
+		//uart_putchar(distance);
+
+		uart_putchar((char)distance_int16);
+		uart_putchar((char)(distance_int16>>8));
 		comm_status = OVER;
 	}
 }
@@ -374,25 +364,15 @@ void calculate_function(void){
 void send_function(void){
 
 #if DEBUG_STATES
-	uart_putchar('S'); //debug
+	uart_putchar('E'); //debug
 #endif
     //---Update flags ----------------
     tx_status = ON;
     command_status = ALIVE;
     tx_triggered = TRUE;
 
-    ////////////////////////////////////////////////////////////////
-
-    TIMSK |= _BV(OCIE1A); //Timer Interrupt on
-    TIMER1_OFF;
-    TCNT1L = 0;
-    TCNT1H = 0;
-    TIMER1_ON;
-    while(time_out_flag == FALSE){}
-    time_out_flag = FALSE;
-    TIMER1_OFF;
-
-    ///////////////////////////////////////////////////////
+    //Sync command
+    uart_putchar('S');
 
 	//------------------TURN ON Interrupts ----------------------
 	TIMSK |= _BV(OCIE1A); //Timer Interrupt on
@@ -402,8 +382,10 @@ void send_function(void){
 	TCNT0 = 0;
 
     //clean counter 1
-    TCNT1L = 0;
-    TCNT1H = 0;
+    //TODO: try this
+	TCNT1 = 0;
+	//TCNT1L = 0;
+    //TCNT1H = 0;
 
 	//Configure direction of pin for PWM
 	//DDR_OC0A |= _BV(OC0A);
@@ -443,7 +425,10 @@ ISR (TIMER1_COMPA_vect)       /* Note [2] */
 	TIMSK &= ~(_BV(OCIE1A)); //Timer Interrupt off
 	//ACSR &= ~(_BV(ACIE)); //Analog comparator off
 
-	TCCR1B &= ~(_BV(CS12) | _BV(CS11) | _BV(CS10));
+	TIMER1_OFF;
+	//TODO: Check that this is not needed anymore:
+	//TCCR1B &= ~(_BV(CS12) | _BV(CS11) | _BV(CS10));
+
 	//TCNT1L = 0;
 	hits_count = 0;
 	time_out_flag = TRUE;
@@ -454,24 +439,21 @@ ISR (TIMER1_COMPA_vect)       /* Note [2] */
  ************************************/
 ISR (ANALOG_COMP_vect)
 {
-	if(TCNT1L > SILENCE_TIME){
+	if(TCNT1 > SILENCE_TIME){
 		hits_count += 1;
+		PORTB = (_BV(DDB1) ^ PORTB);
 	}
 
 	if(hits_count == HITS_TO_VALID){
-//
-//		TIMSK &= ~(_BV(OCIE1A)); //Timer Interrupt off
-//		ACSR &= ~( _BV(ACIE)); //Analog comparator off
-//		TCCR1B &= ~(_BV(CS12)| _BV(CS11) | _BV(CS10));
+
 		reception_int_flag = TRUE;
 
 		//Measure distance
-		distance = (char)TCNT1L;
+		//distance = (char)TCNT1L;
+		distance_int16 = (uint16_t)TCNT1;
 
 		//DEBUG capture
-		PORTB = (_BV(DDB1) ^ PORTB);
-
-		//hits_count = 0;
+		//PORTB = (_BV(DDB1) ^ PORTB);
 	}
 }
 
@@ -481,13 +463,9 @@ ISR (ANALOG_COMP_vect)
  ******************************/
 void uart_putchar(char c) {
 
-	//UDR0 = c;
-    //loop_until_bit_is_set(UCSR0A, TXC0); /* Wait until transmission ready. */
 	loop_until_bit_is_set(UCSR0A, UDRE0); /* Wait until data register empty. */
 	UDR0 = c;
 }
-
-/* note [1]: to calculate the value of the 4kHz pulse we follow this equation:  10MHz / ( 64 (prescale) * 39 (compare value)) = 4006,41 Hz */
 
 //****************************************************************************
 //****************************************************************************
