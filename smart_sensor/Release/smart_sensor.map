@@ -249,14 +249,14 @@ END GROUP
                 0x0000000000000260        0xe ./main.o
                 0x0000000000000260                uart_putchar
  .text.listen_function
-                0x000000000000026e       0x32 ./main.o
+                0x000000000000026e       0x38 ./main.o
                 0x000000000000026e                listen_function
  .text.calculate_function
-                0x00000000000002a0       0x28 ./main.o
-                0x00000000000002a0                calculate_function
+                0x00000000000002a6       0x28 ./main.o
+                0x00000000000002a6                calculate_function
  .text.send_function
-                0x00000000000002c8       0x58 ./main.o
-                0x00000000000002c8                send_function
+                0x00000000000002ce       0x52 ./main.o
+                0x00000000000002ce                send_function
  .text.libgcc.mul
                 0x0000000000000320        0x0 /usr/lib/gcc/avr/4.9.2/avr5/libgcc.a(_exit.o)
  .text.libgcc.div

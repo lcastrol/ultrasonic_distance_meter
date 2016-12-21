@@ -35,13 +35,21 @@ while($counter < 1000){
             my $cm = ($ticks-$calibration) * 64 * 331 / (16000 * 10);
             my $ms = $ticks * 64 / (16000);
             #my $gray = (unpack "C", $buffer);
-            print $ms ;
-            print " ms\n";
-            print $cm ;
-            print " cm\n";
-            print $ticks;
-            print " ticks\n";
-            #print "\n";
+
+            #print "\033[2J";    #clear the screen
+            #print "\033[0;0H"; #jump to 0,0
+            
+            #print $file $ms ;
+            #print " ms\n";
+            #print $file $cm ;
+            #print " cm\n";
+            print $file $ticks;
+            #print " ticks\n";
+            print $file "\n";
+
+
+
+
         } else {
             print "OUT OFF LIMIT\n";
         }
@@ -49,3 +57,4 @@ while($counter < 1000){
 
     $counter += 1;
 }
+close $file

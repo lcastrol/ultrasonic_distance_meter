@@ -31,29 +31,26 @@ def plot():
     data = []
 
     for row in iFile:
-        data.append(float(row.rstrip()))
-
-    #print data
+        data.append(int(row.rstrip()))
 
     # Plot histogram
-    plt.hist(data, bins=10, color='g', normed=True)
+    plt.hist(data, bins=range(min(data)-1,max(data)+1), color='g', normed=True)
 
-    distribution = st.norm
-    params = distribution.fit(data)
-    dist = getattr(st, 'norm')
+    #distribution = st.norm
+    #params = distribution.fit(data)
+    #dist = getattr(st, 'norm')
 
+    #mean, variance = dist.stats(*params[:-2],moments='mv')
+    #median = dist.median(*params[:-2])
 
-    mean, variance = dist.stats(*params[:-2],moments='mv')
-    median = dist.median(*params[:-2])
-
-    plt.xlabel('Final score difference (Player A - Player B)')
-    pdf = make_pdf(dist, params)
-    pdf.plot(lw=2, label='PDF', legend=True)
+    #plt.xlabel('Final score difference (Player A - Player B)')
+    #pdf = make_pdf(dist, params)
+    #pdf.plot(lw=2, label='PDF', legend=True)
     plt.xlim(min(data)-2,max(data)+2)
-    plt.xticks(np.arange(min(data),max(data)))
+    #plt.xticks(np.arange(min(data),max(data)))
 
-    plt.title('Data back from the sensor\n Mean = %.2f, Variance = %.2f, Median = %.2f \n' % (mean,variance,median))
-    plt.xlabel('readings')
+    #plt.title('Data back from the sensor\n Mean = %.2f, Variance = %.2f, Median = %.2f \n' % (mean,variance,median))
+    #plt.xlabel('readings')
     plt.title('')
     plt.savefig("%s/plot.png" % destiny)
     plt.close()

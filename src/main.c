@@ -89,8 +89,7 @@ DAMAGE.
 	//Global time
 	#define T1_PRESCALE 64
 	#define TRAIN_LENGTH 2 // = floor((F_CPU  * 2)/(T1_PRESCALE *1000)) for 2ms
-	#define TIMEOUT_VALUE_L 0xA4 // (floor((F_CPU * 11)/(T1_PRESCALE * 1000))&0xFF) for 11ms
-	#define TIMEOUT_VALUE_H 0x00 // (floor((F_CPU * 11)/(T1_PRESCALE * 1000))&0xFF00)>>8 for 11ms
+	#define TIMEOUT_VALUE 0x0100
 
 #endif
 
@@ -122,8 +121,6 @@ volatile boolean_t reception_int_flag; // Flag to communicate the reception of t
 volatile boolean_t time_out_flag; // Flag to communicate the timeout status
 volatile uint8_t hits_count;
 
-char distance_ss;
-volatile char distance = 'a';
 
 /**************************
  * Function: ioinit
@@ -177,20 +174,13 @@ ioinit (void)
 
     //--------------------------------------------------------------------
     /* Timer 1 */
-    TCCR1A |= _BV(COM1A0) | _BV(WGM11); /* CTC,*/
-    OCR1AL = TIMEOUT_VALUE_L;
-    OCR1AH = TIMEOUT_VALUE_H;
+    OCR1A = TIMEOUT_VALUE;
+    TCCR1B |= _BV(WGM12);
 
     //--------------------------------------------------------------------
     //Analog comparator configuration
 	//No bandgap reference
 	ACSR = (0<<ACD) | (0<<ACBG) | (1<<ACIE) | (0<<ACIC) | (1<<ACIS1) | (1<<ACIS0);
-
-    //ATMEGA configuration, not required for attiny24
-    //The arduino mega 256 has no AIN0 connected in the board, we will use ADC1/PF1 in the device, A0	 in the mega board
-	//ADCSRB |= _BV(ACME);
-    //ADCSRA &= ~(_BV(ADEN));
-    //ADMUX |= _BV(MUX0);
 
     //--------------------------------------------------------------------
     /* Enable timer 1 compare A match. */
@@ -291,12 +281,6 @@ void idle_function(void){
  ******************************/
 void listen_function(void){
 
-	//reception_int_flag = TRUE; //debug
-	//uart_putchar('L');
-	//time_out_flag = TRUE;
-
-	//Wait
-	//while(TCNT1L <= 2*TRAIN_LENGTH){}
 	//Listen to the RX
 	ACSR |= _BV(ACIE);
 
@@ -311,6 +295,7 @@ void listen_function(void){
 #if DEBUG_STATES
 		uart_putchar('R');
 #endif
+	    ACSR &= ~(_BV(ACIE)); //Analog comparator on
 		reception_int_flag = FALSE;
 		command_status = RECEIVED;
 	}
@@ -347,14 +332,13 @@ void send_function(void){
 
 	//------------------TURN ON Interrupts ----------------------
 	TIMSK |= _BV(OCIE1A); //Timer Interrupt on
-    ACSR |= _BV(ACIE); //Analog comparator on
+
 
 	//Clear counter 0
 	TCNT0 = 0;
 
     //clean counter 1
-    TCNT1L = 0;
-    TCNT1H = 0;
+    TCNT1 = 0;
 
 	//Configure direction of pin for PWM
 	DDR_OC0A |= _BV(OC0A);
@@ -378,7 +362,6 @@ void send_function(void){
     while(TCNT1L <= TRAIN_LENGTH){} //Do nothing while waiting
 
     TURN_MAX_OFF;
-
 
     //Timer off
     TIMER0_OFF;

@@ -69,7 +69,7 @@ DAMAGE.
 
 
 
-#define HITS_TO_VALID 2
+#define HITS_TO_VALID 3
 
 #if defined(__AVR_ATmega2560__) || defined(__AVR_ATmega328P__)
 
@@ -196,9 +196,9 @@ ioinit (void)
 
     //--------------------------------------------------------------------
 
-    //TODO, bug found, try the following code:
+    //Configure timer 1:
     OCR1A = TIMEOUT_VALUE;
-    TCCR1B |= _BV(WGM12); //TIMER1_ON
+    TCCR1B |= _BV(WGM12);
 
     //--------------------------------------------------------------------
     //Analog comparator configuration
@@ -302,7 +302,6 @@ main (void)
 void idle_function(void){
 	//Well do nothing, this state can be removed
 	TIMSK &= ~(_BV(OCIE1A));
-	//ACSR &= ~(_BV(ACIE));
 #if DEBUG_STATES
 	uart_putchar('I');
 #endif
@@ -333,6 +332,8 @@ void listen_function(void){
 #if DEBUG_STATES
 		uart_putchar('R');
 #endif
+		//Stop listening interrupts from RX
+		ACSR &= ~(_BV(ACIE)); //Analog comparator Interrupt off
 		reception_int_flag = FALSE;
 		command_status = RECEIVED;
 	}
@@ -350,8 +351,6 @@ void calculate_function(void){
 #endif
 	if (time_out_flag == TRUE){
 		//Transmit the distance
-		//uart_putchar(distance);
-
 		uart_putchar((char)distance_int16);
 		uart_putchar((char)(distance_int16>>8));
 		comm_status = OVER;
@@ -376,16 +375,12 @@ void send_function(void){
 
 	//------------------TURN ON Interrupts ----------------------
 	TIMSK |= _BV(OCIE1A); //Timer Interrupt on
-    ACSR &= ~(_BV(ACIE)); //Analog comparator on
 
 	//Clear counter 0
 	TCNT0 = 0;
 
     //clean counter 1
-    //TODO: try this
 	TCNT1 = 0;
-	//TCNT1L = 0;
-    //TCNT1H = 0;
 
 	//Configure direction of pin for PWM
 	//DDR_OC0A |= _BV(OC0A);
@@ -423,13 +418,10 @@ void send_function(void){
 ISR (TIMER1_COMPA_vect)       /* Note [2] */
 {
 	TIMSK &= ~(_BV(OCIE1A)); //Timer Interrupt off
-	//ACSR &= ~(_BV(ACIE)); //Analog comparator off
 
+	//Turn off timer1
 	TIMER1_OFF;
-	//TODO: Check that this is not needed anymore:
-	//TCCR1B &= ~(_BV(CS12) | _BV(CS11) | _BV(CS10));
 
-	//TCNT1L = 0;
 	hits_count = 0;
 	time_out_flag = TRUE;
 }

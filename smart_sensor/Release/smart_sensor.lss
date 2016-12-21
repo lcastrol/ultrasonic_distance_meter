@@ -124,7 +124,7 @@ Disassembly of section .text:
   fe:	90 e0       	ldi	r25, 0x00	; 0
  100:	91 83       	std	Z+1, r25	; 0x01
  102:	80 83       	st	Z, r24
- 104:	84 e6       	ldi	r24, 0x64	; 100
+ 104:	87 e6       	ldi	r24, 0x67	; 103
  106:	91 e0       	ldi	r25, 0x01	; 1
  108:	93 83       	std	Z+3, r25	; 0x03
  10a:	82 83       	std	Z+2, r24	; 0x02
@@ -132,7 +132,7 @@ Disassembly of section .text:
  10e:	91 e0       	ldi	r25, 0x01	; 1
  110:	95 83       	std	Z+5, r25	; 0x05
  112:	84 83       	std	Z+4, r24	; 0x04
- 114:	80 e5       	ldi	r24, 0x50	; 80
+ 114:	83 e5       	ldi	r24, 0x53	; 83
  116:	91 e0       	ldi	r25, 0x01	; 1
  118:	97 83       	std	Z+7, r25	; 0x07
  11a:	86 83       	std	Z+6, r24	; 0x06
@@ -268,7 +268,7 @@ Disassembly of section .text:
  230:	89 27       	eor	r24, r25
  232:	85 b9       	out	0x05, r24	; 5
  234:	80 91 0f 01 	lds	r24, 0x010F
- 238:	82 30       	cpi	r24, 0x02	; 2
+ 238:	83 30       	cpi	r24, 0x03	; 3
  23a:	59 f4       	brne	.+22     	; 0x252 <__vector_23+0x4c>
  23c:	81 e0       	ldi	r24, 0x01	; 1
  23e:	80 93 02 01 	sts	0x0102, r24
@@ -305,39 +305,39 @@ Disassembly of section .text:
  288:	0c 94 30 01 	jmp	0x260	; 0x260 <uart_putchar>
  28c:	80 91 02 01 	lds	r24, 0x0102
  290:	81 30       	cpi	r24, 0x01	; 1
- 292:	29 f4       	brne	.+10     	; 0x29e <listen_function+0x30>
- 294:	10 92 02 01 	sts	0x0102, r1
- 298:	82 e0       	ldi	r24, 0x02	; 2
- 29a:	80 93 0e 01 	sts	0x010E, r24
- 29e:	08 95       	ret
+ 292:	41 f4       	brne	.+16     	; 0x2a4 <listen_function+0x36>
+ 294:	80 b7       	in	r24, 0x30	; 48
+ 296:	87 7f       	andi	r24, 0xF7	; 247
+ 298:	80 bf       	out	0x30, r24	; 48
+ 29a:	10 92 02 01 	sts	0x0102, r1
+ 29e:	82 e0       	ldi	r24, 0x02	; 2
+ 2a0:	80 93 0e 01 	sts	0x010E, r24
+ 2a4:	08 95       	ret
 
-000002a0 <calculate_function>:
- 2a0:	80 91 10 01 	lds	r24, 0x0110
- 2a4:	81 30       	cpi	r24, 0x01	; 1
- 2a6:	79 f4       	brne	.+30     	; 0x2c6 <calculate_function+0x26>
- 2a8:	80 91 12 01 	lds	r24, 0x0112
- 2ac:	90 91 13 01 	lds	r25, 0x0113
- 2b0:	0e 94 30 01 	call	0x260	; 0x260 <uart_putchar>
- 2b4:	80 91 12 01 	lds	r24, 0x0112
- 2b8:	90 91 13 01 	lds	r25, 0x0113
- 2bc:	89 2f       	mov	r24, r25
- 2be:	0e 94 30 01 	call	0x260	; 0x260 <uart_putchar>
- 2c2:	10 92 0d 01 	sts	0x010D, r1
- 2c6:	08 95       	ret
+000002a6 <calculate_function>:
+ 2a6:	80 91 10 01 	lds	r24, 0x0110
+ 2aa:	81 30       	cpi	r24, 0x01	; 1
+ 2ac:	79 f4       	brne	.+30     	; 0x2cc <calculate_function+0x26>
+ 2ae:	80 91 12 01 	lds	r24, 0x0112
+ 2b2:	90 91 13 01 	lds	r25, 0x0113
+ 2b6:	0e 94 30 01 	call	0x260	; 0x260 <uart_putchar>
+ 2ba:	80 91 12 01 	lds	r24, 0x0112
+ 2be:	90 91 13 01 	lds	r25, 0x0113
+ 2c2:	89 2f       	mov	r24, r25
+ 2c4:	0e 94 30 01 	call	0x260	; 0x260 <uart_putchar>
+ 2c8:	10 92 0d 01 	sts	0x010D, r1
+ 2cc:	08 95       	ret
 
-000002c8 <send_function>:
- 2c8:	10 92 11 01 	sts	0x0111, r1
- 2cc:	10 92 0e 01 	sts	0x010E, r1
- 2d0:	81 e0       	ldi	r24, 0x01	; 1
- 2d2:	80 93 04 01 	sts	0x0104, r24
- 2d6:	83 e5       	ldi	r24, 0x53	; 83
- 2d8:	0e 94 30 01 	call	0x260	; 0x260 <uart_putchar>
- 2dc:	80 91 6f 00 	lds	r24, 0x006F
- 2e0:	82 60       	ori	r24, 0x02	; 2
- 2e2:	80 93 6f 00 	sts	0x006F, r24
- 2e6:	80 b7       	in	r24, 0x30	; 48
- 2e8:	87 7f       	andi	r24, 0xF7	; 247
- 2ea:	80 bf       	out	0x30, r24	; 48
+000002ce <send_function>:
+ 2ce:	10 92 11 01 	sts	0x0111, r1
+ 2d2:	10 92 0e 01 	sts	0x010E, r1
+ 2d6:	81 e0       	ldi	r24, 0x01	; 1
+ 2d8:	80 93 04 01 	sts	0x0104, r24
+ 2dc:	83 e5       	ldi	r24, 0x53	; 83
+ 2de:	0e 94 30 01 	call	0x260	; 0x260 <uart_putchar>
+ 2e2:	80 91 6f 00 	lds	r24, 0x006F
+ 2e6:	82 60       	ori	r24, 0x02	; 2
+ 2e8:	80 93 6f 00 	sts	0x006F, r24
  2ec:	16 bc       	out	0x26, r1	; 38
  2ee:	10 92 85 00 	sts	0x0085, r1
  2f2:	10 92 84 00 	sts	0x0084, r1
@@ -352,7 +352,7 @@ Disassembly of section .text:
  30a:	28 98       	cbi	0x05, 0	; 5
  30c:	80 91 84 00 	lds	r24, 0x0084
  310:	8d 32       	cpi	r24, 0x2D	; 45
- 312:	e0 f3       	brcs	.-8      	; 0x30c <send_function+0x44>
+ 312:	e0 f3       	brcs	.-8      	; 0x30c <send_function+0x3e>
  314:	85 b5       	in	r24, 0x25	; 37
  316:	88 7f       	andi	r24, 0xF8	; 248
  318:	85 bd       	out	0x25, r24	; 37
