@@ -78,7 +78,8 @@ DAMAGE.
 
 	#define T1_PRESCALE 64
 	#define TRAIN_LENGTH 11*4 // = floor(((T1_PRESCALE) * 2)/F_CPU) for 2ms
-	#define SILENCE_TIME 40*4
+	//#define SILENCE_TIME 40*4
+	#define SILENCE_TIME 40*4*8
 	#define TIMEOUT_VALUE 0x1A80;
 
 #elif defined(__AVR_ATtiny24__)
