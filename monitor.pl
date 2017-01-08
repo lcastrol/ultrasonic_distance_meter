@@ -29,7 +29,7 @@ while($counter < 1000){
     }
     else{
         my $calibration = 3.9*4*4;
-        my $delay = 1000;
+        my $delay = (60 * 16) + 120;
         #my $calibration = 0;
         my $ticks = (unpack "S", $buffer); 
         if ($ticks != 65535){
@@ -37,9 +37,9 @@ while($counter < 1000){
             my $ms = ($ticks-$calibration-$delay) * 64 / (16000);
             #my $gray = (unpack "C", $buffer);
 
-            print "\033[2J";    #clear the screen
-            print "\033[0;0H"; #jump to 0,0
-            
+            #print "\033[2J";    #clear the screen
+            #print "\033[0;0H"; #jump to 0,0
+
             print $ms ;
             print " ms\n";
             print $cm ;

@@ -255,25 +255,25 @@ END GROUP
                 0x0000000000000050       0x4a ./main.o
                 0x0000000000000050                send_function
  .text.listen_function
-                0x000000000000009a       0x18 ./main.o
+                0x000000000000009a       0x16 ./main.o
                 0x000000000000009a                listen_function
- .text.ioinit   0x00000000000000b2       0x5a ./main.o
-                0x00000000000000b2                ioinit
+ .text.ioinit   0x00000000000000b0       0x5a ./main.o
+                0x00000000000000b0                ioinit
  .text.get_next_state
-                0x000000000000010c       0x2e ./main.o
-                0x000000000000010c                get_next_state
+                0x000000000000010a       0x2e ./main.o
+                0x000000000000010a                get_next_state
  .text.execute_state
-                0x000000000000013a       0x16 ./main.o
-                0x000000000000013a                execute_state
+                0x0000000000000138       0x16 ./main.o
+                0x0000000000000138                execute_state
  .text.startup.main
-                0x0000000000000150        0xc ./main.o
-                0x0000000000000150                main
+                0x000000000000014e        0xc ./main.o
+                0x000000000000014e                main
  .text.__vector_6
-                0x000000000000015c       0x26 ./main.o
-                0x000000000000015c                __vector_6
+                0x000000000000015a       0x26 ./main.o
+                0x000000000000015a                __vector_6
  .text.__vector_12
-                0x0000000000000182       0x30 ./main.o
-                0x0000000000000182                __vector_12
+                0x0000000000000180       0x32 ./main.o
+                0x0000000000000180                __vector_12
                 0x00000000000001b2                . = ALIGN (0x2)
  *(.fini9)
  .fini9         0x00000000000001b2        0x0 /usr/lib/gcc/avr/4.9.2/avr25/tiny-stack/libgcc.a(_exit.o)

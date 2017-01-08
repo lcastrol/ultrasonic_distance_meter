@@ -1,4 +1,4 @@
-19:08:02 **** Incremental Build of configuration Release for project src ****
+16:23:36 **** Incremental Build of configuration Release for project src ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=attiny24 src.elf
@@ -16,5 +16,5 @@ Data:         14 bytes (10.9% Full)
 Finished building: sizedummy
  
 
-19:08:02 Build Finished (took 70ms)
+16:23:36 Build Finished (took 70ms)
 

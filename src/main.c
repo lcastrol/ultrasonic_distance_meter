@@ -262,7 +262,7 @@ void idle_function(void){
 void listen_function(void){
 
 	if (reception_int_flag == TRUE) {
-	    ACSR &= ~(_BV(ACIE)); //Analog comparator off
+	    //ACSR &= ~(_BV(ACIE)); //Analog comparator off
 	    hits_count = 0;
 	    reception_int_flag = FALSE;
 		command_status = RECEIVED;
@@ -344,6 +344,7 @@ ISR (ANA_COMP_vect)
 
 	if(hits_count == HITS_TO_VALID){
 		reception_int_flag = TRUE;
+		ACSR &= ~(_BV(ACIE)); //Analog comparator off
 	}
 }
 
