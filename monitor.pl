@@ -28,12 +28,14 @@ while($counter < 1000){
         #do nothing
     }
     else{
-        my $calibration = 3.9*4*4;
-        my $delay = (60 * 16) + 120;
+        #my $calibration = 3.9*4*4; #Heuristics 
+        my $calibration = 157; #Heuristics 
+        my $delay = (60 * 16); #60 ticks of slave board are *16 ticks of master board  
         #my $calibration = 0;
         my $ticks = (unpack "S", $buffer); 
         if ($ticks != 65535){
-            my $cm = ($ticks-$calibration-$delay) * 64 * 331 / (16000 * 10);
+            my $mm = ($ticks-$calibration-$delay) * 10 * 64 * 331 / (16000 * 10);
+            my $mm_round = int(($mm/2) + 0.5);
             my $ms = ($ticks-$calibration-$delay) * 64 / (16000);
             #my $gray = (unpack "C", $buffer);
 
@@ -42,8 +44,7 @@ while($counter < 1000){
 
             print $ms ;
             print " ms\n";
-            print $cm ;
-            print " cm\n";
+            print "$mm_round mm\n" ;
             print $ticks;
             print " ticks\n";
             print  "\n";
